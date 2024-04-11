@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 23:50:30 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/10 18:00:35 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/11 05:42:53 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,3 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
-
-/*	//TEST CASES
-#include <stdio.h>
-#include <ctype.h>
-
-int	main(void)
-{
-	printf("char\tprint\tisdigit\tft_isdigit\n");
-	for (int i = 0; i <= 255; i++)
-	{
-		printf("%d\t", i);
-		if (ft_isprint(i))
-			printf("%c\t", i);
-		else
-			printf("-\t");
-		printf("%d\t", isdigit(i));
-		printf("%d\n", ft_isdigit(i));
-	}
-	return (0);
-}
-*/
