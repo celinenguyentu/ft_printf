@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 00:33:47 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/15 07:47:48 by cnguyen-         ###   ########.fr       */
+/*   Created: 2024/04/13 01:48:42 by cnguyen-          #+#    #+#             */
+/*   Updated: 2024/04/15 07:48:36 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_nbrlen(const char *str)
 {
-	size_t	len;
+	int	count;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	count = 0;
+	while (ft_isdigit(*str))
+	{
+		count++;
+		str++;
+	}
+	return (count);
 }
