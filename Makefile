@@ -1,41 +1,54 @@
-NAME = libftprintf.a
+# -------------------------------- VARIABLES --------------------------------- #
+NAME			=	libftprintf.a
 
-CC = gcc
+CC				=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
+AR				=	ar
+ARFLAGS			=	rc
+RM				=	rm
+RMFLAGS			=	-rf
 
-CFLAGS = -Wall -Wextra -Werror
+SRCS_DIR		=	./srcs/
+SRCS_FILES		=	ft_atoi_digits.c \
+					ft_putchar.c \
+					ft_putstr.c \
+					ft_nbrlen.c \
+					formatspec.c \
+					specsargs.c \
+					ft_printf.c
+SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
-SRCS = 	ft_isdigit.c \
-		ft_strlen.c \
-		ft_strchr.c \
-		ft_atoi.c \
-		ft_putchar.c \
-		ft_putstr.c \
-		ft_nbrlen.c \
-		formatspec.c \
-		ft_printf.c
+HFILES_DIR		=	./includes/
 
-#SRCS_BONUS = 	
+OFILES			=	$(SRCS:.c=.o)
 
-HFILES = ft_printf.h
+LIBFT_PATH		=	./libft
+LIBFT			=	$(LIBFT_PATH)/libft.a
 
-OFILES = $(SRCS:.c=.o)
+# -------------------------------- RULES --------------------------------- #
 
-#OFILES_BONUS = $(SRCS_BONUS:.c=.o)
+.c.o: 
+				${CC} ${CFLAGS} -c -I ${HFILES_DIR} $< -o $@
 
-all: ${NAME}
+all:			${NAME}
 
-${NAME}: ${OFILES}
-	ar rc ${NAME} ${OFILES}
+bonus:			all
 
-#bonus : ${OFILES} ${OFILES_BONUS}
-#	ar rc ${NAME} ${OFILES} ${OFILES_BONUS}
+${LIBFT}:
+				make -C ${LIBFT_PATH} all
+
+${NAME}: 		${LIBFT} ${OFILES}
+				cp ${LIBFT} ${NAME}
+				${AR} ${ARFLAGS} ${NAME} ${OFILES}
 
 clean:
-	rm -rf ${OFILES}
+				make -C ${LIBFT_PATH} clean
+				${RM} ${RMFLAGS} ${OFILES}
 
-fclean: clean
-	rm -rf ${NAME}
+fclean:			clean
+				make -C ${LIBFT_PATH} fclean
+				${RM} ${RM_FLAGS} ${NAME}
 
-re: fclean all
+re:				fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY:			all bonus clean fclean re libft

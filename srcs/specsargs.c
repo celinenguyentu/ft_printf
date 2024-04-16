@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   specsargs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 23:32:24 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/09 17:41:28 by cnguyen-         ###   ########.fr       */
+/*   Created: 2024/04/16 04:54:06 by cnguyen-          #+#    #+#             */
+/*   Updated: 2024/04/16 04:54:20 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	fetch_next_args(t_formatspec *specs, va_list *args)
 {
-	long	nb;
-
-	nb = n;
-	if (nb < 0)
+	if (specs->width == -1)
+		specs->width = va_arg(*args, int);
+	if (specs->width < 0)
 	{
-		ft_putchar_fd('-', fd);
-		nb = -nb;
+		specs->width = -specs->width;
+		specs->flags.dash = 1;
+		if (specs->flags.zero == 1)
+			specs->flags.zero = 0;
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd((nb % 10) + '0', fd);
+	if (specs->precision && specs->precision_n == -1)
+		specs->precision_n = va_arg(*args, int);
+	if (specs->precision && specs->precision_n < 0)
+		specs->precision = 0;
 }

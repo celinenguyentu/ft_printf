@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/15 07:59:51 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:46:57 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ const char	*read_width(const char *format, t_formatspec *specs)
 	}
 	else
 	{
-		specs->width = ft_atoi(format);
+		specs->width = ft_atoi_digits(format);
 		specs->n_chars += ft_nbrlen(format);
 		format += ft_nbrlen(format);
 	}
@@ -86,7 +86,7 @@ const char	*read_precision(const char *format, t_formatspec *specs)
 				specs->n_chars += 1;
 				format++;
 			}
-			specs->precision_n = ft_atoi(format);
+			specs->precision_n = ft_atoi_digits(format);
 			specs->n_chars += ft_nbrlen(format);
 			format += ft_nbrlen(format);
 		}
