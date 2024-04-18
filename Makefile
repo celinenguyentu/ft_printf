@@ -4,23 +4,32 @@ NAME			=	libftprintf.a
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 AR				=	ar
-ARFLAGS			=	rc
+ARFLAGS			=	rcs
 RM				=	rm
 RMFLAGS			=	-rf
 
-SRCS_DIR		=	./srcs/
-SRCS_FILES		=	ft_atoi_digits.c \
-					ft_putchar.c \
-					ft_putstr.c \
-					ft_nbrlen.c \
-					formatspec.c \
-					specsargs.c \
-					ft_printf.c
-SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
-
 HFILES_DIR		=	./includes/
 
-OFILES			=	$(SRCS:.c=.o)
+SRCS_DIR		=	./srcs/
+ASRCS_FILES		=	ft_atoi_digits.c \
+					ft_nbrlen.c \
+					ft_putchar.c \
+					ft_putstr.c \
+					ft_printf.c \
+					print_arg.c \
+					print_char.c \
+					print_str.c \
+					init_formatspec.c \
+					specsargs.c 
+ASRCS			=	$(addprefix $(SRCS_DIR), $(ASRCS_FILES))
+MSRCS_FILES		=	get_formatspec.c 
+MSRCS 			=	$(addprefix $(SRCS_DIR), $(MSRCS_FILES))
+BSRCS_FILES		=	get_formatspec_bonus.c
+BSRCS			=	$(addprefix $(SRCS_DIR), $(BSRCS_FILES))
+
+AOBJS			=	$(ASRCS:.c=.o)
+MOBJS			=	$(MSRCS:.c=.o)
+BOBJS			=	$(BSRCS:.c=.o)
 
 LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
@@ -32,18 +41,20 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 
 all:			${NAME}
 
-bonus:			all
-
 ${LIBFT}:
 				make -C ${LIBFT_PATH} all
 
-${NAME}: 		${LIBFT} ${OFILES}
+${NAME}: 		${LIBFT} ${AOBJS} ${MOBJS}
 				cp ${LIBFT} ${NAME}
-				${AR} ${ARFLAGS} ${NAME} ${OFILES}
+				${AR} ${ARFLAGS} ${NAME} ${AOBJS} ${MOBJS}
+
+bonus:			${LIBFT} ${AOBJS} ${BOBJS}
+				cp ${LIBFT} ${NAME}
+				${AR} ${ARFLAGS} ${NAME} ${AOBJS} ${BOBJS}
 
 clean:
 				make -C ${LIBFT_PATH} clean
-				${RM} ${RMFLAGS} ${OFILES}
+				${RM} ${RMFLAGS} ${AOBJS} ${MOBJS} ${BOBJS}
 
 fclean:			clean
 				make -C ${LIBFT_PATH} fclean
