@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   formatspec.c                                       :+:      :+:    :+:   */
+/*   get_formatspec_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/16 14:46:57 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:40:38 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_formatspec(t_formatspec *specs)
-{
-	specs->flags = (t_flags){0, 0, 0, 0, 0};
-	specs->width = 0;
-	specs->precision = 0;
-	specs->precision_n = 0;
-	specs->specifier = 0;
-	specs->n_chars = 0;
-}
-
-const char	*read_flags(const char *format, t_formatspec *specs)
+static const char	*read_flags(const char *format, t_formatspec *specs)
 {
 	char	flag;
 
@@ -49,7 +39,7 @@ const char	*read_flags(const char *format, t_formatspec *specs)
 	return (format);
 }
 
-const char	*read_width(const char *format, t_formatspec *specs)
+static const char	*read_width(const char *format, t_formatspec *specs)
 {
 	if (*format == '*')
 	{
@@ -66,7 +56,7 @@ const char	*read_width(const char *format, t_formatspec *specs)
 	return (format);
 }
 
-const char	*read_precision(const char *format, t_formatspec *specs)
+static const char	*read_precision(const char *format, t_formatspec *specs)
 {
 	if (*format == '.')
 	{

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_digits.c                                   :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/16 20:07:46 by cnguyen-         ###   ########.fr       */
+/*   Created: 2024/04/18 14:32:27 by cnguyen-          #+#    #+#             */
+/*   Updated: 2024/04/18 14:32:32 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_atoi_digits(const char *str)
+int	print_char(t_formatspec specs, va_list *args)
 {
-	int	number;
+	int		n_chars;
+	char	arg;
 
-	number = 0;
-	while (ft_isdigit(*str))
-	{
-		number = number * 10 + *str - '0';
-		str++;
-	}
-	return (number);
+	n_chars = 0;
+	fetch_next_args(&specs, args);
+	arg = va_arg(*args, int);
+	while (specs.flags.dash == 0 && n_chars < specs.width - 1)
+		n_chars += ft_putchar(' ');
+	n_chars += ft_putchar(arg);
+	while (specs.flags.dash == 1 && n_chars < specs.width)
+		n_chars += ft_putchar(' ');
+	return (n_chars);
 }

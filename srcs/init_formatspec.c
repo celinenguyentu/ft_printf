@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_digits.c                                   :+:      :+:    :+:   */
+/*   init_formatspec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/16 20:07:46 by cnguyen-         ###   ########.fr       */
+/*   Created: 2024/04/18 14:40:16 by cnguyen-          #+#    #+#             */
+/*   Updated: 2024/04/18 14:40:31 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_atoi_digits(const char *str)
+void	init_formatspec(t_formatspec *specs)
 {
-	int	number;
-
-	number = 0;
-	while (ft_isdigit(*str))
-	{
-		number = number * 10 + *str - '0';
-		str++;
-	}
-	return (number);
+	specs->flags = (t_flags){0, 0, 0, 0, 0};
+	specs->width = 0;
+	specs->precision = 0;
+	specs->precision_n = 0;
+	specs->specifier = 0;
+	specs->n_chars = 0;
 }

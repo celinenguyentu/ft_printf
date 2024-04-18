@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_digits.c                                   :+:      :+:    :+:   */
+/*   get_formatspec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/16 20:07:46 by cnguyen-         ###   ########.fr       */
+/*   Created: 2024/04/18 14:36:29 by cnguyen-          #+#    #+#             */
+/*   Updated: 2024/04/18 14:45:00 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_atoi_digits(const char *str)
+t_formatspec	get_formatspec(const char *format)
 {
-	int	number;
+	t_formatspec	specs;
 
-	number = 0;
-	while (ft_isdigit(*str))
+	init_formatspec(&specs);
+	format++;
+	if (*format && ft_strchr("cspdiuxX%", *format))
 	{
-		number = number * 10 + *str - '0';
-		str++;
+		specs.specifier = *format;
+		specs.n_chars += 1;
 	}
-	return (number);
+	return (specs);
 }
