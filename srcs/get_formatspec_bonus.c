@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 14:40:38 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:16:51 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ static const char	*read_flags(const char *format, t_formatspec *specs)
 {
 	char	flag;
 
-	while (*format && ft_strchr("-0# +", *format))
+	while (*format && ft_strchr(FLAGS, *format))
 	{
-		flag = *ft_strchr("-0# +", *format);
+		flag = *ft_strchr(FLAGS, *format);
 		if (flag == '-')
-			specs->flags.dash = 1;
+			specs->dash = 1;
 		else if (flag == '0')
-			specs->flags.zero = 1;
+			specs->zero = 1;
 		else if (flag == '#')
-			specs->flags.hash = 1;
+			specs->hash = 1;
 		else if (flag == ' ')
-			specs->flags.blank = 1;
+			specs->blank = 1;
 		else
-			specs->flags.plus = 1;
+			specs->plus = 1;
 		format++;
 		specs->n_chars += 1;
 	}
-	if (specs->flags.dash == 1 && specs->flags.zero == 1)
-		specs->flags.zero = 0;
-	if (specs->flags.plus == 1 && specs->flags.blank == 1)
-		specs->flags.blank = 0;
+	if (specs->dash == 1 && specs->zero == 1)
+		specs->zero = 0;
+	if (specs->plus == 1 && specs->blank == 1)
+		specs->blank = 0;
 	return (format);
 }
 
@@ -93,13 +93,13 @@ t_formatspec	get_formatspec(const char *format)
 	format = read_flags(format, &specs);
 	format = read_width(format, &specs);
 	format = read_precision(format, &specs);
-	if (*format && ft_strchr("cspdiuxX%", *format))
+	if (*format && ft_strchr(SPECIFIERS, *format))
 	{
 		specs.specifier = *format;
 		specs.n_chars += 1;
 	}
 	if (specs.specifier && specs.precision
 		&& ft_strchr("diuxX", specs.specifier))
-		specs.flags.zero = 0;
+		specs.zero = 0;
 	return (specs);
 }

@@ -6,11 +6,13 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 14:33:27 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:58:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+#if defined(__APPLE__)
 
 int	print_str(t_formatspec specs, va_list *args)
 {
@@ -27,12 +29,43 @@ int	print_str(t_formatspec specs, va_list *args)
 	strlen = (int)ft_strlen(str);
 	if (specs.precision && strlen > specs.precision_n)
 		strlen = specs.precision_n;
-	while (specs.flags.dash == 0 && specs.width - strlen > n_chars)
+	while (!specs.dash && !specs.zero && n_chars < specs.width - strlen)
+		n_chars += ft_putchar(' ');
+	while (specs.zero && n_chars < specs.width - strlen)
+		n_chars += ft_putchar('0');
+	offset = n_chars;
+	while (*str && n_chars - offset < strlen)
+		n_chars += ft_putchar(*str++);
+	while (specs.dash && n_chars < specs.width)
+		n_chars += ft_putchar(' ');
+	return (n_chars);
+}
+
+#else
+
+int	print_str(t_formatspec specs, va_list *args)
+{
+	int		n_chars;
+	char	*str;
+	int		strlen;
+	int		offset;
+
+	n_chars = 0;
+	fetch_next_args(&specs, args);
+	str = va_arg(*args, char *);
+	if (!str)
+		str = "(null)";
+	strlen = (int)ft_strlen(str);
+	if (specs.precision && strlen > specs.precision_n)
+		strlen = specs.precision_n;
+	while (!specs.dash && n_chars < specs.width - strlen)
 		n_chars += ft_putchar(' ');
 	offset = n_chars;
 	while (*str && n_chars - offset < strlen)
 		n_chars += ft_putchar(*str++);
-	while (specs.flags.dash == 1 && specs.width - n_chars > 0)
+	while (specs.dash && n_chars < specs.width)
 		n_chars += ft_putchar(' ');
 	return (n_chars);
 }
+
+#endif
