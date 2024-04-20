@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 00:27:44 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 03:27:44 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ int	print_ptr(t_formatspec specs, va_list *args)
 	fetch_next_args(&specs, args);
 	address = (unsigned long int)va_arg(*args, void *);
 	output_len = ft_uintlen(address, 16);
-	while (specs.dash == 0 && specs.zero == 0 && n_chars < specs.width - output_len - 2)
-		n_chars += ft_putchar(' ');
+	if (specs.dash == 0 && specs.zero == 0)
+	{
+		while (n_chars < specs.width - output_len - 2)
+			n_chars += ft_putchar(' ');
+	}
 	n_chars += ft_putstr("0x");
 	while (specs.zero && n_chars < specs.width - output_len)
 		n_chars += ft_putchar('0');
