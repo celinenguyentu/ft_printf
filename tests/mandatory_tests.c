@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:21:58 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 17:36:27 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:37:00 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ int	main(void)
 	tests("Hello !%");
 	printf(">> Less format specifiers than arguments\n");
 	tests("Hello %s !", "Marvin", 42, '%');
-	//printf(">> Segfault in the middle of format string\n");
-	//tests("Hello %s %c !\n", "Marvin", *(char *)p);
 	printf(">> %%c conversion : argument is a string or NULL\n");
 	tests("|%c|%c|%c|", 'C', "Marvin", NULL);
 	printf(">> %%s conversion : argument is NULL\n");

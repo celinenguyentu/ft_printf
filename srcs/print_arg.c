@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 14:23:01 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/19 20:17:47 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	print_arg(t_formatspec specs, va_list *args)
 	else if (specs.specifier == 'x' || specs.specifier == 'X')
 		n_chars += print_xint(specs, args);
 	else if (specs.specifier == '%')
-		n_chars += ft_putchar('%');
+		n_chars += print_percent(specs, args);
+	else
+		n_chars += print_unknown(specs);
 	return (n_chars);
 }

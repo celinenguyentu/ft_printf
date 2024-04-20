@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 20:58:13 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 03:08:37 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	print_str(t_formatspec specs, va_list *args)
 	if (!str)
 		str = "(null)";
 	strlen = (int)ft_strlen(str);
-	if (specs.precision && strlen > specs.precision_n)
-		strlen = specs.precision_n;
+	if (specs.precision > -1 && strlen > specs.precision)
+		strlen = specs.precision;
 	while (!specs.dash && !specs.zero && n_chars < specs.width - strlen)
 		n_chars += ft_putchar(' ');
 	while (specs.zero && n_chars < specs.width - strlen)
@@ -53,11 +53,13 @@ int	print_str(t_formatspec specs, va_list *args)
 	n_chars = 0;
 	fetch_next_args(&specs, args);
 	str = va_arg(*args, char *);
-	if (!str)
+	if (!str && (specs.precision == -1|| specs.precision > 6))
 		str = "(null)";
+	else if (!str)
+		str = "";
 	strlen = (int)ft_strlen(str);
-	if (specs.precision && strlen > specs.precision_n)
-		strlen = specs.precision_n;
+	if (specs.precision > -1 && strlen > specs.precision)
+		strlen = specs.precision;
 	while (!specs.dash && n_chars < specs.width - strlen)
 		n_chars += ft_putchar(' ');
 	offset = n_chars;

@@ -6,149 +6,13 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 21:08:34 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 02:24:06 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_ptr(t_formatspec specs, va_list *args)
-{
-	int			n_chars;
-	uintptr_t	address;
-	int			output_len;
-
-	n_chars = 0;
-	fetch_next_args(&specs, args);
-	address = (unsigned long int)va_arg(*args, void *);
-	if (address)
-		output_len = ft_uintlen(address, 16) + 2;
-	else
-		output_len = ft_strlen(NULLPTR);
-	while (specs.dash == 0 && n_chars < specs.width - output_len)
-		n_chars += ft_putchar(' ');
-	if (address)
-	{
-		n_chars += ft_putstr("0x");
-		n_chars += ft_putuint(address, 'x');
-	}
-	else
-		n_chars += ft_putstr(NULLPTR);
-	while (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
-	return (n_chars);
-}
-
-int	print_intprefix(t_formatspec specs, int uarg_len, int negative)
-{
-	int	n_chars;
-	int	n_zeros;
-	int	offset;
-
-	n_chars = 0;
-	n_zeros = 0;
-	if (specs.precision && uarg_len < specs.precision_n)
-		n_zeros = specs.precision_n - uarg_len;
-	offset = uarg_len + negative + n_zeros;
-	if (!negative && (specs.blank || specs.plus))
-		offset += 1;
-	if (!specs.dash && !specs.zero)
-	{
-		while (specs.width - offset > n_chars)
-			n_chars += ft_putchar(' ');
-	}
-	if (negative)
-		n_chars += ft_putchar('-');
-	if (!negative && specs.blank)
-		n_chars += ft_putchar(' ');
-	if (!negative && specs.plus)
-		n_chars += ft_putchar('+');
-	while ((specs.zero && specs.width - uarg_len > n_chars) || n_zeros--)
-		n_chars += ft_putchar('0');
-	return (n_chars);
-}
-
-int	print_int(t_formatspec specs, va_list *args)
-{
-	int		n_chars;
-	long	arg;
-	int		uarg_len;
-	int		negative;
-
-	n_chars = 0;
-	fetch_next_args(&specs, args);
-	arg = (long)va_arg(*args, int);
-	negative = (arg < 0);
-	if (negative)
-		arg *= -1;
-	uarg_len = ft_uintlen(arg, 10);
-	n_chars += print_intprefix(specs, uarg_len, negative);
-	if (arg != 0 || !specs.precision || specs.precision_n != 0)
-		n_chars += ft_putuint(arg, 10);
-	while (specs.dash == 1 && specs.width - n_chars > 0)
-		n_chars += ft_putchar(' ');
-	return (n_chars);
-}
-
-int	print_uint(t_formatspec specs, va_list *args)
-{
-	int					n_chars;
-	unsigned long int	arg;
-	int					arg_len;
-	int					n_zeros;
-
-	n_chars = 0;
-	fetch_next_args(&specs, args);
-	arg = (unsigned long int)va_arg(*args, unsigned int);
-	arg_len = ft_uintlen(arg, 10);
-	n_zeros = 0;
-	if (specs.precision && arg_len < specs.precision_n)
-		n_zeros = specs.precision_n - arg_len;
-	if (!specs.dash && !specs.zero)
-	{
-		while (specs.width - arg_len - n_zeros > n_chars)
-			n_chars += ft_putchar(' ');
-	}
-	while ((specs.zero && specs.width - arg_len > n_chars) || n_zeros--)
-		n_chars += ft_putchar('0');
-	if (arg != 0 || !specs.precision || specs.precision_n != 0)
-		n_chars += ft_putuint(arg, 10);
-	while (specs.dash == 1 && specs.width - n_chars > 0)
-		n_chars += ft_putchar(' ');
-	return (n_chars);
-}
-
-int	print_xint(t_formatspec specs, va_list *args)
-{
-	int					n_chars;
-	unsigned long int	arg;
-	int					arg_len;
-	int					n_zeros;
-
-	n_chars = 0;
-	fetch_next_args(&specs, args);
-	arg = (unsigned long int)va_arg(*args, unsigned int);
-	arg_len = ft_uintlen(arg, 16);
-	n_zeros = 0;
-	if (specs.precision && arg_len < specs.precision_n)
-		n_zeros = specs.precision_n - arg_len;
-	if (!specs.dash && !specs.zero)
-	{
-		while (specs.width - arg_len - n_zeros - 2 * specs.hash * (arg > 0) > n_chars)
-			n_chars += ft_putchar(' ');
-	}
-	if (specs.hash && arg != 0)
-		n_chars += ft_putchar('0') + ft_putchar(specs.specifier);
-	while ((specs.zero && specs.width - arg_len > n_chars) || n_zeros--)
-		n_chars += ft_putchar('0');
-	if (arg != 0 || !specs.precision || specs.precision_n != 0)
-		n_chars += ft_putuint(arg, specs.specifier);
-	while (specs.dash == 1 && specs.width - n_chars > 0)
-		n_chars += ft_putchar(' ');
-	return (n_chars);
-}
-
-#if	defined(__APPLE__)
+#if defined(__APPLE__)
 
 int	ft_vprintf(const char *format, va_list ap)
 {
@@ -162,7 +26,8 @@ int	ft_vprintf(const char *format, va_list ap)
 		{
 			specs = get_formatspec(format);
 			format += specs.n_chars;
-			n_chars += print_arg(specs, &ap);
+			if (specs.specifier)
+				n_chars += print_arg(specs, &ap);
 		}
 		else
 			n_chars += ft_putchar(*format);
@@ -183,19 +48,15 @@ int	ft_vprintf(const char *format, va_list ap)
 		return (-1);
 	while (*format)
 	{
-		if (*format == '%' && *(format + 1) != '\0')
+		if (*format == '%')
 		{
 			specs = get_formatspec(format);
+			format += specs.n_chars;
 			if (specs.specifier)
-			{
-				format += specs.n_chars;
 				n_chars += print_arg(specs, &ap);
-			}
 			else
-				n_chars += ft_putchar('%');
+				return (-1);
 		}
-		else if (*format == '%')
-			return (-1);
 		else
 			n_chars += ft_putchar(*format);
 		format++;

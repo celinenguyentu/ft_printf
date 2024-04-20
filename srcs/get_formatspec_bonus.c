@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/18 21:16:51 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 03:07:19 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static const char	*read_width(const char *format, t_formatspec *specs)
 {
 	if (*format == '*')
 	{
-		specs->width = -1;
+		specs->star_width = 0;
 		specs->n_chars += 1;
 		format++;
 	}
@@ -60,11 +60,11 @@ static const char	*read_precision(const char *format, t_formatspec *specs)
 {
 	if (*format == '.')
 	{
-		specs->precision = 1;
+		specs->precision = 0;
 		specs->n_chars += 1;
 		if (*++format == '*')
 		{
-			specs->precision_n = -1;
+			specs->star_precision = 0;
 			specs->n_chars += 1;
 			format++;
 		}
@@ -72,17 +72,20 @@ static const char	*read_precision(const char *format, t_formatspec *specs)
 		{
 			if (*format == '-')
 			{
-				specs->precision = 0;
+				specs->precision = -1;
 				specs->n_chars += 1;
 				format++;
 			}
-			specs->precision_n = ft_atoi_digits(format);
+			else
+				specs->precision = ft_atoi_digits(format);
 			specs->n_chars += ft_nbrlen(format);
 			format += ft_nbrlen(format);
 		}
 	}
 	return (format);
 }
+
+#if defined(__APPLE__)
 
 t_formatspec	get_formatspec(const char *format)
 {
@@ -93,13 +96,43 @@ t_formatspec	get_formatspec(const char *format)
 	format = read_flags(format, &specs);
 	format = read_width(format, &specs);
 	format = read_precision(format, &specs);
-	if (*format && ft_strchr(SPECIFIERS, *format))
+	if (*format)
 	{
 		specs.specifier = *format;
 		specs.n_chars += 1;
 	}
-	if (specs.specifier && specs.precision
+	if (specs.specifier && specs.precision > -1
 		&& ft_strchr("diuxX", specs.specifier))
 		specs.zero = 0;
 	return (specs);
 }
+
+#else
+
+t_formatspec	get_formatspec(const char *format)
+{
+	t_formatspec	specs;
+	const char		*read;
+
+	init_formatspec(&specs);
+	read = ++format;
+	read = read_flags(read, &specs);
+	read = read_width(read, &specs);
+	read = read_precision(read, &specs);
+	if (*read && ft_strchr(SPECIFIERS, *read))
+	{
+		specs.specifier = *read;
+		specs.n_chars += 1;
+	}
+	else if (*read)
+	{
+		specs.specifier = *format;
+		specs.n_chars = 1;
+	}
+	if (specs.specifier && specs.precision > -1
+		&& ft_strchr("diuxX", specs.specifier))
+		specs.zero = 0;
+	return (specs);
+}
+
+#endif
