@@ -6,13 +6,13 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/19 20:17:47 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:00:10 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_arg(t_formatspec specs, va_list *args)
+int	print_arg(t_specs specs, va_list *args)
 {
 	int	n_chars;
 
@@ -26,9 +26,9 @@ int	print_arg(t_formatspec specs, va_list *args)
 	else if (specs.specifier == 'd' || specs.specifier == 'i')
 		n_chars += print_int(specs, args);
 	else if (specs.specifier == 'u')
-		n_chars += print_uint(specs, args);
+		n_chars += print_uint(specs, args, 10);
 	else if (specs.specifier == 'x' || specs.specifier == 'X')
-		n_chars += print_xint(specs, args);
+		n_chars += print_uint(specs, args, 16);
 	else if (specs.specifier == '%')
 		n_chars += print_percent(specs, args);
 	else

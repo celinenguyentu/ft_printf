@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/19 23:42:03 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:02:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #if defined(__APPLE__)
 
-int	print_unknown(t_formatspec specs)
+int	print_unknown(t_specs specs)
 {
 	int	n_chars;
 
@@ -31,7 +31,7 @@ int	print_unknown(t_formatspec specs)
 
 #else
 
-int	print_unknown(t_formatspec specs)
+int	print_unknown(t_specs specs)
 {
 	return (ft_putchar('%') + ft_putchar(specs.specifier));
 }

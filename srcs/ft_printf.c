@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 02:24:06 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:42:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int	ft_vprintf(const char *format, va_list ap)
 {
-	int				n_chars;
-	t_formatspec	specs;
+	int		n_chars;
+	t_specs	specs;
 
 	n_chars = 0;
 	while (*format)
@@ -40,8 +40,8 @@ int	ft_vprintf(const char *format, va_list ap)
 
 int	ft_vprintf(const char *format, va_list ap)
 {
-	int				n_chars;
-	t_formatspec	specs;
+	int		n_chars;
+	t_specs	specs;
 
 	n_chars = 0;
 	if (!format)

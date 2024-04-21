@@ -24,11 +24,11 @@ ASRCS_FILES		=	ft_atoi_digits.c \
 					print_ptr.c \
 					print_int.c \
 					print_uint.c \
-					print_xint.c \
 					print_percent.c \
 					print_unknown.c \
 					print_intprefix.c \
 					init_formatspec.c \
+					clean_formatspec.c \
 					specsargs.c 
 ASRCS			=	$(addprefix $(SRCS_DIR), $(ASRCS_FILES))
 

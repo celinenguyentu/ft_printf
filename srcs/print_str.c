@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 03:26:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:01:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #if defined(__APPLE__)
 
-int	print_str(t_formatspec specs, va_list *args)
+int	print_str(t_specs specs, va_list *args)
 {
 	int		n_chars;
 	char	*str;
@@ -43,7 +43,7 @@ int	print_str(t_formatspec specs, va_list *args)
 
 #else
 
-int	print_str(t_formatspec specs, va_list *args)
+int	print_str(t_specs specs, va_list *args)
 {
 	int		n_chars;
 	char	*str;

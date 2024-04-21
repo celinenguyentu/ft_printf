@@ -6,13 +6,13 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 03:07:19 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:03:31 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char	*read_flags(const char *format, t_formatspec *specs)
+static const char	*read_flags(const char *format, t_specs *specs)
 {
 	char	flag;
 
@@ -32,14 +32,10 @@ static const char	*read_flags(const char *format, t_formatspec *specs)
 		format++;
 		specs->n_chars += 1;
 	}
-	if (specs->dash == 1 && specs->zero == 1)
-		specs->zero = 0;
-	if (specs->plus == 1 && specs->blank == 1)
-		specs->blank = 0;
 	return (format);
 }
 
-static const char	*read_width(const char *format, t_formatspec *specs)
+static const char	*read_width(const char *format, t_specs *specs)
 {
 	if (*format == '*')
 	{
@@ -56,7 +52,7 @@ static const char	*read_width(const char *format, t_formatspec *specs)
 	return (format);
 }
 
-static const char	*read_precision(const char *format, t_formatspec *specs)
+static const char	*read_precision(const char *format, t_specs *specs)
 {
 	if (*format == '.')
 	{
@@ -87,9 +83,9 @@ static const char	*read_precision(const char *format, t_formatspec *specs)
 
 #if defined(__APPLE__)
 
-t_formatspec	get_formatspec(const char *format)
+t_specs	get_formatspec(const char *format)
 {
-	t_formatspec	specs;
+	t_specs	specs;
 
 	init_formatspec(&specs);
 	format++;
@@ -101,18 +97,16 @@ t_formatspec	get_formatspec(const char *format)
 		specs.specifier = *format;
 		specs.n_chars += 1;
 	}
-	if (specs.specifier && specs.precision > -1
-		&& ft_strchr("diuxX", specs.specifier))
-		specs.zero = 0;
+	clean_formatspec(&specs);
 	return (specs);
 }
 
 #else
 
-t_formatspec	get_formatspec(const char *format)
+t_specs	get_formatspec(const char *format)
 {
-	t_formatspec	specs;
-	const char		*read;
+	t_specs		specs;
+	const char	*read;
 
 	init_formatspec(&specs);
 	read = ++format;
@@ -129,9 +123,7 @@ t_formatspec	get_formatspec(const char *format)
 		specs.specifier = *format;
 		specs.n_chars = 1;
 	}
-	if (specs.specifier && specs.precision > -1
-		&& ft_strchr("diuxX", specs.specifier))
-		specs.zero = 0;
+	clean_formatspec(&specs);
 	return (specs);
 }
 

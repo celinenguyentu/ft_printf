@@ -6,13 +6,13 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:40:16 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 02:47:22 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:00:05 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_formatspec(t_formatspec *specs)
+void	init_formatspec(t_specs *specs)
 {
 	specs->dash = 0;
 	specs->zero = 0;

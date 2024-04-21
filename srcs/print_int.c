@@ -6,13 +6,13 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 03:07:55 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:00:27 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_int(t_formatspec specs, va_list *args)
+int	print_int(t_specs specs, va_list *args)
 {
 	int		n_chars;
 	long	arg;
@@ -28,9 +28,9 @@ int	print_int(t_formatspec specs, va_list *args)
 	uarg_len = ft_uintlen(arg, 10);
 	if (arg == 0 && specs.precision == 0)
 		uarg_len = 0;
-	n_chars += print_intprefix(specs, uarg_len, negative);
+	n_chars += print_intprefix(specs, uarg_len, negative, (arg == 0));
 	if (arg != 0 || specs.precision != 0)
-		n_chars += ft_putuint(arg, 10);
+		n_chars += ft_putuint(arg, specs.specifier);
 	while (specs.dash == 1 && n_chars < specs.width)
 		n_chars += ft_putchar(' ');
 	return (n_chars);

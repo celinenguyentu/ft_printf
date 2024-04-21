@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 01:11:51 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:46:32 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,8 @@ void	tests(const char *format, ...)
 int	main(void)
 {
 	int			n = 42;
-	char		c1 = CHAR_MIN;
-	char		c2 = CHAR_MAX;
 	char		s[] = "";
 	int			i1 = INT_MIN;
-	int			i2 = INT_MAX;
-	unsigned	i3 = UINT_MAX;
-	short		i4 = SHRT_MAX;
-	long		i5 = LONG_MIN;
-	long		i6 = LONG_MAX;
 	void		*p = NULL;
 
 	printf("Bonus part : testing flags ...\n");
@@ -53,7 +46,7 @@ int	main(void)
 	tests("|%#3c|% 3c|%+3c|%#3c|% 3c|%+3c|%#3c|% 3c|%+3c|%#3c|% 3c|%+3c|", 'a', 'b', 'c', n, n, n, *s, *s, *s, i1, i1, i1);
 	printf(">> Conversion %%c : width + precision + multiple flags\n");
 	tests("|%-03.2c|%- 3.2c|%-+3.2c|%-#3.2c|%0 3.2c|%0+3.2c|%0#3.2c|%-+ 3.2c|%+0 3.2c|%+ #3.2c|%+-03.2c|", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k');
-	
+	// convert to unsigned char
 	printf("\n>> Conversion %%s : one option only\n");
 	tests("|%-s|%0s|%6s|%.4s|%-s|%0s|%6s|%.4s|", "hello", "hello", "hello", "hello", s, s, s, s);
 	tests("|%#s|% s|%+s|%#s|% s|%+s|", "hello", "hello", "hello", s, s, s);
@@ -76,17 +69,15 @@ int	main(void)
 	tests("|%-0.4s|%-#.4s|%- .4s|%-+.4s|%0#.4s|%0 .4s|%0+.4s|%-0+.4s|%-+ .4s|%-0.4s|%-#.4s|%- .4s|%-+.4s|%0#.4s|%0 .4s|%0+.4s|%-0+.4s|%-+ .4s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%-06.4s|%-#6.4s|%- 6.4s|%-+6.4s|%0#6.4s|%0 6.4s|%0+6.4s|%-0+6.4s|%-+ 6.4s|%-06.4s|%-#6.4s|%- 6.4s|%-+6.4s|%0#6.4s|%0 6.4s|%0+6.4s|%-0+6.4s|%-+ 6.4s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	
-	printf("\n>> Conversion %%p : one option only\n"); // precision excluded because not standard
-	tests("|%-p|%0p|%15p|%-p|%0p|%15p|", s, s, s, p, p, p);
-	tests("|%#p|% p|%+p|%#p|% p|%+p|", s, s, s, p, p, p);
+	printf("\n>> Conversion %%p : one option only\n"); // flags 0, blank, + and precision not standard, thus not tested
+	tests("|%-p|%15p|%-p|%15p|", s, s, p, p);
+	tests("|%#p|%#p|", s, p); // no effect
 	printf(">> Conversion %%p : width + one flag\n");
-	tests("|%-15p|%015p|%-15p|%015p|", s, s, p, p);
-	tests("|%#15p|% 15p|%+15p|%#15p|% 15p|%+15p|", s, s, s, p, p, p);
+	tests("|%-15p|%-15p|", s, p);
+	tests("|%#15p|%#15p|", s, p); // no effect
 	printf(">> Conversion %%p : width + multiple flags\n");
-	tests("|%-015p|%- 15p|%-+15p|%0 15p|%0+15p|%-0 +15p|", s, s, s, s, s, s);
-	tests("|%-015p|%- 15p|%-+15p|%0 15p|%0+15p|%-0 +15p|", p, p, p, p, p, p);
-
-
+	tests("|%-#15p|%-#15p|", s, p);
+	
 	printf("\n>> Conversion %%d %%i : one option only\n");
 	tests("|%-d|%0d|% d|%+d|%6d|%.4d|%-d|%0d|% d|%+d|%6d|%.4d|%-d|%0d|% d|%+d|%6d|%.4d|", n, n, n, n, n, n, n, i1, i1, i1, i1, i1, i1, 0, 0, 0, 0, 0, 0);
 	tests("|%#d|%#d|%#d|", n, i1, 0);
@@ -109,7 +100,6 @@ int	main(void)
 	printf(">> Conversion %%d %%i : precision 0 for value 0\n");
 	tests("|%.d|%-.d|%0.d|% .d|%+.d|%3.d|", 0, 0, 0, 0, 0, 0);
 	tests("|%-3.d|%03.d|% 3.d|%+3.d|%- 3.d|%-+3.d|%0 3.d|%0+3.d|%-0 +3.d|", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
 	
 	printf("\n>> Conversion %%u : one option only\n");
 	tests("|%-u|%0u|%#u|% u|%+u|%6u|%.4u|%-u|%0u|%#u|% u|%+u|%6u|%.4u|%-u|%0u|%#u|% u|%+u|%6u|%.4u|", i1, i1, i1, i1, i1, i1, i1, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0);
@@ -133,10 +123,10 @@ int	main(void)
 	tests("|%-6x|%06x|%#6x|% 6x|%+6x|%-6x|%06x|%#6x|% 6x|%+6x|%-6x|%06x|%#6x|% 6x|%+6x|", i1, i1, i1, i1, i1, n, n, n, n, n, 0, 0, 0, 0, 0);
 	printf(">> Conversion %%x %%X : precision + one flag\n");
 	tests("|%-.4x|%0.4x|%#.4x|% .4x|%+.4x|%-.4x|%0.4x|%#.4x|% .4x|%+.4x|%-.4x|%0.4x|%#.4x|% .4x|%+.4x|", i1, i1, i1, i1, i1, n, n, n, n, n, 0, 0, 0, 0, 0);
-	printf(">> Conversion %%u : width + precision + one flag max.\n");
+	printf(">> Conversion %%x %%X : width + precision + one flag max.\n");
 	tests("|%6.4x|%-6.4x|%06.4x|%#6.4x|% 6.4x|%+6.4x|%6.4x|%-6.4x|%06.4x|%#6.4x|% 6.4x|%+6.4x|%6.4x|%-6.4x|%06.4x|%#6.4x|% 6.4x|%+6.4x|", i1, i1, i1, i1, i1, i1, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0);
 	tests("|%4.6x|%-4.6x|%04.6x|%#4.6x|% 4.6x|%+4.6x|%4.6x|%-4.6x|%04.6x|%#4.6x|% 4.6x|%+4.6x|%4.6x|%-4.6x|%04.6x|%#4.6x|% 4.6x|%+4.6x|", i1, i1, i1, i1, i1, i1, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0);
-	printf(">> Conversion %%u : width + precision + multiple flags\n");
+	printf(">> Conversion %%x %%X : width + precision + multiple flags\n");
 	tests("|%-#6.4x|%- 6.4x|%-+6.4x|%0#6.4x|%0 6.4x|%0+6.4x|%# 6.4x|%#+6.4x|%-# 6.4x|%-#+6.4x|%0# 6.4x|%0#+6.4x|%-0# +6.4x|", i1, i1, i1, i1, i1, i1, i1, i1, i1, i1, i1, i1, i1);
 	tests("|%-#4.6x|%- 4.6x|%-+4.6x|%0#4.6x|%0 4.6x|%0+4.6x|%# 4.6x|%#+4.6x|%-# 4.6x|%-#+4.6x|%0# 4.6x|%0#+4.6x|%-0# +4.6x|", i1, i1, i1, i1, i1, i1, i1, i1, i1, i1, i1, i1, i1);
 	tests("|%-#6.4x|%- 6.4x|%-+6.4x|%0#6.4x|%0 6.4x|%0+6.4x|%# 6.4x|%#+6.4x|%-# 6.4x|%-#+6.4x|%0# 6.4x|%0#+6.4x|%-0# +6.4x|", n, n, n, n, n, n, n, n, n, n, n, n, n);
@@ -154,7 +144,6 @@ int	main(void)
 	printf(">> Conversion %% : width + precision + multiple flags\n");
 	tests("|%-6.4%|%06.4%|%-06.4%|%-0# +6.4%|"); 
 	
-	int	count = 0;
 	printf("\nEdge cases ...\n");
 	printf(">> Unknown format specifier\n");
 	tests("|%!|%3!|%03!|%-3!|");
@@ -177,6 +166,7 @@ int	main(void)
 
 
 	/*	
+	int	count = 0;
 	printf(">> TEST\n");
 	printf("printf:\t\t"); count = printf("_%.-3d_%.-3d_", 42, 0);
 	printf("\t(%d)\n", count);
@@ -187,6 +177,7 @@ int	main(void)
 	ft_printf("ft_printf :\t"); count = ft_printf("_%03.-3d_%03.-3d_", 42, 0);
 	printf("\t(%d)\n", count);
 	*/
-
+	printf("%-4d", 42);
+	
 	return (0);
 }
