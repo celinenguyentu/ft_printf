@@ -1,13 +1,7 @@
 .DS_Store
-#.gitignore
-#*.pdf
 *.code-workspace
-#Flowcharts
 test
-#junk.c
-#docs
 
-#----- testers ------#
 paulo-santana*
 Tripouille*
 cacharle*
