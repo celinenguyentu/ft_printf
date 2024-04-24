@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/21 04:35:39 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/24 01:04:40 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define UPHEXADECIMAL "0123456789ABCDEF"
 # define DECIMAL "0123456789"
 
-# if defined(__APPLE___)
-# define NULLPTR "0x0"
+# if defined(__APPLE__)
+#  define NULLPTR "0x0"
 # else
-# define NULLPTR "(nil)"
+#  define NULLPTR "(nil)"
 # endif
 
 typedef struct s_specs

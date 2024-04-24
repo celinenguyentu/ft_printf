@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/21 19:46:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/24 01:55:02 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 	tests("|%#3c|% 3c|%+3c|%#3c|% 3c|%+3c|%#3c|% 3c|%+3c|%#3c|% 3c|%+3c|", 'a', 'b', 'c', n, n, n, *s, *s, *s, i1, i1, i1);
 	printf(">> Conversion %%c : width + precision + multiple flags\n");
 	tests("|%-03.2c|%- 3.2c|%-+3.2c|%-#3.2c|%0 3.2c|%0+3.2c|%0#3.2c|%-+ 3.2c|%+0 3.2c|%+ #3.2c|%+-03.2c|", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k');
-	// convert to unsigned char
+	
 	printf("\n>> Conversion %%s : one option only\n");
 	tests("|%-s|%0s|%6s|%.4s|%-s|%0s|%6s|%.4s|", "hello", "hello", "hello", "hello", s, s, s, s);
 	tests("|%#s|% s|%+s|%#s|% s|%+s|", "hello", "hello", "hello", s, s, s);
@@ -153,7 +153,7 @@ int	main(void)
 	tests("|%10c|%-10c|%010c|", "Marvin", "Marvin", "Marvin");
 	tests("|%10c|%-10c|%010c|", NULL, NULL, NULL);
 	printf(">> Conversion %%s : argument is NULL\n");
-	tests("|%-s|%0s|%6s|%.4s|%-6s|%06s|%-.4s|%0.4s|%-6.4s|%06.4s|%-06.4s|", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	tests("|%-s|%0s|%6s|%.4s|%.6s|%.8s|%-6s|%06s|%-.4s|%0.4s|%-6.4s|%06.4s|%-06.4s|", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 	printf(">> Conversion %%p : argument is NULL\n");
 	tests("|%-p|%15p|%-15p|", NULL, NULL, NULL);
 	printf(">> Conversion %%p : argument is an int\n");
@@ -161,23 +161,11 @@ int	main(void)
 	printf(">> Precision : precision value starts with one or multiple zeros\n");
 	tests("|%.04s|%.004d|%.0004u|%.00004x|", "hello", -42, 42, 42);
 	printf(">> Precision : negative precision\n");
-	tests("|%.-5s|%.-5d|%.-5u|%.-5x|", "hello", -42, 42, 42);
-	tests("|%0.-6s|%10.-5d|%0.-5u|%#.-5x|", "hello", -42, 42, 42);
-
-
-	/*	
-	int	count = 0;
-	printf(">> TEST\n");
-	printf("printf:\t\t"); count = printf("_%.-3d_%.-3d_", 42, 0);
-	printf("\t(%d)\n", count);
-	ft_printf("ft_printf :\t"); count = ft_printf("_%.-3d_%.-3d_", 42, 0);
-	printf("\t(%d)\n", count);
-	printf("printf:\t\t"); count = printf("_%03.-3d_%03.-3d_", 42, 0);
-	printf("\t(%d)\n", count);
-	ft_printf("ft_printf :\t"); count = ft_printf("_%03.-3d_%03.-3d_", 42, 0);
-	printf("\t(%d)\n", count);
-	*/
-	printf("%-4d", 42);
+	tests("|%.-5s|%.-5d|%.-5u|%.-5x|%.-5s|%.-5d|%.-5u|%.-5x|", "hello", -42, 42, 42, NULL, 0, 0, 0);
+	tests("|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%0.-5s|%10.-5d|%0.-5u|%#.-5x|", "hello", -42, 42, 42, NULL, 0, 0, 0);
+	tests("|%+3.-4d|%+5.-4d|%.-+4d|", 42, 42, 42);
+	tests("|%.y|%-#+.y|%#+-.y|% 0#.y|%#- +0.y|");
+	tests("|%.-03%.|%.-%.");
 	
 	return (0);
 }

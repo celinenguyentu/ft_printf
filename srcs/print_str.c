@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 20:01:13 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/24 00:24:54 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	print_str(t_specs specs, va_list *args)
 	n_chars = 0;
 	fetch_next_args(&specs, args);
 	str = va_arg(*args, char *);
-	if (!str && (specs.precision == -1 || specs.precision > 6))
+	if (!str && (specs.precision == -1 || specs.precision >= 6))
 		str = "(null)";
 	else if (!str)
 		str = "";

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/21 19:03:31 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/24 01:02:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static const char	*read_precision(const char *format, t_specs *specs)
 		{
 			if (*format == '-')
 			{
-				specs->precision = -1;
-				specs->n_chars += 1;
-				format++;
+				specs->precision = 0;
+				format = read_flags(format, specs);
+				specs->width = ft_atoi_digits(format);
 			}
 			else
 				specs->precision = ft_atoi_digits(format);
