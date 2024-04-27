@@ -6,11 +6,12 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 20:00:27 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:44:30 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	print_int(t_specs specs, va_list *args)
 {

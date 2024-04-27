@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/24 01:02:21 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:55:29 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static const char	*read_precision(const char *format, t_specs *specs)
 {
 	if (*format == '.')
 	{
-		specs->precision = 0;
 		specs->n_chars += 1;
 		if (*++format == '*')
 		{
