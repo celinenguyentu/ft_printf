@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:46:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 03:13:46 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:02:15 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	main(void)
 	long		i6 = LONG_MAX;
 	void		*p = NULL;
 
-	//printf("\nTo go further ...\n\n");
-	//printf(">> Using * notation\n");
-	//printf("printf:\t\t"); count = printf("_%0*c_%-*c__%3.*c__%*.*c_", -3, 'a', 3, 'b', 4, 'c', 3, 4, 'd');
-	//printf("\t(%d)\n", count);
-	//ft_printf("ft_printf :\t"); count = ft_printf("_%0*c_%-*c__%3.*c__%*.*c_", -3, 'a', 3, 'b', 4, 'c', 3, 4, 'd');
-	//printf("\t(%d)\n", count);
+	printf("Positional arguments with %%n$ and *n$ ...\n\n");
+
+	printf("Edge cases");
+	printf("Mixing positional and non positional arguments");
+	printf("Gaps in the number of arguments");
+	printf("Higher number of argument than actual arguments");
 
 	//count = printf("%3$-*1$c__%4$*3$c__%6$*5$c\n", 2, 'a', 3, 'b', 4, 'c');
 	//count = printf("%3$-*2$c__%3$*2$c__%3$*2$c__%1$*4$c\n", 'b', 2, 'a', 4);
