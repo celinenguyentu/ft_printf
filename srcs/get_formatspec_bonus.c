@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/27 20:55:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/28 06:16:12 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static const char	*read_width(const char *format, t_specs *specs)
 	return (format);
 }
 
+#if defined(__APPLE__)
+
 static const char	*read_precision(const char *format, t_specs *specs)
 {
 	if (*format == '.')
@@ -80,7 +82,30 @@ static const char	*read_precision(const char *format, t_specs *specs)
 	return (format);
 }
 
-#if defined(__APPLE__)
+#else
+
+static const char	*read_precision(const char *format, t_specs *specs)
+{
+	if (*format == '.')
+	{
+		specs->n_chars += 1;
+		if (*++format == '*')
+		{
+			specs->star_precision = 0;
+			specs->n_chars += 1;
+			format++;
+		}
+		else
+		{
+			specs->precision = ft_atoi_digits(format);
+			specs->n_chars += ft_nbrlen(format);
+			format += ft_nbrlen(format);
+		}
+	}
+	return (format);
+}
+
+#endif
 
 t_specs	get_formatspec(const char *format)
 {
@@ -99,31 +124,3 @@ t_specs	get_formatspec(const char *format)
 	clean_formatspec(&specs);
 	return (specs);
 }
-
-#else
-
-t_specs	get_formatspec(const char *format)
-{
-	t_specs		specs;
-	const char	*read;
-
-	init_formatspec(&specs);
-	read = ++format;
-	read = read_flags(read, &specs);
-	read = read_width(read, &specs);
-	read = read_precision(read, &specs);
-	if (*read && ft_strchr(SPECIFIERS, *read))
-	{
-		specs.specifier = *read;
-		specs.n_chars += 1;
-	}
-	else if (*read)
-	{
-		specs.specifier = *format;
-		specs.n_chars = 1;
-	}
-	clean_formatspec(&specs);
-	return (specs);
-}
-
-#endif
