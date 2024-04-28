@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/27 23:29:12 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/28 02:21:29 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int	main(void)
 	printf(">> Conversion %%s : argument is NULL\n");
 	tests("|%-s|%0s|%6s|%.4s|%.6s|%.8s|%-6s|%06s|%-.4s|%0.4s|%-6.4s|%06.4s|%-06.4s|", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 	printf(">> Conversion %%p : argument is NULL\n");
-	tests("|%-p|%15p|%-15p|", NULL, NULL, NULL);
+	tests("|%-p|%15p|%-15p|%.p|%3.p|", NULL, NULL, NULL, NULL, NULL);
 	printf(">> Conversion %%p : argument is an int\n");
 	tests("|%-p|%15p|%-15p|", 42, 42, 42);
 	printf(">> Precision : precision value starts with one or multiple zeros\n");
