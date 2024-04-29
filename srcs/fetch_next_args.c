@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specsargs.c                                        :+:      :+:    :+:   */
+/*   fetch_next_args.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 04:54:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/27 20:51:41 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/29 04:32:58 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	fetch_next_args(t_specs *specs, va_list *args)
 	{
 		specs->width = -specs->width;
 		specs->dash = 1;
-		if (specs->zero == 1)
-			specs->zero = 0;
 	}
 	if (specs->star_precision == 0)
 	{

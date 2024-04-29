@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:34:05 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/20 20:00:55 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:04:44 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	print_percent(t_specs specs, va_list *args)
 
 	n_chars = 0;
 	fetch_next_args(&specs, args);
+	clean_formatspec(&specs);
 	while (!specs.dash && !specs.zero && n_chars < specs.width - 1)
 		n_chars += ft_putchar(' ');
 	while (specs.zero && n_chars < specs.width - 1)

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/28 02:21:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/29 04:30:23 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ int	main(void)
 	printf("\n>> Conversion %%s : one option only\n");
 	tests("|%-s|%0s|%6s|%.4s|%-s|%0s|%6s|%.4s|", "hello", "hello", "hello", "hello", s, s, s, s);
 	tests("|%#s|% s|%+s|%#s|% s|%+s|", "hello", "hello", "hello", s, s, s);
-	printf(">> Conversion %%c : width + one flag\n");
+	printf(">> Conversion %%s : width + one flag\n");
 	tests("|%-4s|%04s|%-5s|%05s|%-6s|%06s|%-4s|%04s|%-5s|%05s|%-6s|%06s|", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s);
 	tests("|%#4s|% 4s|%+4s|%#5s|% 5s|%+5s|%#6s|% 6s|%+6s|%#4s|% 4s|%+4s|%#5s|% 5s|%+5s|%#6s|% 6s|%+6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
-	printf(">> Conversion %%c : precision + one flag\n");
+	printf(">> Conversion %%s : precision + one flag\n");
 	tests("|%-.4s|%0.4s|%-.5s|%0.5s|%-.6s|%0.6s|%-.4s|%0.4s|%-.5s|%0.5s|%-.6s|%0.6s|", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s);
 	tests("|%#.4s|% .4s|%+.4s|%#.5s|% .5s|%+.5s|%#.6s|% .6s|%+.6s|%#.4s|% .4s|%+.4s|%#.5s|% .5s|%+.5s|%#.6s|% .6s|%+.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
-	printf(">> Conversion %%c : width + precision + one flag max.\n");
+	printf(">> Conversion %%s : width + precision + one flag max.\n");
 	tests("|%4.4s|%-4.4s|%04.4s|%4.5s|%-4.5s|%04.5s|%4.6s|%-4.6s|%04.6s|%4.4s|%-4.4s|%04.4s|%4.5s|%-4.5s|%04.5s|%4.6s|%-4.6s|%04.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%5.4s|%-5.4s|%05.4s|%5.5s|%-5.5s|%05.5s|%5.6s|%-5.6s|%05.6s|%5.4s|%-5.4s|%05.4s|%5.5s|%-5.5s|%05.5s|%5.6s|%-5.6s|%05.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%6.4s|%-6.4s|%06.4s|%6.5s|%-6.5s|%06.5s|%6.6s|%-6.6s|%06.6s|%6.4s|%-6.4s|%06.4s|%6.5s|%-6.5s|%06.5s|%6.6s|%-6.6s|%06.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%#4.4s|% 4.4s|%+4.4s|%#4.5s|% 4.5s|%+4.5s|%#4.6s|% 4.6s|%+4.6s|%#4.4s|% 4.4s|%+4.4s|%#4.5s|% 4.5s|%+4.5s|%#4.6s|% 4.6s|%+4.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%#5.4s|% 5.4s|%+5.4s|%#5.5s|% 5.5s|%+5.5s|%#5.6s|% 5.6s|%+5.6s|%#5.4s|% 5.4s|%+5.4s|%#5.5s|% 5.5s|%+5.5s|%#5.6s|% 5.6s|%+5.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%#6.4s|% 6.4s|%+6.4s|%#6.5s|% 6.5s|%+6.5s|%#6.6s|% 6.6s|%+6.6s|%#6.4s|% 6.4s|%+6.4s|%#6.5s|% 6.5s|%+6.5s|%#6.6s|% 6.6s|%+6.6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
-	printf(">> Conversion %%c : width + precision + multiple flags\n");
+	printf(">> Conversion %%s : width + precision + multiple flags\n");
 	tests("|%-0s|%-#s|%- s|%-+s|%0#s|%0 s|%0+s|%-0+s|%-+ s|%-0s|%-#s|%- s|%-+s|%0#s|%0 s|%0+s|%-0+s|%-+ s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%-06s|%-#6s|%- 6s|%-+6s|%0#6s|%0 6s|%0+6s|%-0+6s|%-+ 6s|%-06s|%-#6s|%- 6s|%-+6s|%0#6s|%0 6s|%0+6s|%-0+6s|%-+ 6s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%-0.4s|%-#.4s|%- .4s|%-+.4s|%0#.4s|%0 .4s|%0+.4s|%-0+.4s|%-+ .4s|%-0.4s|%-#.4s|%- .4s|%-+.4s|%0#.4s|%0 .4s|%0+.4s|%-0+.4s|%-+ .4s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
@@ -145,20 +145,28 @@ int	main(void)
 	tests("|%-6.4%|%06.4%|%-06.4%|%-0# +6.4%|"); 
 
 	printf("\n>> Using * notation\n");
-	tests("|%*c|%*c|%-*c|%0*c|%3.*c|%*.*c|", 3, 'a', -3, 'b', 3, 'c', 3, 'd', 2, 'e', 3, -2, 'f');
-	tests("|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|", 6, "hello", -6, "hello", 6, "hello", 6, "hello", 4, "hello", 6, 4, "hello", 6, -4, "hello", 6, NULL, -6, NULL, 6, NULL, 6, NULL, 4, NULL, 6, 4, NULL, 6, -4, NULL);
+	tests("|%*c|%*c|%-*c|%0*c|%3.*c|%*.*c|", 3, 'a', -3, 'b', 3, 'c', -3, 'd', 2, 'e', 3, -2, 'f');
+	tests("|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|", 6, "hello", -6, "hello", 6, "hello", -6, "hello", 4, "hello", 6, 4, "hello", 6, -4, "hello", 6, NULL, -6, NULL, 6, NULL, -6, NULL, 4, NULL, 6, 4, NULL, 6, -4, NULL);
 	tests("|%*p|%*p|%-*p|%*p|%*p|%-*p|", 15, s, -15, s, 15, s, 15, NULL, -15, NULL, 15, NULL);
-	tests("|%*d|%*d|%-*d|%0*d|%+*d|%.*d|%.*d|%+*.*d|%0*.*d|%*d|%*d|%-*d|%0*d|%+*d|%.*d|%.*d|%+*.*d|%0*.*d|", 6, n, -6, n, 6, n, 6, n, 6, n, 4, n, -4, n, -6, 4, n, 6, -4, n, 6, 0, -6, 0, 6, 0, 6, 0, 6, 0, 4, 0, -4, 0, -6, 4, 0, 6, -4, 0);
-	tests("|%*u|%*u|%-*u|%0*u|%.*u|%.*u|%-*.*u|%0*.*u|%0*.*u|%*u|%*u|%-*u|%0*u|%.*u|%.*u|%-*.*u|%0*.*u|%0*.*u|", 6, n, -6, n, 6, n, 6, n, 4, n, -4, n, 6, 4, n, -6, 4, n, 6, -4, n, 6, 0, -6, 0, 6, 0, 6, 0, 4, 0, -4, 0, 6, 4, 0, -6, 4, 0, 6, -4, 0);
-	tests("|%*x|%*x|%-*x|%0*x|%#*x|%.*x|%.*x|%-*.*x|%0*.*x|%0*.*x|%#*.*x|%*x|%*x|%-*x|%0*x|%#*x|%.*x|%.*x|%-*.*x|%0*.*x|%0*.*x|%#*.*x|", 6, n, -6, n, 6, n, 6, n, 6, n, 4, n, -4, n, 6, 4, n, -6, 4, n, 6, -4, n, 6, -4, n, 6, 0, -6, 0, 6, 0, 6, 0, 6, 0, 4, 0, -4, 0, 6, 4, 0, -6, 4, 0, 6, -4, 0, 6, -4, 0);
-	tests("|%*%|%-*%|%0*%|%*.*%|", 3, 3, 3, 3, 1);
+	tests("|%*d|%*d|%-*d|%0*d|%+*d|%.*d|%.*d|%+*.*d|%0*.*d|%*d|%*d|%-*d|%0*d|%+*d|%.*d|%.*d|%+*.*d|%0*.*d|", 6, n, -6, n, 6, n, -6, n, 6, n, 4, n, -4, n, 6, -4, n, -6, 4, n, 6, 0, -6, 0, 6, 0, 6, 0, 6, 0, 4, 0, -4, 0, 6, -4, 0, -6, 4, 0);
+	tests("|%*u|%*u|%-*u|%0*u|%.*u|%.*u|%-*.*u|%0*.*u|%0*.*u|%*u|%*u|%-*u|%0*u|%.*u|%.*u|%-*.*u|%0*.*u|%0*.*u|", 6, n, -6, n, 6, n, -6, n, 4, n, -4, n, 6, 4, n, -6, 4, n, 6, -4, n, 6, 0, -6, 0, 6, 0, -6, 0, 4, 0, -4, 0, 6, 4, 0, -6, 4, 0, 6, -4, 0);
+	tests("|%*x|%*x|%-*x|%0*x|%#*x|%.*x|%.*x|%-*.*x|%0*.*x|%0*.*x|%#*.*x|%*x|%*x|%-*x|%0*x|%#*x|%.*x|%.*x|%-*.*x|%0*.*x|%0*.*x|%#*.*x|", 6, n, -6, n, 6, n, -6, n, 6, n, 4, n, -4, n, 6, 4, n, -6, 4, n, 6, -4, n, 6, -4, n, 6, 0, -6, 0, 6, 0, -6, 0, 6, 0, 4, 0, -4, 0, 6, 4, 0, -6, 4, 0, 6, -4, 0, 6, -4, 0);
+	tests("|%*%|%-*%|%0*%|%*.*%|", 3, 3, -3, 3, 1);
 	
 	printf("\nEdge cases ...\n");
 	printf(">> Unknown format specifier\n");
 	tests("|%!|%3!|%.3!|%03!|%-3!|%#!|% !|%+!|");
 	tests("|%3.y|%-#+3.y|%#+-3.y|% 0#3.y|%#- +03.y|");
+	tests("|%0.-2y|%#.-2y|%+ 3.-2y|%1.-+#2y|%3.-# 2y|");
+	tests("|%0*.*y|%0*.*y|%0*.*y|%0*.*y|", 3, 2, -3, 2, 3, -2, -3, -2);
+	tests("|%0#+*.*y|% -#*.*y|%#-0 +*.*y|", -3, 2, 3, -2, -3, -2);
 	printf(">> %% symbol at the end of format string\n");
 	tests("Hello !%-04");
+	tests("Hello%.");
+	tests("Hello%c%.", 'a');
+	tests("Hello%.y%.");
+	tests("Hello%c%.y%.", 'a');
+	tests("Hello%.y%c%", 'a');
 	printf(">> Conversion %%c : argument is a string or NULL\n");
 	tests("|%10c|%-10c|%010c|", "Marvin", "Marvin", "Marvin");
 	tests("|%10c|%-10c|%010c|", NULL, NULL, NULL);
@@ -174,7 +182,7 @@ int	main(void)
 	tests("|%.-5s|%.-5d|%.-5u|%.-5x|%.-5s|%.-5d|%.-5u|%.-5x|", "hello", -42, 42, 42, NULL, 0, 0, 0);
 	tests("|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%0.-5s|%10.-5d|%0.-5u|%#.-5x|", "hello", -42, 42, 42, NULL, 0, 0, 0);
 	tests("|%+3.-4d|%+5.-4d|%.-+4d|", 42, 42, 42);
-	tests("|%.-03%.|%.-%.");
-	
+	tests("|%.-03%.|");
+
 	return (0);
 }
