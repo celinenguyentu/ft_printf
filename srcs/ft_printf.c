@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 04:22:13 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:31:06 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,33 +79,3 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (n_chars);
 }
-
-/* SAVE
-
-int	ft_vprintf(const char *format, va_list ap)
-{
-	int		n_chars;
-	t_specs	specs;
-
-	n_chars = 0;
-	if (!format)
-		return (-1);
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			specs = get_formatspec(format);
-			format += specs.n_chars;
-			if (specs.specifier)
-				n_chars += print_arg(specs, &ap);
-			else
-				return (-1);
-		}
-		else
-			n_chars += ft_putchar(*format);
-		format++;
-	}
-	return (n_chars);
-}
-
-*/
