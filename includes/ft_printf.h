@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/28 06:00:48 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/29 22:09:05 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define LOWHEXADECIMAL "0123456789abcdef"
 # define UPHEXADECIMAL "0123456789ABCDEF"
 # define DECIMAL "0123456789"
+# define OCTAL "01234567"
 
 # if defined(__APPLE__)
 #  define NULLPTR "0x0"

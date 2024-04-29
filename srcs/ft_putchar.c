@@ -6,11 +6,23 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 08:10:58 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/15 08:12:15 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/29 22:33:29 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+	FT_PUTCHAR
+	Writes the character c to the standard output stream.
+	PARAMETER(S)
+		The character c of type char to be printed.
+	RETURN
+	The function returns 1 indicating the number of bytes written in stdout.
+	EXAMPLES
+		ft_putchar('c') outputs "c" and returns 1
+		ft_putchar('\0') outputs "" and returns 1
+*/
 
 int	ft_putchar(char c)
 {

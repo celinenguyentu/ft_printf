@@ -6,11 +6,22 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:14:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/27 20:50:38 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:52:11 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+	CLEAN_FORMATSPEC
+	Switch off the flags that are not applicable to the conversion specification
+	represented by specs according to overriding rules and conversion specifiers.
+	PARAMETER(S)
+		The address of the t_specs struct that holds information about
+		a conversion specification.
+	RETURN VALUE
+	-
+*/
 
 void	clean_formatspec(t_specs *specs)
 {
