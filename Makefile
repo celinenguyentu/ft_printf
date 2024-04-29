@@ -50,7 +50,7 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 .c.o: 
 				${CC} ${CFLAGS} -c -I ${HFILES_DIR} $< -o $@
 
-all:			bonus #${NAME}
+all:			${NAME}
 
 ${LIBFT}:
 				make -C ${LIBFT_PATH} all
