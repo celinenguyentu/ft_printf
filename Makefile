@@ -29,7 +29,7 @@ ASRCS_FILES		=	ft_atoi_digits.c \
 					print_intprefix.c \
 					init_formatspec.c \
 					clean_formatspec.c \
-					specsargs.c 
+					fetch_next_args.c 
 ASRCS			=	$(addprefix $(SRCS_DIR), $(ASRCS_FILES))
 
 MSRCS_FILES		=	get_formatspec.c 
