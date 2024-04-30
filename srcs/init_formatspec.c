@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:40:16 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 00:49:36 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:27:52 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	init_formatspec(t_specs *specs)
 	specs->plus = 0;
 	specs->star_width = -1;
 	specs->width = 0;
-	specs->star_precision = -1;
-	specs->precision = -1;
-	specs->specifier = 0;
+	specs->star_precis = -1;
+	specs->precis = -1;
+	specs->specif = 0;
 	specs->n_chars = 0;
 }

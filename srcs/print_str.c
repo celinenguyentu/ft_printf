@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 02:39:45 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:36:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	print_str(t_specs specs, va_list *args)
 	if (!str)
 		str = "(null)";
 	strlen = (int)ft_strlen(str);
-	if (specs.precision > -1 && strlen > specs.precision)
-		strlen = specs.precision;
+	if (specs.precis > -1 && strlen > specs.precis)
+		strlen = specs.precis;
 	while (!specs.dash && !specs.zero && n_chars < specs.width - strlen)
 		n_chars += ft_putchar(' ');
 	while (specs.zero && n_chars < specs.width - strlen)
@@ -58,7 +58,7 @@ int	print_str(t_specs specs, va_list *args)
 	return (n_chars);
 }
 
-#else
+#elif defined(__GLIBC__)
 
 int	print_str(t_specs specs, va_list *args)
 {
@@ -71,13 +71,13 @@ int	print_str(t_specs specs, va_list *args)
 	fetch_star_args(&specs, args);
 	clean_formatspec(&specs);
 	str = va_arg(*args, char *);
-	if (!str && (specs.precision == -1 || specs.precision >= 6))
+	if (!str && (specs.precis == -1 || specs.precis >= 6))
 		str = "(null)";
 	else if (!str)
 		str = "";
 	strlen = (int)ft_strlen(str);
-	if (specs.precision > -1 && strlen > specs.precision)
-		strlen = specs.precision;
+	if (specs.precis > -1 && strlen > specs.precis)
+		strlen = specs.precis;
 	while (!specs.dash && n_chars < specs.width - strlen)
 		n_chars += ft_putchar(' ');
 	offset = n_chars;

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 01:17:55 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:40:23 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@ int	print_arg(t_specs specs, va_list *args)
 	int	n_chars;
 
 	n_chars = 0;
-	if (specs.specifier == 'c')
+	if (specs.specif == 'c')
 		n_chars += print_char(specs, args);
-	else if (specs.specifier == 's')
+	else if (specs.specif == 's')
 		n_chars += print_str(specs, args);
-	else if (specs.specifier == 'p')
+	else if (specs.specif == 'p')
 		n_chars += print_ptr(specs, args);
-	else if (specs.specifier == 'd' || specs.specifier == 'i')
+	else if (specs.specif == 'd' || specs.specif == 'i')
 		n_chars += print_int(specs, args);
-	else if (specs.specifier == 'u')
+	else if (specs.specif == 'u')
 		n_chars += print_uint(specs, args, 10);
-	else if (specs.specifier == 'x' || specs.specifier == 'X')
+	else if (specs.specif == 'x' || specs.specif == 'X')
 		n_chars += print_uint(specs, args, 16);
-	else if (specs.specifier == '%')
+	else if (specs.specif == '%')
 		n_chars += print_percent(specs, args);
-	else if (specs.specifier == 'o')
+	else if (specs.specif == 'o')
 		n_chars += print_uint(specs, args, 8);
 	else
 		n_chars += print_unknown(specs, args);

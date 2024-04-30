@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 02:38:45 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:37:23 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	print_unknown(t_specs specs, va_list *args)
 		n_chars += ft_putchar(' ');
 	while (specs.zero && n_chars < specs.width - 1)
 		n_chars += ft_putchar('0');
-	n_chars += ft_putchar(specs.specifier);
+	n_chars += ft_putchar(specs.specif);
 	while (specs.dash && n_chars < specs.width)
 		n_chars += ft_putchar(' ');
 	return (n_chars);
@@ -68,10 +68,10 @@ int	print_unknown(t_specs specs, va_list *args)
 		n_chars += ft_putchar('0');
 	if (specs.width)
 		n_chars += ft_putuint(specs.width, 'i');
-	if (specs.precision > -1)
-		n_chars += ft_putchar('.') + ft_putuint(specs.precision, 'i');
-	if (specs.specifier)
-		n_chars += ft_putchar(specs.specifier);
+	if (specs.precis > -1)
+		n_chars += ft_putchar('.') + ft_putuint(specs.precis, 'i');
+	if (specs.specif)
+		n_chars += ft_putchar(specs.specif);
 	return (n_chars);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 08:06:25 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:37:58 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@
 # define DECIMAL "0123456789"
 # define OCTAL "01234567"
 
-# if defined(__APPLE__)
-#  define NULLPTR "0x0"
-# else
-#  define NULLPTR "(nil)"
-# endif
-
 typedef struct s_specs
 {
 	int		dash; // true 1 or false 0
@@ -39,30 +33,30 @@ typedef struct s_specs
 	int		hash; // true 1 or false 0
 	int		blank; // true 1 or false 0
 	int		plus; // true 1 or false 0 
-	int		star_width; // -1 none, 0 next arg, m > 0 m-th arg
+	int		star_width; // -1 none, 0 next arg
 	int		width; // 0 none, 1, 2, 3, 4 ... value
-	int		star_precision; // -1 none, 0 next arg, m > 0 m-th arg
-	int		precision; // - 1 none, 0, 1, 2, 3... value
-	char	specifier; // c, s, p, d, i, u, x, X, %, %o, unknown
+	int		star_precis; // -1 none, 0 next arg
+	int		precis; // - 1 none, 0, 1, 2, 3... value
+	char	specif; // c, s, p, d, i, u, x, X, %, o, unknown
 	int		n_chars;
 }	t_specs;
 
 // ft_printf
 int		ft_printf(const char *format, ...);
-int		ft_vprintf(const char *format, va_list ap); // apple, linux
+int		ft_vprintf(const char *format, va_list ap);
 int		print_arg(t_specs specs, va_list *args);
-int		print_char(t_specs specs, va_list *args); // apple, linux
-int		print_str(t_specs specs, va_list *args); // apple, linux
+int		print_char(t_specs specs, va_list *args);
+int		print_str(t_specs specs, va_list *args);
 int		print_ptr(t_specs specs, va_list *args);
 int		print_int(t_specs specs, va_list *args);
 int		print_uint(t_specs specs, va_list *args, int baselen);
-int		print_percent(t_specs specs, va_list *args); // apple, linux
-int		print_unknown(t_specs specs, va_list *args); // apple, linux
+int		print_percent(t_specs specs, va_list *args);
+int		print_unknown(t_specs specs, va_list *args);
 int		print_intprefix(t_specs specs, int uarg_len, int sign);
 
 // formatspec
 void	init_formatspec(t_specs *specs);
-t_specs	get_formatspec(const char *format); // apple, linux
+t_specs	get_formatspec(const char *format);
 void	clean_formatspec(t_specs *specs);
 void	fetch_star_args(t_specs *specs, va_list *args);
 
