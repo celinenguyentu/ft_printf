@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fetch_next_args.c                                  :+:      :+:    :+:   */
+/*   fetch_star_args.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 04:54:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 21:51:40 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 00:56:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-	FETCH_NEXT_ARGS
+	FETCH_STAR_ARGS
 	If required by the conversion specification, fetches and retrieves the next
 	first arguments from the va_list args, corresponding to width and/or
 	precision, which must be of type int. It accordingly updates the conversion
@@ -27,7 +27,7 @@
 	-
 */
 
-void	fetch_next_args(t_specs *specs, va_list *args)
+void	fetch_star_args(t_specs *specs, va_list *args)
 {
 	if (specs->star_width == 0)
 		specs->width = va_arg(*args, int);

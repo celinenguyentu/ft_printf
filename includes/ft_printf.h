@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 22:09:05 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 08:06:25 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 # include "../libft/libft.h"
 
-# define SPECIFIERS "cspdiuxX%"
+# define SPECIFIERS "cspdiuxX%o"
 # define FLAGS "-0# +"
 # define LOWHEXADECIMAL "0123456789abcdef"
 # define UPHEXADECIMAL "0123456789ABCDEF"
@@ -43,8 +43,8 @@ typedef struct s_specs
 	int		width; // 0 none, 1, 2, 3, 4 ... value
 	int		star_precision; // -1 none, 0 next arg, m > 0 m-th arg
 	int		precision; // - 1 none, 0, 1, 2, 3... value
-	char	specifier; // c, s, p, d, i, u, x, X, %, unknown
-	size_t	n_chars;
+	char	specifier; // c, s, p, d, i, u, x, X, %, %o, unknown
+	int		n_chars;
 }	t_specs;
 
 // ft_printf
@@ -58,13 +58,13 @@ int		print_int(t_specs specs, va_list *args);
 int		print_uint(t_specs specs, va_list *args, int baselen);
 int		print_percent(t_specs specs, va_list *args); // apple, linux
 int		print_unknown(t_specs specs, va_list *args); // apple, linux
-int		print_intprefix(t_specs specs, int uarg_len, int negative, int nul);
+int		print_intprefix(t_specs specs, int uarg_len, int sign);
 
 // formatspec
 void	init_formatspec(t_specs *specs);
 t_specs	get_formatspec(const char *format); // apple, linux
 void	clean_formatspec(t_specs *specs);
-void	fetch_next_args(t_specs *specs, va_list *args);
+void	fetch_star_args(t_specs *specs, va_list *args);
 
 // Utility functions
 int		ft_atoi_digits(const char *str);

@@ -6,11 +6,27 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/28 23:04:17 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 02:39:45 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+	PRINT_STR
+	Retrieves the string argument to convert for output from the va_list args
+	as well as optional arguments specifying width and precision, and prints
+	the formatted argument to standart output according to the conversion
+	specification provided as input and potentially updated by
+	fetch_star_args() and clean_formatspec().
+	PARAMETER(S)
+	1.	The t_specs struct that holds information about a conversion 
+		specification, including the specifier and options.
+	2.	The address of the va_list storing the variable-length list of arguments
+		passed to ft_printf.
+	RETURN
+	The number of characters printed as an int.
+*/
 
 #if defined(__APPLE__)
 
@@ -22,7 +38,7 @@ int	print_str(t_specs specs, va_list *args)
 	int		offset;
 
 	n_chars = 0;
-	fetch_next_args(&specs, args);
+	fetch_star_args(&specs, args);
 	clean_formatspec(&specs);
 	str = va_arg(*args, char *);
 	if (!str)
@@ -52,7 +68,7 @@ int	print_str(t_specs specs, va_list *args)
 	int		offset;
 
 	n_chars = 0;
-	fetch_next_args(&specs, args);
+	fetch_star_args(&specs, args);
 	clean_formatspec(&specs);
 	str = va_arg(*args, char *);
 	if (!str && (specs.precision == -1 || specs.precision >= 6))

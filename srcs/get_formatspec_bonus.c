@@ -6,11 +6,27 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/28 06:16:12 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 00:47:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+	GET_FORMATSPEC
+	Parses the initial portion of the format string from the percent symbol '%'
+	to either a specifier or an unknown character, including optional flags,
+	width and precision. It stores the conversion specifications into a struct
+	specs including any options like flag, width, precision, the conversion
+	specifier or the next regular character if the specifier is missing, and
+	the number of characters read by the parser. The invalid flags are switched
+	off by the function clean_formatspec().
+	PARAMETER(S)
+		The format string to control the output starting at the '%' symbol
+	RETURN
+	The function returns the t_specs struct that holds the information of the
+	conversion specification and the number of characters read from format.
+*/
 
 static const char	*read_flags(const char *format, t_specs *specs)
 {

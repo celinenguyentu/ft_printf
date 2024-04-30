@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:14:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 20:52:11 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 02:28:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	clean_formatspec(t_specs *specs)
 		specs->blank = 0;
 	if (specs->specifier && ft_strchr(SPECIFIERS, specs->specifier))
 	{
-		if (!ft_strchr("xX", specs->specifier))
+		if (!ft_strchr("xXo", specs->specifier))
 			specs->hash = 0;
 		if (!ft_strchr("di", specs->specifier))
 		{
 			specs->blank = 0;
 			specs->plus = 0;
 		}
-		if (ft_strchr("diuxX", specs->specifier) && specs->precision > -1)
+		if (ft_strchr("diuxXo", specs->specifier) && specs->precision > -1)
 			specs->zero = 0;
 	}
 }
