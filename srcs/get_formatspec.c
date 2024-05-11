@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:36:29 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 00:46:33 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:27:41 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_specs	get_formatspec(const char *format)
 	format++;
 	if (*format)
 	{
-		specs.specifier = *format;
+		specs.specif = *format;
 		specs.n_chars += 1;
 	}
 	return (specs);

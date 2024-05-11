@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 00:47:21 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:26:52 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static const char	*read_precision(const char *format, t_specs *specs)
 		specs->n_chars += 1;
 		if (*++format == '*')
 		{
-			specs->star_precision = 0;
+			specs->star_precis = 0;
 			specs->n_chars += 1;
 			format++;
 		}
@@ -85,12 +85,12 @@ static const char	*read_precision(const char *format, t_specs *specs)
 		{
 			if (*format == '-')
 			{
-				specs->precision = 0;
+				specs->precis = 0;
 				format = read_flags(format, specs);
 				specs->width = ft_atoi_digits(format);
 			}
 			else
-				specs->precision = ft_atoi_digits(format);
+				specs->precis = ft_atoi_digits(format);
 			specs->n_chars += ft_nbrlen(format);
 			format += ft_nbrlen(format);
 		}
@@ -107,13 +107,13 @@ static const char	*read_precision(const char *format, t_specs *specs)
 		specs->n_chars += 1;
 		if (*++format == '*')
 		{
-			specs->star_precision = 0;
+			specs->star_precis = 0;
 			specs->n_chars += 1;
 			format++;
 		}
 		else
 		{
-			specs->precision = ft_atoi_digits(format);
+			specs->precis = ft_atoi_digits(format);
 			specs->n_chars += ft_nbrlen(format);
 			format += ft_nbrlen(format);
 		}
@@ -134,7 +134,7 @@ t_specs	get_formatspec(const char *format)
 	format = read_precision(format, &specs);
 	if (*format)
 	{
-		specs.specifier = *format;
+		specs.specif = *format;
 		specs.n_chars += 1;
 	}
 	clean_formatspec(&specs);

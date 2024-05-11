@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 04:54:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 00:56:21 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:23:25 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	fetch_star_args(t_specs *specs, va_list *args)
 		specs->width = -specs->width;
 		specs->dash = 1;
 	}
-	if (specs->star_precision == 0)
+	if (specs->star_precis == 0)
 	{
-		specs->precision = va_arg(*args, int);
-		if (specs->precision < 0)
-			specs->precision = -1;
+		specs->precis = va_arg(*args, int);
+		if (specs->precis < 0)
+			specs->precis = -1;
 	}
 }
