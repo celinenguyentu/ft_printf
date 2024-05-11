@@ -1,4 +1,5 @@
 # -------------------------------- VARIABLES --------------------------------- #
+
 NAME			=	libftprintf.a
 
 CC				=	gcc
@@ -55,7 +56,7 @@ all:			$(NAME)
 $(LIBFT):
 				make -C $(LIBFT_PATH) all
 
-$(NAME): 		$(LIBFT) $(AOBJS) $(MOBJS)
+$(NAME): 		$(LIBFT) $(AOBJS) $(MOBJS) 
 				cp $(LIBFT) $(NAME)
 				$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(MOBJS)
 
