@@ -48,28 +48,28 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 # -------------------------------- RULES --------------------------------- #
 
 .c.o: 
-				${CC} ${CFLAGS} -c -I ${HFILES_DIR} $< -o $@
+				$(CC) $(CFLAGS) -c -I $(HFILES_DIR) $< -o $@
 
-all:			${NAME}
+all:			$(NAME)
 
-${LIBFT}:
-				make -C ${LIBFT_PATH} all
+$(LIBFT):
+				make -C $(LIBFT_PATH) all
 
-${NAME}: 		${LIBFT} ${AOBJS} ${MOBJS}
-				cp ${LIBFT} ${NAME}
-				${AR} ${ARFLAGS} ${NAME} ${AOBJS} ${MOBJS}
+$(NAME): 		$(LIBFT) $(AOBJS) $(MOBJS)
+				cp $(LIBFT) $(NAME)
+				$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(MOBJS)
 
-bonus:			${LIBFT} ${AOBJS} ${BOBJS}
-				cp ${LIBFT} ${NAME}
-				${AR} ${ARFLAGS} ${NAME} ${AOBJS} ${BOBJS}
+bonus:			$(LIBFT) $(AOBJS) $(BOBJS)
+				cp $(LIBFT) $(NAME)
+				$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(BOBJS)
 
 clean:
-				make -C ${LIBFT_PATH} clean
-				${RM} ${RMFLAGS} ${AOBJS} ${MOBJS} ${BOBJS}
+				make -C $(LIBFT_PATH) clean
+				$(RM) $(RMFLAGS) $(AOBJS) $(MOBJS) $(BOBJS)
 
 fclean:			clean
-				make -C ${LIBFT_PATH} fclean
-				${RM} ${RM_FLAGS} ${NAME}
+				make -C $(LIBFT_PATH) fclean
+				$(RM) $(RM_FLAGS) $(NAME)
 
 re:				fclean all
 
