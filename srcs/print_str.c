@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:36:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:10:35 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	print_str(t_specs specs, va_list *args)
 	return (n_chars);
 }
 
-#elif defined(__GLIBC__)
+#else
 
 int	print_str(t_specs specs, va_list *args)
 {

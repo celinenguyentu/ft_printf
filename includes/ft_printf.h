@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:37:58 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:46:28 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	fetch_star_args(t_specs *specs, va_list *args);
 
 // Utility functions
 int		ft_atoi_digits(const char *str);
-int		ft_putchar(char c);
+int		ft_putchar(unsigned char c);
 int		ft_putstr(char *s);
 int		ft_nbrlen(const char *str);
-int		ft_putuint(unsigned long n, int base);
-int		ft_uintlen(unsigned long n, int base);
+int		ft_putuint(unsigned long int n, int base);
+int		ft_uintlen(unsigned long int n, int base);
 
 #endif

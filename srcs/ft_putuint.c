@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:00:12 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 22:43:25 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:28:39 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 		ft_putuint(2024, 'x') outputs "7e8" and returns 3
 */
 
-int	ft_putuint(unsigned long n, int base)
+int	ft_putuint(unsigned long int n, int base)
 {
 	if (base == 'x' && n < 16)
 		return (ft_putchar(LOWHEXADECIMAL[n]));

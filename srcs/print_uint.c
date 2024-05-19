@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 02:18:10 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:43:45 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:14:06 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@
 
 int	print_uint(t_specs specs, va_list *args, int baselen)
 {
-	int					n_chars;
-	unsigned long int	arg;
-	int					arg_len;
+	int				n_chars;
+	unsigned int	arg;
+	int				arg_len;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
 	clean_formatspec(&specs);
-	arg = (unsigned long int)va_arg(*args, unsigned int);
+	arg = va_arg(*args, unsigned int);
 	arg_len = ft_uintlen(arg, baselen);
 	if (arg == 0 && specs.precis == 0)
 		arg_len = 0;

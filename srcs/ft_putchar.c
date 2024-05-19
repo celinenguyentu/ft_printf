@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 08:10:58 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 22:33:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:46:19 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 		ft_putchar('\0') outputs "" and returns 1
 */
 
-int	ft_putchar(char c)
+int	ft_putchar(unsigned char c)
 {
 	return (write(STDOUT_FILENO, &c, 1));
 }

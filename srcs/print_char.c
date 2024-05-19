@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:32:27 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 02:42:02 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:22:55 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 
 int	print_char(t_specs specs, va_list *args)
 {
-	int		n_chars;
-	char	arg;
+	int				n_chars;
+	unsigned char	arg;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
@@ -53,8 +53,8 @@ int	print_char(t_specs specs, va_list *args)
 
 int	print_char(t_specs specs, va_list *args)
 {
-	int		n_chars;
-	char	arg;
+	int				n_chars;
+	unsigned char	arg;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);

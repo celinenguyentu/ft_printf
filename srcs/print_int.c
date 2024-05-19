@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:29:58 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:07:35 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,3 @@ int	print_int(t_specs specs, va_list *args)
 		n_chars += ft_putchar(' ');
 	return (n_chars);
 }
-
-/* SAVE // negative 1 = sign -1, negative 0 = sign 0 ou 1
-int	print_int(t_specs specs, va_list *args)
-{
-	int		n_chars;
-	long	arg;
-	int		uarg_len;
-	int		negative;
-
-	n_chars = 0;
-	fetch_star_args(&specs, args);
-	clean_formatspec(&specs);
-	arg = (long)va_arg(*args, int);
-	negative = (arg < 0);
-	if (negative)
-		arg *= -1;
-	uarg_len = ft_uintlen(arg, 10);
-	if (arg == 0 && specs.precision == 0)
-		uarg_len = 0;
-	n_chars += print_intprefix(specs, uarg_len, negative, (arg == 0));
-	if (arg != 0 || specs.precision != 0)
-		n_chars += ft_putuint(arg, specs.specifier);
-	while (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
-	return (n_chars);
-}
-*/

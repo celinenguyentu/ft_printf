@@ -17,16 +17,18 @@ int	get_argn(va_list args_cpy, int n)
 	return (arg);
 }
 
-void	print_formatspec(t_formatspec specs)
+#include <stdio.h>
+
+void	print_formatspec(t_specs specs)
 {
-	printf("Format specifier : %c\n", specs.specifier);
+	printf("Format specifier : %c\n", specs.specif);
 	printf("dash : %d\t", specs.dash);
 	printf("zero : %d\t", specs.zero);
 	printf("hash : %d\t", specs.hash);
 	printf("blank : %d\t", specs.blank);
 	printf("plus : %d\n", specs.plus);
 	printf("width : %d\n", specs.width);
-	printf("precision : (%s)	%d\n", (specs.precision > -1 ? "true" : "false"), specs.precision);
-	printf("n_chars : %ld\n", specs.n_chars);
+	printf("precision : (%s)	%d\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
+	printf("n_chars : %d\n", specs.n_chars);
 }
 

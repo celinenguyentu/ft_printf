@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/15 19:54:31 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:38:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ int	ft_vprintf(const char *format, va_list ap)
 {
 	int		n_chars;
 	t_specs	specs;
+	va_list	ap_;
 
 	n_chars = 0;
+	va_copy(ap_, ap);
 	while (*format)
 	{
 		if (*format == '%')
@@ -63,12 +65,13 @@ int	ft_vprintf(const char *format, va_list ap)
 			specs = get_formatspec(format);
 			format += specs.n_chars;
 			if (specs.specif)
-				n_chars += print_arg(specs, &ap);
+				n_chars += print_arg(specs, &ap_);
 		}
 		else
 			n_chars += ft_putchar(*format);
 		format++;
 	}
+	va_end(ap_);
 	return (n_chars);
 }
 
@@ -102,6 +105,7 @@ int	ft_vprintf(const char *format, va_list ap)
 			n_chars += ft_putchar(*format);
 		format++;
 	}
+	va_end(ap_);
 	return (n_chars);
 }
 
