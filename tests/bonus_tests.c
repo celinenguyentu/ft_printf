@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 15:52:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:45:00 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@
 void	tests(const char *format, ...)
 {
 	int	count;
-	va_list	ap;
+	va_list	ap_og;
+	va_list ap_ft;
 	
 	count = 0;
-	va_start(ap, format);
-	printf("printf:\t\t"); count = vprintf(format, ap);
+	va_start(ap_og, format);
+	va_start(ap_ft, format);
+	printf("printf:\t\t"); count = vprintf(format, ap_og);
 	printf("\t(%d)\n", count);
-	ft_printf("ft_printf :\t"); count = ft_vprintf(format, ap);
+	ft_printf("ft_printf :\t"); count = ft_vprintf(format, ap_ft);
 	printf("\t(%d)\n", count);
-	va_end(ap);
+	va_end(ap_og);
+	va_end(ap_ft);
 }
 
 int	main(void)
@@ -39,7 +42,7 @@ int	main(void)
 
 	printf("Bonus part : testing flags ...\n");
 	printf("\n>> Conversion %%c : one option only\n");
-	tests("|%-c|%0c|%3c|%-c|%0c|%3c|%-c|%0c|%3c|%-c|%3c|", 'a', 'b', 'c', n, n, n, *s, *s, *s, i1, i1, i1);
+	tests("|%-c|%0c|%3c|%-c|%0c|%3c|%-c|%0c|%3c|%-c|%0c|%3c|", 'a', 'b', 'c', n, n, n, *s, *s, *s, i1, i1, i1);
 	tests("|%#c|% c|%+c|%.3c|%#c|% c|%+c|%.3c|%#c|% c|%+c|%.3c|%#c|% c|%+c|%.3c|", 'a', 'b', 'c', 'd', n, n, n, n, *s, *s, *s, *s, i1, i1, i1, i1);
 	printf(">> Conversion %%c : width + one flag\n");
 	tests("|%-3c|%03c|%-3c|%03c|%-3c|%03c|%-3c|%03c|", 'a', 'b', n, n, *s, *s, i1, i1);

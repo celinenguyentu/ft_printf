@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:21:58 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/19 21:37:00 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:34:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@
 void	tests(const char *format, ...)
 {
 	int	count;
-	va_list	ap;
+	va_list	ap_og;
+	va_list	ap_ft;
 	
 	count = 0;
-	va_start(ap, format);
-	printf("printf:\t\t"); count = vprintf(format, ap);
+	va_start(ap_og, format);
+	va_start(ap_ft, format);
+	printf("printf:\t\t"); count = vprintf(format, ap_og);
 	printf("\t(%d)\n", count);
-	ft_printf("ft_printf :\t"); count = ft_vprintf(format, ap);
+	ft_printf("ft_printf :\t"); count = ft_vprintf(format, ap_ft);
 	printf("\t(%d)\n", count);
-	va_end(ap);
+	va_end(ap_og);
+	va_end(ap_ft);
 }
 
 int	main(void)
