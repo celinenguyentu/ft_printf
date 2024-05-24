@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/24 18:17:19 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:48:31 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 	int			i1 = INT_MIN;
 	void		*p = NULL;
 
-	printf("Bonus part : testing flags ...\n");
+	printf("\nBONUS PART : testing flags ...\n");
 	printf("\n>> Conversion %%c : one option only\n");
 	tests("|%-c|%0c|%3c|%-c|%0c|%3c|%-c|%0c|%3c|%-c|%0c|%3c|", 'a', 'b', 'c', n, n, n, *s, *s, *s, i1, i1, i1);
 	tests("|%#c|% c|%+c|%.3c|%#c|% c|%+c|%.3c|%#c|% c|%+c|%.3c|%#c|% c|%+c|%.3c|", 'a', 'b', 'c', 'd', n, n, n, n, *s, *s, *s, *s, i1, i1, i1, i1);
@@ -84,7 +84,13 @@ int	main(void)
 	tests("|%-.0p|%0.0p|% .0p|%+.0p|%-.0p|%0.0p|% .0p|%+.0p|", s, s, s, s, p, p, p, p);
 	tests("|%#.0p|%#.0p|", s, p);
 	printf(">> Conversion %%p : width + precision + multiple flags\n");
-	tests("|%-#15p|%-#15p|", s, p); // a completer
+	tests("|%- 15.12p|%-+15.12p|%0 15.12p|%0+15.12p|%-0 +15.12p|", s, s, s, s, s);
+	tests("|%- 15.12p|%-+15.12p|%0 15.12p|%0+15.12p|%-0 +15.12p|", p, p, p, p, p);
+	tests("|%- 12.15p|%-+12.15p|%0 12.15p|%0+12.15p|%-0 +12.15p|", s, s, s, s, s);
+	tests("|%- 12.15p|%-+12.15p|%0 12.15p|%0+12.15p|%-0 +12.15p|", p, p, p, p, p);
+	printf(">> Conversion %%p : precision 0\n");
+	tests("|%- 15.0p|%-+15.0p|%0 15.0p|%0+15.0p|%-0 +15.0p|", s, s, s, s, s);
+	tests("|%- 15.0p|%-+15.0p|%0 15.0p|%0+15.0p|%-0 +15.0p|", p, p, p, p, p);
 	
 	printf("\n>> Conversion %%d %%i : one option only\n");
 	tests("|%-d|%0d|% d|%+d|%6d|%.4d|%-d|%0d|% d|%+d|%6d|%.4d|%-d|%0d|% d|%+d|%6d|%.4d|", n, n, n, n, n, n, i1, i1, i1, i1, i1, i1, 0, 0, 0, 0, 0, 0);
@@ -165,7 +171,6 @@ int	main(void)
 	tests("|%.o|%-.o|%0.o|%#.o|% .o|%+.o|%3.o|", 0, 0, 0, 0, 0, 0, 0);
 	tests("|%-3.o|%03.o|% 3.o|%+3.o|%- 3.o|%-+3.o|%0 3.o|%0+3.o|%-0 +3.o|%-#3.o|%0#3.o|%# 3.o|%+#3.o|%-# 3.o|%-#+3.o|%0# 3.o|%0#+3.o|%-0 #+3.o|", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 	
-	
 	printf("\n>> Conversion %% : one option only\n");
 	tests("|%-%|%0%|%#%|% %|%+%|%6%|%.4%|");
 	printf(">> Conversion %% : width + one flag\n");
@@ -213,6 +218,6 @@ int	main(void)
 	tests("|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%#.-5o|", "hello", -42, 42, 42, NULL, 0, 0, 0, 0);
 	tests("|%+3.-4d|%+5.-4d|%.-+4d|%#.-4o|", 42, 42, 42, 42);
 	tests("|%.-03%.|");
-
+	
 	return (0);
 }

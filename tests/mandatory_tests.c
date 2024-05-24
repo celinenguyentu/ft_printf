@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:21:58 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/23 23:34:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:48:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(void)
 	
 	int			count = 0;
 	
-	printf("Mandatory part : testing basic conversions with various inputs...\n\n");
+	printf("\nMANDATORY PART : testing basic conversions with various inputs...\n\n");
 	printf(">> String only, no conversion\n");
 	tests("Hello World!");
 	tests("");
@@ -82,6 +82,7 @@ int	main(void)
 #if defined(__linux__) || (__gnu_linux__)
 	printf(">> Format string is NULL\n");
 	tests(NULL);
+	tests(NULL, 'a', 42, s);
 #endif
 	printf(">> Unknown format specifier\n");
 	tests("Hello %!");
