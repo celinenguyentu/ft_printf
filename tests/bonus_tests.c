@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/23 23:45:00 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:17:19 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,18 @@ int	main(void)
 	tests("|%-06.4s|%-#6.4s|%- 6.4s|%-+6.4s|%0#6.4s|%0 6.4s|%0+6.4s|%-0+6.4s|%-+ 6.4s|%-06.4s|%-#6.4s|%- 6.4s|%-+6.4s|%0#6.4s|%0 6.4s|%0+6.4s|%-0+6.4s|%-+ 6.4s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	
 	printf("\n>> Conversion %%p : one option only\n"); // flags 0, blank, + and precision not standard, thus not tested
-	tests("|%-p|%15p|%-p|%15p|", s, s, p, p);
-	tests("|%#p|%#p|", s, p); // no effect
+	tests("|%-p|%0p|% p|%+p|%15p|%.15p|%-p|%0p|% p|%+p|%15p|%.15p|", s, s, s, s, s, s, p, p, p, p, p, p);
+	tests("|%#p|%#p|", s, p);
 	printf(">> Conversion %%p : width + one flag\n");
-	tests("|%-15p|%-15p|", s, p);
-	tests("|%#15p|%#15p|", s, p); // no effect
-	printf(">> Conversion %%p : width + multiple flags\n");
-	tests("|%-#15p|%-#15p|", s, p);
+	tests("|%-15p|%015p|% 15p|%+15p|%-15p|%015p|% 15p|%+15p|", s, s, s, s, p, p, p, p);
+	tests("|%#15p|%#15p|", s, p);
+	printf(">> Conversion %%p : precision + one flag\n");
+	tests("|%-.15p|%0.15p|% .15p|%+.15p|%-.15p|%0.15p|% .15p|%+.15p|", s, s, s, s, p, p, p, p);
+	tests("|%#.15p|%#.15p|", s, p);
+	tests("|%-.0p|%0.0p|% .0p|%+.0p|%-.0p|%0.0p|% .0p|%+.0p|", s, s, s, s, p, p, p, p);
+	tests("|%#.0p|%#.0p|", s, p);
+	printf(">> Conversion %%p : width + precision + multiple flags\n");
+	tests("|%-#15p|%-#15p|", s, p); // a completer
 	
 	printf("\n>> Conversion %%d %%i : one option only\n");
 	tests("|%-d|%0d|% d|%+d|%6d|%.4d|%-d|%0d|% d|%+d|%6d|%.4d|%-d|%0d|% d|%+d|%6d|%.4d|", n, n, n, n, n, n, i1, i1, i1, i1, i1, i1, 0, 0, 0, 0, 0, 0);
