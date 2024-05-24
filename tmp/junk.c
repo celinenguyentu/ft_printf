@@ -32,3 +32,29 @@ void	print_formatspec(t_specs specs)
 	printf("n_chars : %d\n", specs.n_chars);
 }
 
+
+/* SAVE
+
+int	print_ptr(t_specs specs, va_list *args)
+{
+	int			n_chars;
+	uintptr_t	address;
+	int			output_len;
+
+	fetch_star_args(&specs, args);
+	clean_formatspec(&specs);
+	n_chars = 0;
+	address = (unsigned long int)va_arg(*args, void *);
+	output_len = 2;
+	if (address || specs.precis != 0)
+		output_len += ft_uintlen(address, 16);
+	while (specs.dash == 0 && n_chars < specs.width - output_len)
+		n_chars += ft_putchar(' ');
+	n_chars += ft_putstr("0x");
+	if (address || specs.precis != 0)
+		n_chars += ft_putuint(address, 'x');
+	while (specs.dash == 1 && n_chars < specs.width)
+		n_chars += ft_putchar(' ');
+	return (n_chars);
+}
+*/
