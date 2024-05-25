@@ -1,8 +1,10 @@
 /*-----------------------JUNK---------------------------*/
 
 #include <stdarg.h>
-#include "includes/ft_printf.h"
+#include <limits.h>
+#include <stdio.h>
 
+/*
 int	get_argn(va_list args_cpy, int n)
 {
 	int	arg;
@@ -17,8 +19,8 @@ int	get_argn(va_list args_cpy, int n)
 	return (arg);
 }
 
-#include <stdio.h>
 
+#include "includes/ft_printf.h"
 void	print_formatspec(t_specs specs)
 {
 	printf("Format specifier : %c\n", specs.specif);
@@ -31,7 +33,7 @@ void	print_formatspec(t_specs specs)
 	printf("precision : (%s)	%d\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
 	printf("n_chars : %d\n", specs.n_chars);
 }
-
+*/
 
 /* SAVE
 
@@ -58,3 +60,27 @@ int	print_ptr(t_specs specs, va_list *args)
 	return (n_chars);
 }
 */
+int	ft_atoi_digits(const char *str)
+{
+	int	number;
+
+	number = 0;
+	while (*str > '0' && *str < '9')
+	{
+		number = number * 10 + *str - '0';
+		str++;
+		if (number < 0)
+			return (-2);
+	}
+	return (number);
+}
+
+int	main(void)
+{
+	int res = INT_MAX;
+	int read;
+
+	read = printf("\001\002\007\v\010\f\r\n");
+	printf("\nread %d", read);
+	return (0);
+}

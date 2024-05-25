@@ -1,6 +1,6 @@
 # -------------------------------- VARIABLES --------------------------------- #
 
-EXEC			=	tests
+EXEC			=	output
 
 CC				=	cc
 RM				=	rm
@@ -28,20 +28,23 @@ all:			a
 a:				m b
 
 m:				$(MSRCS_FILES) $(MOBJS)
-				@make -C $(PRINTF_PATH)
+ifneq ("$(wildcard $(PRINTF))","")
+	@$(RM) $(RM_FLAGS) $(PRINTF)
+endif
+				@make -C >/dev/null $(PRINTF_PATH)
 				@$(CC) $(MOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
 				@./$(EXEC)
 
 b:				$(BSRCS_FILES) $(BOBJS)
-				@make -C $(PRINTF_PATH) bonus
+				@make -C >/dev/null $(PRINTF_PATH) bonus
 				@$(CC) $(BOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
 				@./$(EXEC)
 clean:
-				@make -C $(PRINTF_PATH) clean
+				@make -C >/dev/null $(PRINTF_PATH) clean
 				@$(RM) $(RMFLAGS) $(MOBJS) $(BOBJS)
 
 fclean:			clean
-				@make -C $(PRINTF_PATH) fclean
+				@make -C >/dev/null $(PRINTF_PATH) fclean
 				@$(RM) $(RM_FLAGS) $(EXEC)
 
 re:				fclean all

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/29 22:29:02 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/24 23:57:31 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 		digit characters.
 	RETURN VALUE
 	The function returns the result of the conversion as an int variable.
-	If no conversion could be perfomed, 0 is returned.
+	If no conversion could be perfomed, 0 is returned. If an overflow occured,
+	the function returns -2.
 	EXAMPLES
 		ft_atoi_digits("1234abcfd") returns 1234
 		ft_atoi_digits("") returns 0
@@ -38,6 +39,8 @@ int	ft_atoi_digits(const char *str)
 	{
 		number = number * 10 + *str - '0';
 		str++;
+		if (number < 0)
+			return (-2);
 	}
 	return (number);
 }

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/19 17:38:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/25 01:21:20 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,20 @@
 	The function returns the number of characters printed in the standard
 	output, excluding the null-terminating '\0' character of the format string.
 	In case of error, it returns -1.
+*/
 
+int	ft_printf(const char *format, ...)
+{
+	va_list	ap;
+	int		n_chars;
+
+	va_start(ap, format);
+	n_chars = ft_vprintf(format, ap);
+	va_end(ap);
+	return (n_chars);
+}
+
+/*
 	FT_VPRINTF
 	The function ft_vprintf() is equivalent to the function ft_printf() except
 	that it is called with a va_list instead of a variable number of arguments.
@@ -53,23 +66,27 @@
 int	ft_vprintf(const char *format, va_list ap)
 {
 	int		n_chars;
-	t_specs	specs;
+	t_specs	fs;
 	va_list	ap_;
 
 	n_chars = 0;
+	init_formatspec(&fs);
 	va_copy(ap_, ap);
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			specs = get_formatspec(format);
-			format += specs.n_chars;
-			if (specs.specif)
-				n_chars += print_arg(specs, &ap_);
+			fs = get_formatspec(format);
+			if (fs.width < 0 || fs.precis < -1 || fs.width + n_chars < 0)
+				return (-1);
+			format += fs.n_chars;
+			n_chars += print_arg(fs, &ap_);
 		}
 		else
 			n_chars += ft_putchar(*format);
 		format++;
+		if (n_chars < 0)
+			return (-1);
 	}
 	va_end(ap_);
 	return (n_chars);
@@ -110,14 +127,3 @@ int	ft_vprintf(const char *format, va_list ap)
 }
 
 #endif
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	ap;
-	int		n_chars;
-
-	va_start(ap, format);
-	n_chars = ft_vprintf(format, ap);
-	va_end(ap);
-	return (n_chars);
-}
