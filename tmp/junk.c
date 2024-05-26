@@ -30,7 +30,7 @@ void	print_formatspec(t_specs specs)
 	printf("blank : %d\t", specs.blank);
 	printf("plus : %d\n", specs.plus);
 	printf("width : %d\n", specs.width);
-	printf("precision : (%s)	%d\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
+	printf("precision : (%s)	%ld\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
 	printf("n_chars : %d\n", specs.n_chars);
 }
 */
@@ -80,7 +80,9 @@ int	main(void)
 	int res = INT_MAX;
 	int read;
 
-	read = printf("\001\002\007\v\010\f\r\n");
-	printf("\nread %d", read);
+	read = printf("%3000000000d", 42);
+	printf("\t (%d)\n", read);
+	//read = printf("%.2147483649d", 1);
+	//printf("\t (%d)\n", read);
 	return (0);
 }
