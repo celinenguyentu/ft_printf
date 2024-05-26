@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:14:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/25 23:22:08 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:30:38 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	clean_formatspec(t_specs *specs)
 	{
 		if (!ft_strchr("xXo", specs->specif))
 			specs->hash = 0;
-		if (!ft_strchr("di", specs->specif))
+		if (!ft_strchr("pdi", specs->specif))
 		{
 			specs->blank = 0;
 			specs->plus = 0;

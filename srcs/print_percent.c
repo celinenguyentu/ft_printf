@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:34:05 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 03:26:44 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:00:04 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ long	print_percent(t_specs specs, va_list *args)
 
 #else
 
-int	print_percent(t_specs specs, va_list *args)
+long	print_percent(t_specs specs, va_list *args)
 {
 	fetch_star_args(&specs, args);
 	return (ft_putchar('%'));

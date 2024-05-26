@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 03:27:08 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:02:22 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ long	print_str(t_specs specs, va_list *args)
 
 #else
 
-int	print_str(t_specs specs, va_list *args)
+long	print_str(t_specs specs, va_list *args)
 {
-	int		n_chars;
-	char	*str;
-	int		strlen;
-	int		offset;
+	long		n_chars;
+	char		*str;
+	long		strlen;
+	long		offset;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
@@ -75,7 +75,7 @@ int	print_str(t_specs specs, va_list *args)
 		str = "(null)";
 	else if (!str)
 		str = "";
-	strlen = (int)ft_strlen(str);
+	strlen = (long)ft_strlen(str);
 	if (specs.precis > -1 && strlen > specs.precis)
 		strlen = specs.precis;
 	while (!specs.dash && n_chars < specs.width - strlen)

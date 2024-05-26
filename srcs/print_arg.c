@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 03:26:53 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:54:10 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ long	print_arg(t_specs specs, va_list *args)
 	long	n_chars;
 
 	n_chars = 0;
-	if (specs.specif == '\0')
-		return (n_chars);
+	//if (specs.specif == '\0')
+	//	return (n_chars);
 	if (specs.specif == 'c')
 		n_chars += print_char(specs, args);
 	else if (specs.specif == 's')

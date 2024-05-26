@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 03:27:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:02:35 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ long	print_unknown(t_specs specs, va_list *args)
 
 #else
 
-int	print_unknown(t_specs specs, va_list *args)
+long	print_unknown(t_specs specs, va_list *args)
 {
 	int	n_chars;
 
