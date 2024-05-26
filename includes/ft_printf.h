@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 01:54:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:26:58 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_specs
 	long	precis; // - 1 none, 0, 1, 2, 3... value
 	char	specif; // c, s, p, d, i, u, x, X, %, o, unknown
 	int		n_chars;
+	int		n_unknowns;
 }	t_specs;
 
 // ft_printf
@@ -57,9 +58,10 @@ long	print_intprefix(t_specs specs, int uarg_len, int sign);
 long	check_precis_overflow(long precis, int arg_len);
 
 // formatspec
-void	init_formatspec(t_specs *specs);
-t_specs	get_formatspec(const char *format);
-void	clean_formatspec(t_specs *specs);
+void	init_formatspecs(t_specs *specs);
+void	reset_formatspecs(t_specs *specs);
+void	update_formatspecs(t_specs *specs, const char **format);
+void	clean_formatspecs(t_specs *specs);
 void	fetch_star_args(t_specs *specs, va_list *args);
 
 // Utility functions

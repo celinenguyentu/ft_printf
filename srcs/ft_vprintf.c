@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 16:43:21 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:35:19 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,17 @@ int	ft_vprintf(const char *format, va_list ap)
 	va_list	ap_;
 
 	n_chars = 0;
-	init_formatspec(&fs);
+	init_formatspecs(&fs);
 	va_copy(ap_, ap);
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			fs = get_formatspec(format);
+			update_formatspecs(&specs, &format);
 			if (flags_overflow(fs, n_chars))
 				return (-1);
-			format += fs.n_chars + 1;
+			if (specs.specif == '\0')
+				return (n_chars);
 			n_chars += print_arg(fs, &ap_);
 		}
 		else
@@ -104,31 +105,19 @@ int	ft_vprintf(const char *format, va_list ap)
 }
 
 #else
-/*
-static int	flags_overflow(t_specs specs)
+
+static int	check_formatspecs_error(t_specs *specs)
 {
-	if (specs.width < 0 || specs.width > INT_MAX)
+	if (specs->width < 0 || specs->width > INT_MAX)
 		return (1);
-	if (specs.precis < -1)
+	if (specs->precis < -1)
 		return (1);
-	if (ft_strchr("spdiuxXo", specs.specif) && specs.precis > 0
-		&& specs.precis > INT_MAX)
+	if (ft_strchr("spdiuxXo", specs->specif) && specs->precis > 0
+		&& specs->precis > INT_MAX)
 		return (1);
-	return (0);
-}
-*/
-static int	check_formatspecs_error(t_specs specs, int *n_unknowns)
-{
-	if (specs.width < 0 || specs.width > INT_MAX)
-		return (1);
-	if (specs.precis < -1)
-		return (1);
-	if (ft_strchr("spdiuxXo", specs.specif) && specs.precis > 0
-		&& specs.precis > INT_MAX)
-		return (1);
-	if (specs.specif && !ft_strchr(SPECIFIERS, specs.specif))
-		(*n_unknowns)++;
-	if (!specs.specif && *n_unknowns == 0)
+	if (specs->specif && !ft_strchr(SPECIFIERS, specs->specif))
+		(specs->n_unknowns)++;
+	if (!specs->specif && specs->n_unknowns == 0)
 		return (1);
 	return (0);
 }
@@ -137,11 +126,10 @@ int	ft_vprintf(const char *format, va_list ap)
 {
 	int		n_chars;
 	t_specs	specs;
-	int		n_unknowns;
 	va_list	ap_;
 
 	n_chars = 0;
-	n_unknowns = 0;
+	init_formatspecs(&specs);
 	va_copy(ap_, ap);
 	if (!format)
 		return (-1);
@@ -149,11 +137,10 @@ int	ft_vprintf(const char *format, va_list ap)
 	{
 		if (*format == '%')
 		{
-			specs = get_formatspec(format);
-			format += specs.n_chars + 1;
-			if (check_formatspecs_error(specs, &n_unknowns))
+			update_formatspecs(&specs, &format);
+			if (check_formatspecs_error(&specs))
 				return (-1);
-			n_chars += print_arg(specs, &ap_); 
+			n_chars += print_arg(specs, &ap_);
 		}
 		else
 			n_chars = put_text(&format, n_chars);

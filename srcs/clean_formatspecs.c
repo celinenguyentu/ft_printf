@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_formatspec.c                                 :+:      :+:    :+:   */
+/*   clean_formatspecs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:14:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 14:30:38 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:19:00 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-	CLEAN_FORMATSPEC
+	CLEAN_FORMATSPECS
 	Switch off the flags that are not applicable to the conversion specification
 	represented by specs according to overriding rules and conversion specifiers.
 	PARAMETER(S)
@@ -23,7 +23,7 @@
 	-
 */
 
-void	clean_formatspec(t_specs *specs)
+void	clean_formatspecs(t_specs *specs)
 {
 	if (specs->dash == 1 && specs->zero == 1)
 		specs->zero = 0;

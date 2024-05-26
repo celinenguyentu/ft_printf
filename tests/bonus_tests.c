@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 01:47:20 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:39:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int	main(void)
 	printf("\nEdge cases ...\n");
 	printf(">> Unknown format specifier\n");
 	tests("|%!|%3!|%.3!|%03!|%-3!|%#!|% !|%+!|");
-	tests("|%3.y|%-#+3.y|%#+-3.y|% 0#3.y|%#- +03.y|");
+	tests("|%3.y|%-#+3.y|%#+-3.y|% 0#3.y|%#- +03.y|%#-0 +2.3y|");
 	tests("|%0.-2y|%#.-2y|%+ 3.-2y|%1.-+#2y|%3.-# 2y|");
 	tests("|%0*.*y|%0*.*y|%0*.*y|%0*.*y|", 3, 2, -3, 2, 3, -2, -3, -2);
 	tests("|%0#+*.*y|% -#*.*y|%#-0 +*.*y|", -3, 2, 3, -2, -3, -2);
@@ -219,31 +219,44 @@ int	main(void)
 	tests("|%+3.-4d|%+5.-4d|%.-+4d|%#.-4o|", 42, 42, 42, 42);
 	tests("|%.-03%.|");
 	printf(">> Width overflow\n");
-	tests("%3000000000d", 42);
+	tests("%2147483648d", 42);
+#if defined (__APPLE__)
 	tests("%2147483647d", 42);
 	tests(" %2147483646d", 42); // printf doesn't print anything because of buffer implementation
 	tests("  %2147483645d", 42);
 	tests("  %2147483645c", 'a');
+#endif
 	tests("%3000000000c", 'a');
+#if defined (__APPLE__)
 	tests("  %2147483645s", "hello");
-	tests("%3000000000s", "hello");
+#endif
+	tests("%2147483648s", "hello");
 	printf(">> Precision overflow\n");
+#if defined (__APPLE__)
 	tests("%.2147483647d", 1);
 	tests("%.2147483647i", 12);
 	tests("%.2147483647d", 123);
 	tests(" %.2147483646i", 123);
 	tests("  %.2147483645d", 123);
+#endif
 	tests("%.2147483649i", 1);
 	tests("%.2147483650d", 12);
 	tests("%.2147483656i", 42424242);
 	tests("%.2147483649d", -2);
 	tests("%.3000000000d", 42);
+#if defined (__APPLE__)
 	tests("%.2147483647p", s);
 	tests(" %.2147483646p", s);
 	tests("  %.2147483645p", s);
+#endif
+	tests("%.2147483648p", s);
 	tests("%.2147483662p", s);
+	tests("%.2147483648s", s);
+	tests("%.2147483662s", s);
+#if defined (__APPLE__)
 	tests("%.2147483647u", n);
 	tests(" %.2147483646u", n);
+#endif
 	tests("%.2147483662u", n);
 	tests("%.2147483653x", 424242);
 	tests("%.2147483655o", 424242);

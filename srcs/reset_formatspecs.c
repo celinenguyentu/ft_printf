@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_formatspec.c                                  :+:      :+:    :+:   */
+/*   reset_formatspecs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 14:40:16 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:27:52 by cnguyen-         ###   ########.fr       */
+/*   Created: 2024/05/26 16:55:41 by cnguyen-          #+#    #+#             */
+/*   Updated: 2024/05/26 17:19:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-	INIT_FORMATSPEC
-	Initializes the provided t_specs struct specs to all members switched off.
+	RESET_FORMATSPECS
+	Resets the provided t_specs struct specs to all members switched off
+	and counters to zero, except for the number of already printed tag with
+	an unknown character.
 	PARAMETER(S)
 		The address of the t_specs struct that holds information about
 		a conversion specification.
@@ -22,7 +24,7 @@
 	-
 */
 
-void	init_formatspec(t_specs *specs)
+void	reset_formatspecs(t_specs *specs)
 {
 	specs->dash = 0;
 	specs->zero = 0;

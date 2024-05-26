@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:32:27 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 13:59:26 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:29:12 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long	print_char(t_specs specs, va_list *args)
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
-	clean_formatspec(&specs);
+	clean_formatspecs(&specs);
 	arg = (unsigned char)va_arg(*args, int);
 	while (!specs.dash && !specs.zero && n_chars < specs.width - 1)
 		n_chars += ft_putchar(' ');
@@ -58,7 +58,7 @@ long	print_char(t_specs specs, va_list *args)
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
-	clean_formatspec(&specs);
+	clean_formatspecs(&specs);
 	arg = (unsigned char)va_arg(*args, int);
 	while (!specs.dash && n_chars < specs.width - 1)
 		n_chars += ft_putchar(' ');

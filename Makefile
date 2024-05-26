@@ -19,6 +19,7 @@ ASRCS_FILES		=	ft_atoi_digits.c \
 					ft_putuint.c \
 					ft_uintlen.c \
 					ft_printf.c \
+					ft_vprintf.c \
 					print_arg.c \
 					print_char.c \
 					print_str.c \
@@ -28,16 +29,17 @@ ASRCS_FILES		=	ft_atoi_digits.c \
 					print_percent.c \
 					print_unknown.c \
 					print_intprefix.c \
-					init_formatspec.c \
-					clean_formatspec.c \
+					init_formatspecs.c \
+					reset_formatspecs.c \
+					clean_formatspecs.c \
 					fetch_star_args.c \
 					check_precis_overflow.c 
 ASRCS			=	$(addprefix $(SRCS_DIR), $(ASRCS_FILES))
 
-MSRCS_FILES		=	get_formatspec.c 
+MSRCS_FILES		=	update_formatspecs.c 
 MSRCS 			=	$(addprefix $(SRCS_DIR), $(MSRCS_FILES))
 
-BSRCS_FILES		=	get_formatspec_bonus.c
+BSRCS_FILES		=	update_formatspecs_bonus.c
 BSRCS			=	$(addprefix $(SRCS_DIR), $(BSRCS_FILES))
 
 AOBJS			=	$(ASRCS:.c=.o)

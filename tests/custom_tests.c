@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 01:43:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 15:57:26 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@
 int	main(void)
 {
 	int read;
-	char *s = "";
-	size_t i = INT_MAX + 100;
-	int n = i;
+	char *s = "hello";
+	int	n = 42;
 
-	read = ft_printf("%d", i);
+	read = ft_printf("%.2147483647u", n);
 	printf("\t (%d)\n", read);
 	return (0);
 }

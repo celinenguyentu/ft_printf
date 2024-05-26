@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 14:02:35 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:29:45 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ long	print_unknown(t_specs specs, va_list *args)
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
-	clean_formatspec(&specs);
+	clean_formatspecs(&specs);
 	while (!specs.dash && !specs.zero && n_chars < specs.width - 1)
 		n_chars += ft_putchar(' ');
 	while (specs.zero && n_chars < specs.width - 1)

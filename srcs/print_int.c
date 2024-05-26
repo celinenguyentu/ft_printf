@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 03:26:24 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:28:56 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long	print_int(t_specs specs, va_list *args)
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
-	clean_formatspec(&specs);
+	clean_formatspecs(&specs);
 	arg = (long)va_arg(*args, int);
 	sign = (arg < 0) * -1 + (arg == 0) * 0 + (arg > 0) * 1;
 	if (sign == -1)
