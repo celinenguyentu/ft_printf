@@ -73,7 +73,7 @@ clean:
 
 fclean:			clean
 				make -C $(LIBFT_PATH) fclean
-				$(RM) $(RM_FLAGS) $(NAME)
+				$(RM) $(RMFLAGS) $(NAME)
 
 re:				fclean all
 
