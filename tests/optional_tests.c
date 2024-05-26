@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:46:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/27 19:02:15 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 18:32:27 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(void)
 	printf("Mixing positional and non positional arguments");
 	printf("Gaps in the number of arguments");
 	printf("Higher number of argument than actual arguments");
+	printf("Invalid position for argument (negative or zero)")
 
 	//count = printf("%3$-*1$c__%4$*3$c__%6$*5$c\n", 2, 'a', 3, 'b', 4, 'c');
 	//count = printf("%3$-*2$c__%3$*2$c__%3$*2$c__%1$*4$c\n", 'b', 2, 'a', 4);
