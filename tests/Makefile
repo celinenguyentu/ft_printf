@@ -10,10 +10,13 @@ HFILES_DIR		=	../includes/
 
 MSRCS			=	mandatory_tests
 BSRCS			=	bonus_tests
+CSRCS			=	custom_tests
 MSRCS_FILES		=	$(addsuffix .c, $(MSRCS))
 BSRCS_FILES		=	$(addsuffix .c, $(BSRCS))
+CSRCS_FILES		=	$(addsuffix .c, $(CSRCS))
 MOBJS			=	$(addsuffix .o, $(MSRCS))
 BOBJS			=	$(addsuffix .o, $(BSRCS))
+COBJS			=	$(addsuffix .o, $(CSRCS))
 
 PRINTF_PATH		=	..
 PRINTF			=	$(PRINTF_PATH)/libftprintf.a
@@ -39,9 +42,15 @@ b:				$(BSRCS_FILES) $(BOBJS)
 				@make -C >/dev/null $(PRINTF_PATH) bonus
 				@$(CC) $(BOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
 				@./$(EXEC)
+
+custom:			$(CSRCS_FILES) $(COBJS)
+				@make -C >/dev/null $(PRINTF_PATH) bonus
+				@$(CC) $(COBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
+				@./$(EXEC)
+
 clean:
 				@make -C >/dev/null $(PRINTF_PATH) clean
-				@$(RM) $(RMFLAGS) $(MOBJS) $(BOBJS)
+				@$(RM) $(RMFLAGS) $(MOBJS) $(BOBJS) $(COBJS)
 
 fclean:			clean
 				@make -C >/dev/null $(PRINTF_PATH) fclean

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/25 01:36:47 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:47:20 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(void)
 	tests("|%-0.4s|%-#.4s|%- .4s|%-+.4s|%0#.4s|%0 .4s|%0+.4s|%-0+.4s|%-+ .4s|%-0.4s|%-#.4s|%- .4s|%-+.4s|%0#.4s|%0 .4s|%0+.4s|%-0+.4s|%-+ .4s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	tests("|%-06.4s|%-#6.4s|%- 6.4s|%-+6.4s|%0#6.4s|%0 6.4s|%0+6.4s|%-0+6.4s|%-+ 6.4s|%-06.4s|%-#6.4s|%- 6.4s|%-+6.4s|%0#6.4s|%0 6.4s|%0+6.4s|%-0+6.4s|%-+ 6.4s|", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", s, s, s, s, s, s, s, s, s);
 	
-	printf("\n>> Conversion %%p : one option only\n"); // flags 0, blank, + and precision not standard, thus not tested
+	printf("\n>> Conversion %%p : one option only\n");
 	tests("|%-p|%0p|% p|%+p|%15p|%.15p|%-p|%0p|% p|%+p|%15p|%.15p|", s, s, s, s, s, s, p, p, p, p, p, p);
 	tests("|%#p|%#p|", s, p);
 	printf(">> Conversion %%p : width + one flag\n");
@@ -218,11 +218,34 @@ int	main(void)
 	tests("|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%#.-5o|", "hello", -42, 42, 42, NULL, 0, 0, 0, 0);
 	tests("|%+3.-4d|%+5.-4d|%.-+4d|%#.-4o|", 42, 42, 42, 42);
 	tests("|%.-03%.|");
-	printf(">> Width + precision : overflow\n");
+	printf(">> Width overflow\n");
 	tests("%3000000000d", 42);
 	tests("%2147483647d", 42);
-	
-	//tests("%.2147485000d", 42);
-	
+	tests(" %2147483646d", 42); // printf doesn't print anything because of buffer implementation
+	tests("  %2147483645d", 42);
+	tests("  %2147483645c", 'a');
+	tests("%3000000000c", 'a');
+	tests("  %2147483645s", "hello");
+	tests("%3000000000s", "hello");
+	printf(">> Precision overflow\n");
+	tests("%.2147483647d", 1);
+	tests("%.2147483647i", 12);
+	tests("%.2147483647d", 123);
+	tests(" %.2147483646i", 123);
+	tests("  %.2147483645d", 123);
+	tests("%.2147483649i", 1);
+	tests("%.2147483650d", 12);
+	tests("%.2147483656i", 42424242);
+	tests("%.2147483649d", -2);
+	tests("%.3000000000d", 42);
+	tests("%.2147483647p", s);
+	tests(" %.2147483646p", s);
+	tests("  %.2147483645p", s);
+	tests("%.2147483662p", s);
+	tests("%.2147483647u", n);
+	tests(" %.2147483646u", n);
+	tests("%.2147483662u", n);
+	tests("%.2147483653x", 424242);
+	tests("%.2147483655o", 424242);
 	return (0);
 }
