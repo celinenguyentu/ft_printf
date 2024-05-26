@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 16:24:14 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:43:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_vprintf(const char *format, va_list ap)
 }
 
 #else
-
+/*
 static int	flags_overflow(t_specs specs)
 {
 	if (specs.width < 0 || specs.width > INT_MAX)
@@ -116,10 +116,21 @@ static int	flags_overflow(t_specs specs)
 		return (1);
 	return (0);
 }
-
+*/
 static int	check_formatspecs_error(t_specs specs, int *n_unknowns)
 {
-	
+	if (specs.width < 0 || specs.width > INT_MAX)
+		return (1);
+	if (specs.precis < -1)
+		return (1);
+	if (ft_strchr("spdiuxXo", specs.specif) && specs.precis > 0
+		&& specs.precis > INT_MAX)
+		return (1);
+	if (specs.specif && !ft_strchr(SPECIFIERS, specs.specif))
+		(*n_unknowns)++;
+	if (!specs.specif && *n_unknowns == 0)
+		return (1);
+	return (0);
 }
 
 int	ft_vprintf(const char *format, va_list ap)
@@ -139,12 +150,8 @@ int	ft_vprintf(const char *format, va_list ap)
 		if (*format == '%')
 		{
 			specs = get_formatspec(format);
-			if (flags_overflow(specs))
-				return (-1);
 			format += specs.n_chars + 1;
-			if (specs.specif && !ft_strchr(SPECIFIERS, specs.specif))
-				n_unknowns++;
-			if (!specs.specif && n_unknowns == 0)
+			if (check_formatspecs_error(specs, &n_unknowns))
 				return (-1);
 			n_chars += print_arg(specs, &ap_); 
 		}
