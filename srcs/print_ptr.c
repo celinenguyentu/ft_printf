@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/24 19:23:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:09:04 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 	2.	The address of the va_list storing the variable-length list of arguments
 		passed to ft_printf.
 	RETURN
-	The number of characters printed as an int.
+	The number of characters printed as an long.
 */
 
 #if defined(__APPLE__)
 
-int	print_ptr(t_specs specs, va_list *args)
+long	print_ptr(t_specs specs, va_list *args)
 {
-	int			n_chars;
+	long		n_chars;
 	uintptr_t	arg;
 	int			arg_len;
 
@@ -43,6 +43,7 @@ int	print_ptr(t_specs specs, va_list *args)
 	arg_len = ft_uintlen(arg, 16);
 	if (arg == 0 && specs.precis == 0)
 		arg_len = 0;
+	specs.precis = check_precis_overflow(specs.precis, arg_len);
 	specs.hash = 1;
 	specs.blank = 0;
 	specs.plus = 0;

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:34:05 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 02:41:18 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:07:24 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 #if defined(__APPLE__)
 
-int	print_percent(t_specs specs, va_list *args)
+long	print_percent(t_specs specs, va_list *args)
 {
 	int	n_chars;
 

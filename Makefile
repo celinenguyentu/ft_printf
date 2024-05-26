@@ -30,7 +30,8 @@ ASRCS_FILES		=	ft_atoi_digits.c \
 					print_intprefix.c \
 					init_formatspec.c \
 					clean_formatspec.c \
-					fetch_star_args.c 
+					fetch_star_args.c \
+					check_precis_overflow.c 
 ASRCS			=	$(addprefix $(SRCS_DIR), $(ASRCS_FILES))
 
 MSRCS_FILES		=	get_formatspec.c 

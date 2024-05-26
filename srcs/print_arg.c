@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/25 00:55:53 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 00:59:30 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 	The number of characters printed as an int.
 */
 
-int	print_arg(t_specs specs, va_list *args)
+long	print_arg(t_specs specs, va_list *args)
 {
-	int	n_chars;
+	long	n_chars;
 
 	n_chars = 0;
 	if (specs.specif == '\0')

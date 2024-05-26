@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/25 01:21:20 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:58:32 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@ int	ft_printf(const char *format, ...)
 	return (n_chars);
 }
 
+size_t	put_text(const char **format, int n_chars)
+{
+	size_t	len;
+
+	len = 0;
+	while ((*format)[len] && (*format)[len] != '%')
+	{
+		len++;
+		if (n_chars + len < 0)
+			return (-1);
+	}
+	write(1, *format, len);
+	*format += len;
+	return (n_chars + len);
+}
+
 /*
 	FT_VPRINTF
 	The function ft_vprintf() is equivalent to the function ft_printf() except
@@ -60,6 +76,18 @@ int	ft_printf(const char *format, ...)
 	output, excluding the null-terminating '\0' character of the format string.
 	In case of error, it returns -1.
 */
+
+int	flags_overflow(t_specs specs, int n_chars)
+{
+	if (specs.width < 0 || specs.width + n_chars >= INT_MAX)
+		return (1);
+	if (specs.precis < -1)
+		return (1);
+	if (ft_strchr("pdiuxXo", specs.specif) && specs.precis > 0
+		&& specs.precis <= INT_MAX && specs.precis + n_chars >= INT_MAX)
+		return (1);
+	return (0);
+}
 
 #if defined(__APPLE__)
 
@@ -77,14 +105,13 @@ int	ft_vprintf(const char *format, va_list ap)
 		if (*format == '%')
 		{
 			fs = get_formatspec(format);
-			if (fs.width < 0 || fs.precis < -1 || fs.width + n_chars < 0)
+			if (flags_overflow(fs, n_chars))
 				return (-1);
-			format += fs.n_chars;
+			format += fs.n_chars + 1;
 			n_chars += print_arg(fs, &ap_);
 		}
 		else
-			n_chars += ft_putchar(*format);
-		format++;
+			n_chars = put_text(&format, n_chars);
 		if (n_chars < 0)
 			return (-1);
 	}

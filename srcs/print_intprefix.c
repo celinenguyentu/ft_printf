@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:18:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:47:10 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 00:54:52 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 	The number of characters printed as an int.
 */
 
-int	print_intprefix(t_specs specs, int uarg_len, int sign)
+long	print_intprefix(t_specs specs, int uarg_len, int sign)
 {
-	int	n_chars;
-	int	n_zeros;
-	int	offset;
+	long	n_chars;
+	int		n_zeros;
+	long	offset;
 
 	n_chars = 0;
 	n_zeros = 0;
@@ -53,7 +53,7 @@ int	print_intprefix(t_specs specs, int uarg_len, int sign)
 		n_chars += ft_putchar('0') + ft_putchar(specs.specif);
 	if (specs.specif == 'o' && specs.hash && (sign != 0 || specs.precis == 0))
 		n_chars += ft_putchar('0');
-	while ((specs.zero && n_chars < specs.width - uarg_len) || n_zeros--)
+	while ((specs.zero && n_chars < (specs.width - uarg_len)) || n_zeros--)
 		n_chars += ft_putchar('0');
 	return (n_chars);
 }

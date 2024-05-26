@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/24 23:57:31 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/25 20:02:42 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@
 		ft_atoi_digits("-5678") returns 0
 */
 
-int	ft_atoi_digits(const char *str)
+long	ft_atoi_digits(const char *str)
 {
-	int	number;
+	long	number;
 
 	number = 0;
 	while (ft_isdigit(*str))
 	{
 		number = number * 10 + *str - '0';
 		str++;
-		if (number < 0)
-			return (-2);
+		if (number == LONG_MAX || number < 0)
+			return (INT_MIN);
 	}
 	return (number);
 }

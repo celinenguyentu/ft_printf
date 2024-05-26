@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/30 16:37:23 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:13:30 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 #if defined(__APPLE__)
 
-int	print_unknown(t_specs specs, va_list *args)
+long	print_unknown(t_specs specs, va_list *args)
 {
 	int	n_chars;
 

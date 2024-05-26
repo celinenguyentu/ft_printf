@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/19 16:07:35 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:57:02 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 	The number of characters printed as an int.
 */
 
-int	print_int(t_specs specs, va_list *args)
+long	print_int(t_specs specs, va_list *args)
 {
-	int		n_chars;
+	long	n_chars;
 	long	arg;
 	int		uarg_len;
 	int		sign;
@@ -45,6 +45,7 @@ int	print_int(t_specs specs, va_list *args)
 	uarg_len = ft_uintlen(arg, 10);
 	if (arg == 0 && specs.precis == 0)
 		uarg_len = 0;
+	specs.precis = check_precis_overflow(specs.precis, uarg_len);
 	n_chars += print_intprefix(specs, uarg_len, sign);
 	if (arg != 0 || specs.precis != 0)
 		n_chars += ft_putuint(arg, specs.specif);

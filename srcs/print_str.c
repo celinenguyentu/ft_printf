@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/19 16:10:35 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:27:27 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 
 #if defined(__APPLE__)
 
-int	print_str(t_specs specs, va_list *args)
+long	print_str(t_specs specs, va_list *args)
 {
-	int		n_chars;
+	long	n_chars;
 	char	*str;
-	int		strlen;
-	int		offset;
+	long	strlen;
+	long	offset;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
@@ -43,7 +43,7 @@ int	print_str(t_specs specs, va_list *args)
 	str = va_arg(*args, char *);
 	if (!str)
 		str = "(null)";
-	strlen = (int)ft_strlen(str);
+	strlen = (long)ft_strlen(str);
 	if (specs.precis > -1 && strlen > specs.precis)
 		strlen = specs.precis;
 	while (!specs.dash && !specs.zero && n_chars < specs.width - strlen)
