@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:04:46 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/06 01:24:46 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:55:59 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 /*	//TEST CASES
 #include <stdio.h>
 #include <string.h>
-//#include <bsd/string.h> // on Linux compile with flag -lbsd
+#include <bsd/string.h> // on Linux compile with flag -lbsd
 
 void	test(const char *src, unsigned int size)
 {

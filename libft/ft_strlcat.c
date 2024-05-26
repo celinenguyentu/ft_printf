@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:10:55 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/08 16:14:57 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:01:55 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 /*	//TEST CASES
 #include <string.h>
 #include <stdio.h>
-//#include <bsd/string.h> // on Linux, compile with flag -lbsd
+#include <bsd/string.h> // on Linux, compile with flag -lbsd
 
 void	test(const char *src, unsigned int dsize)
 {

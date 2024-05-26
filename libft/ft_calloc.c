@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:57:59 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/08 12:34:48 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:35:46 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -18,7 +19,7 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	total_size;
 
 	total_size = count * size;
-	if (total_size && total_size / count != size)
+	if (total_size && SIZE_MAX / count < size)
 		return (NULL);
 	result = (void *)malloc(total_size);
 	if (!result)
@@ -30,6 +31,7 @@ void	*ft_calloc(size_t count, size_t size)
 /*	//TEST CASES
 #include <stdio.h>
 #include <limits.h>
+#include <stdint.h>
 
 void	test(size_t count, size_t size)
 {
@@ -38,7 +40,7 @@ void	test(size_t count, size_t size)
 
 	og = calloc(count, size);
 	mine = ft_calloc(count, size);
-	printf("Inputs : count = %ld, size = %ld\n", count, size);
+	printf("Inputs : count = %lu, size = %lu\n", count, size);
 	if (!og)
 		printf("calloc : NULL\n");
 	else

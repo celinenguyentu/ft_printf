@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:43:38 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/07 02:12:22 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:46:36 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	test(size_t len)
 
 	printf("Input : \"%s\"\n", string1);
 	print_bytes(string1, 30);
-	printf("Setting %ld 0\n", len);
+	printf("Setting %ld zeros\n", len);
 	bzero(string1, len);
 	ft_bzero(string2, len);
 	printf("bzero : %s\n", string1);

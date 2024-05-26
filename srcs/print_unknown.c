@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 01:13:30 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:27:32 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 	2.	The address of the va_list storing the variable-length list of arguments
 		passed to ft_printf.
 	RETURN
-	The number of characters printed as an int.
+	The number of characters printed as a long.
 */
 
 #if defined(__APPLE__)

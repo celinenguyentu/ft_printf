@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 00:54:31 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/08 18:07:06 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:28:29 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	idx = 0;
 	size = 0;
-	while (s[idx] && idx < start)
+	if (!s)
+		return (NULL);
+	while (idx < start && s[idx])
 		idx++;
-	while (s[idx + size] && size < len)
+	while (size < len && s[idx + size])
 		size++;
 	substr = (char *)malloc((size + 1) * sizeof(char));
 	if (!substr)
@@ -44,16 +46,21 @@ int	main(void)
 	char	string[] = "Hello les cocos !";
 	char	*sub1 = ft_substr(string, 0, 5);
 	char	*sub2 = ft_substr(string, 6, 30);
+	char	*sub3 = ft_substr(NULL, 5, 5);
 
 	printf("Source : %s\n", string);
 	if (!sub1)
-		printf("Memory allocation failed.\n");
+		printf("An error occured.\n");
 	else
 		printf("Substring from idx = %d of length len = %d\n%s\n", 0, 5, sub1);
 	if (!sub2)
-		printf("Memory allocation failed.\n");
+		printf("An error occured.\n");
 	else
 		printf("Substring from idx = %d of length len = %d\n%s\n", 6, 30, sub2);
+	if (!sub3)
+		printf("An error occured.\n");
+	else
+		printf("Substring from idx = %d of length len = %d\n%s\n", 5, 5, sub3);
 	free(sub1);
 	free(sub2);
 }

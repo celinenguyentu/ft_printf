@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:18:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 00:54:52 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:26:37 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 	3.	The sign of the integer argument : -1 for negative, 0 for nul, 
 		1 for positive
 	RETURN
-	The number of characters printed as an int.
+	The number of characters printed as a long.
 */
 
 long	print_intprefix(t_specs specs, int uarg_len, int sign)

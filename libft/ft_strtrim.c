@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 01:41:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/08 11:08:46 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:25:59 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*result;
 	size_t	size;
 
+	if (!s1 || !set)
+		return (NULL);
 	while (*s1 && ft_strchr(set, *s1))
 		s1++;
 	size = ft_strlen(s1);
@@ -39,7 +41,7 @@ int	main(void)
 
 	char	*trimmed = ft_strtrim(string, set);
 	if (!trimmed)
-		printf("Memory allocation failed.\n");
+		printf("An error occured.\n");
 	else
 		printf("Trimmed string : %s\n", trimmed);
 	free(trimmed);

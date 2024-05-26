@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 01:58:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:28:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,18 @@ int	ft_printf(const char *format, ...)
 	return (n_chars);
 }
 
-size_t	put_text(const char **format, int n_chars)
+/*
+	PUT_TEXT
+	Outputs consecutive regular characters of format and increments the
+	pointer pointing to it.
+	PARAMETER(S)
+	1/	A pointer to the string to print
+	2/	The number of characters already printed
+	RETURN
+	The updated number of characters printed.
+*/
+
+static size_t	put_text(const char **format, int n_chars)
 {
 	size_t	len;
 
@@ -64,20 +75,16 @@ size_t	put_text(const char **format, int n_chars)
 }
 
 /*
-	FT_VPRINTF
-	The function ft_vprintf() is equivalent to the function ft_printf() except
-	that it is called with a va_list instead of a variable number of arguments.
+	FLAGS_OVERFLOW
+	Detects an overflow due to width or precision.
 	PARAMETER(S)
-	1.	The format string to control the output
-	2.	The va_list storing the variable-length list of arguments used and
-		converted for output
+	1/	Format specifier containing width and precision infos.
+	2/	Number of characters already printed.
 	RETURN
-	The function returns the number of characters printed in the standard
-	output, excluding the null-terminating '\0' character of the format string.
-	In case of error, it returns -1.
+	The function returns 1 if an overflow occured, otherwise it returns 0.
 */
 
-int	flags_overflow(t_specs specs, int n_chars)
+static int	flags_overflow(t_specs specs, int n_chars)
 {
 	if (specs.width < 0 || specs.width + n_chars >= INT_MAX)
 		return (1);
@@ -88,6 +95,20 @@ int	flags_overflow(t_specs specs, int n_chars)
 		return (1);
 	return (0);
 }
+
+/*
+	FT_VPRINTF
+	The function ft_vprintf() is equivalent to the function ft_printf() except
+	that it is called with a va_list instead of a variable number of arguments.
+	PARAMETER(S)
+	1.	The format string to control the output
+	2.	The va_list storing the variable-length list of arguments used and
+		converted for output
+	RETURN
+	The function returns the number of characters printed in the standard
+	output, excluding the null-terminating '\0' character of the format string.
+	In case of error or overflow, it returns -1.
+*/
 
 #if defined(__APPLE__)
 

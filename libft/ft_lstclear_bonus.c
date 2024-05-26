@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 02:16:17 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/05 23:16:27 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:38:47 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (*lst)
-	{
-		if ((*lst)->next)
-			ft_lstclear(&(*lst)->next, del);
-		ft_lstdelone(*lst, del);
-	}
-	*lst = NULL;
-}
-
-/*	//ITERATIVE VERSION
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
 	t_list	*current;
 	t_list	*next;
-	
+
+	if (!lst || !del)
+		return ;
 	current = *lst;
 	while (current)
 	{
 		next = current->next;
 		ft_lstdelone(current, del);
 		current = next;
+	}
+	*lst = NULL;
+}
+
+/*	//RECURSIVE VERSION
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	if (!lst || !del)
+		return ;
+	if (*lst)
+	{
+		if ((*lst)->next)
+			ft_lstclear(&(*lst)->next, del);
+		ft_lstdelone(*lst, del);
 	}
 	*lst = NULL;
 }

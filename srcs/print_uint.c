@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 02:18:10 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 01:57:46 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:27:22 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 		passed to ft_printf.
 	3.	The base length used for integer conversion
 	RETURN
-	The number of characters printed as an int.
+	The number of characters printed as a long.
 */
 
 long	print_uint(t_specs specs, va_list *args, int baselen)

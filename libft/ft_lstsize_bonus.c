@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 01:23:55 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/05 23:39:04 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:40:41 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
-{
-	if (!lst)
-		return (0);
-	else
-		return (1 + ft_lstsize(lst->next));
-}
-
-/*	//ITERATIVE VERSION
 int	ft_lstsize(t_list *lst)
 {
 	int	count;
@@ -32,6 +23,15 @@ int	ft_lstsize(t_list *lst)
 		count++;
 	}
 	return (count);
+}
+
+/*	//RECURSIVE VERSION
+int	ft_lstsize(t_list *lst)
+{
+	if (!lst)
+		return (0);
+	else
+		return (1 + ft_lstsize(lst->next));
 }
 */
 

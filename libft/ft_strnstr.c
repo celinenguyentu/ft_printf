@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 04:08:54 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/06 02:08:40 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:45:41 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 /*	//TEST CASES
 #include <string.h>
 #include <stdio.h>
+#include <bsd/string.h> // on Linux compile with flag -lbsd
 
 int	main(void)
 {

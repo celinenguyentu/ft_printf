@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 00:32:36 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/06 17:31:46 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:41:51 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*str;
 	size_t	idx;
 
+	if (!s || !f)
+		return (NULL);
 	str = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -33,7 +35,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 /*	//TEST CASES
 #include <stdio.h>
 
-char	ft_roller_coaster(unsigned int i, char c)
+char	roller_coaster(unsigned int i, char c)
 {
 	if (i % 2)
 		return (ft_tolower(c));
@@ -47,9 +49,9 @@ int	main(void)
 	char	*cpy;
 
 	printf("Source : %s\n", str);
-	cpy = ft_strmapi(str, &ft_roller_coaster);
+	cpy = ft_strmapi(str, &roller_coaster);
 	if (!cpy)
-		printf("Memory allocation failed.\n");
+		printf("An error occured.\n");
 	else
 		printf("Modified copy : %s\n", cpy);
 	free(cpy);

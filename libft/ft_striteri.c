@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:23:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/06 03:16:00 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:43:03 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	size_t	idx;
 
 	idx = 0;
-	while (s[idx])
+	while (s && f && s[idx])
 	{
 		f(idx, &s[idx]);
 		idx++;
@@ -27,7 +27,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 /*	//TEST CASES
 #include <stdio.h>
 
-void	ft_roller_coaster(unsigned int i, char *c)
+void	roller_coaster(unsigned int i, char *c)
 {
 	if (i % 2)
 		*c = ft_tolower(*c);
@@ -40,7 +40,7 @@ int	main(void)
 	char	str[] = "Hello les cocos !";
 
 	printf("Before ft_striteri : %s\n", str);
-	ft_striteri(str, &ft_roller_coaster);
+	ft_striteri(str, &roller_coaster);
 	printf("After ft_striteri : %s\n", str);
 	return (0);
 }

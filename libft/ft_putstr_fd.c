@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 23:27:16 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/09 17:39:22 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:44:34 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	while (*s)
+	while (s && *s)
 		ft_putchar_fd(*s++, fd);
 }
 
@@ -24,7 +24,7 @@ void	ft_putstr_fd(char *s, int fd)
 
 int	main(void)
 {
-	char	*test_cases[] = {"Hello 42!", "Coucou 42!", "Hola 42!"};
+	char	*test_cases[] = {"Hello 42!\n", "Coucou 42!\n", "Hola 42!\n"};
 	int		fd = open("ft_putstr_fd_test", O_CREAT | O_RDWR, 0777);
 
 	printf("Standard input :\n");

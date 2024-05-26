@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 23:30:00 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/09 17:39:04 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:45:17 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s)
+	while (s && *s)
 		ft_putchar_fd(*s++, fd);
 	ft_putchar_fd('\n', fd);
 }

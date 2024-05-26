@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/25 20:02:42 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:25:09 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 		The string holding the unsigned number in decimal base represented by
 		digit characters.
 	RETURN VALUE
-	The function returns the result of the conversion as an int variable.
+	The function returns the result of the conversion as a long variable.
 	If no conversion could be perfomed, 0 is returned. If an overflow occured,
-	the function returns -2.
+	the function returns INT_MIN.
 	EXAMPLES
 		ft_atoi_digits("1234abcfd") returns 1234
 		ft_atoi_digits("") returns 0
@@ -39,7 +39,7 @@ long	ft_atoi_digits(const char *str)
 	{
 		number = number * 10 + *str - '0';
 		str++;
-		if (number == LONG_MAX || number < 0)
+		if (number < 0)
 			return (INT_MIN);
 	}
 	return (number);

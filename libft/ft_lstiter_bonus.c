@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 01:51:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/05 23:34:20 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:39:24 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst)
-	{
-		f(lst->content);
-		ft_lstiter(lst->next, f);
-	}
-}
-
-/*	//ITERATIVE VERSION
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	while (lst)
+	while (lst && f)
 	{
 		f(lst->content);
 		lst = lst->next;
+	}
+}
+
+/*	//RECURSIVE VERSION
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (lst && f)
+	{
+		f(lst->content);
+		ft_lstiter(lst->next, f);
 	}
 }
 */

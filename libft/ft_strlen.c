@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:33:47 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/05 23:59:06 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:49:43 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ size_t	ft_strlen(const char *s)
 
 int	main(void)
 {
-	char	str1[] = "Hello 42!";
-	char	str2[] = "";
+	char	*str1 = "Hello 42!";
+	char	*str2 = "";
 
 	printf("Input: \"%s\"\n", str1);
 	printf("strlen: %zu\n", strlen(str1));

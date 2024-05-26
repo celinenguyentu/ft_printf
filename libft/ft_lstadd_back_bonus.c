@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 01:29:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/05 23:20:52 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:37:36 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (!*lst)
-		*lst = new;
-	else
-		ft_lstadd_back(&(*lst)->next, new);
-}
-
-/*	//ITERATIVE VERSION
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
 	t_list	*current;
 
+	if (!lst || !new)
+		return ;
 	current = *lst;
 	while (current && current->next)
 		current = current->next;
@@ -32,6 +25,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 	else
 		current->next = new;
+}
+
+/*	//RECURSIVE VERSION
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstadd_back(&(*lst)->next, new);
 }
 */
 

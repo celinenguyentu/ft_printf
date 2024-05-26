@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnguyen- <cnguyen->                        +#+  +:+       +#+        */
+/*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 01:23:11 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/04/05 23:35:42 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:40:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
+	while (lst && lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+/*	//RECURSIVE VERSION
+t_list	*ft_lstlast(t_list *lst)
+{
 	if (!lst || !lst->next)
 		return (lst);
 	else
 		return (ft_lstlast(lst->next));
-}
-
-/*	//ITERATIVE VERSION
-t_list	*ft_lstlast(t_list *lst)
-{
-	while (lst && lst->next)
-		lst = lst->next;
-	return (lst);
 }
 */
 
