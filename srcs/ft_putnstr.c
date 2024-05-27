@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 23:54:34 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:51:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:24:47 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,5 @@ ssize_t	ft_putnstr(const char *str, size_t n)
 		bytes_written = write(STDOUT_FILENO, str, strlen);
 	else
 		bytes_written = write(STDOUT_FILENO, str, n);
-	if (bytes_written == -1)
-		return (-1);
 	return (bytes_written);
 }

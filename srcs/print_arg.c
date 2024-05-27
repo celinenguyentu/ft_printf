@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:51:12 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:38:58 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	print_arg(t_specs specs, va_list *args, int n_chars)
 		bytes_written = print_uint(specs, args, 8);
 	else
 		bytes_written = print_unknown(specs, args);
+	if (bytes_written == -1)
+		return (-1);
 	if (bytes_written > INT_MAX || bytes_written + n_chars > INT_MAX)
 		return (-1);
 	return (bytes_written + n_chars);
