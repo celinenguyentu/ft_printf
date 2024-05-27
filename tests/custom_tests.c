@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:58 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:10:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@
 
 int	main(void)
 {
-	int read;
-	char *s = "hello";
-	long	n = (long)INT_MAX + 200;
-	int		bytes = n;
-	
+	int		bytes_read;
+	char 	*s = "hello";
+	int		n = 42;
 
-	read = ft_putuint(1234567890, 'x', 8);
-	printf("\t(%d)\n", read);
-
+	bytes_read = ft_printf("%2147483647d", n);
+	printf("\t(%d)\n", bytes_read);
 	return (0);
 }
-// ft_printf("dlsjfsdfd(%2147483647d)\n", n);
