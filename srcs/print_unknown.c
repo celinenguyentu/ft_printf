@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:55:10 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:26:47 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ ssize_t	print_unknown(t_specs specs, va_list *args)
 
 #else
 
-long	print_unknown(t_specs specs, va_list *args)
+ssize_t	print_unknown(t_specs specs, va_list *args)
 {
-	int	n_chars;
+	ssize_t	n_chars;
 
 	fetch_star_args(&specs, args);
 	n_chars = 0;

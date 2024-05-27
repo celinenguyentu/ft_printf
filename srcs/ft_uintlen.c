@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:08:20 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/19 16:28:46 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:45:41 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 		ft_uintlen(2024, 16) returns 3
 */
 
-int	ft_uintlen(unsigned long int n, int base)
+size_t	ft_uintlen(unsigned long int n, int base)
 {
 	if (base < 2)
 		return (0);

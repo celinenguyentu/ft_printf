@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:54:31 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:25:48 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 
 #else
 
-long	print_ptr(t_specs specs, va_list *args)
+ssize_t	print_ptr(t_specs specs, va_list *args)
 {
-	long		n_chars;
+	ssize_t		n_chars;
 	uintptr_t	arg;
 	int			arg_len;
 
@@ -88,12 +88,12 @@ long	print_ptr(t_specs specs, va_list *args)
 	else
 	{
 		arg_len = ft_strlen("(nil)");
-		while (specs.dash == 0 && n_chars < specs.width - arg_len)
-			n_chars += ft_putchar(' ');
-		n_chars += ft_puntstr("(nil)", 5);
+		if (specs.dash == 0 && n_chars < specs.width - arg_len)
+			n_chars += ft_putnchar(' ', specs.width - arg_len - n_chars);
+		n_chars += ft_putnstr("(nil)", 5);
 	}
-	while (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+	if (specs.dash == 1 && n_chars < specs.width)
+		n_chars += ft_putnchar(' ', specs.width - n_chars);
 	return (n_chars);
 }
 

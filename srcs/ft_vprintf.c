@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 13:15:35 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:16:35 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_vprintf(const char *format, va_list ap)
 
 static int	check_formatspecs_error(t_specs *specs)
 {
-	if (specs->width < 0 || specs->width > INT_MAX)
+	if (specs->width < 0)
 		return (1);
 	if (specs->precis < -1)
 		return (1);
@@ -125,7 +125,7 @@ int	ft_vprintf(const char *format, va_list ap)
 			update_formatspecs(&specs, &format);
 			if (check_formatspecs_error(&specs))
 				return (-1);
-			n_chars += print_arg(specs, &ap_);
+			n_chars = print_arg(specs, &ap_, n_chars);
 		}
 		else
 			n_chars = put_text(&format, n_chars);

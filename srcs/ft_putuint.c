@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:00:12 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:47:23 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:20:43 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
 		ft_putuint(2024, 'x') outputs "7e8" and returns 3
 */
 
-static void	fill_uint(char *buffer, unsigned long n, int base, int uint_len);
+static void	fill_uint(char *buf, unsigned long n, int base, size_t uintlen);
 
-static void	fill_uint_digit(char *buffer, unsigned long n, int base, int uint_len)
+static void	fill_callback(char *buf, unsigned long n, int base, size_t uintlen)
 {
 	int	operand;
 
@@ -44,53 +44,53 @@ static void	fill_uint_digit(char *buffer, unsigned long n, int base, int uint_le
 		operand = 8;
 	else
 		operand = 10;
-	fill_uint(buffer, n / operand, base, uint_len);
-	fill_uint(buffer, n % operand, base, uint_len);
+	fill_uint(buf, n / operand, base, uintlen);
+	fill_uint(buf, n % operand, base, uintlen);
 }
 
-static void	fill_uint(char *buffer, unsigned long n, int base, int uint_len)
+static void	fill_uint(char *buf, unsigned long n, int base, size_t uintlen)
 {
-	static int	idx = 0;
+	static size_t	idx = 0;
 
 	if (base == 'x' && n < 16)
-		buffer[idx++] = LOWHEXADECIMAL[n];
+		buf[idx++] = LOWHEXADECIMAL[n];
 	else if (base == 'X' && n < 16)
-		buffer[idx++] = UPHEXADECIMAL[n];
+		buf[idx++] = UPHEXADECIMAL[n];
 	else if (base == 'o' && n < 8)
-		buffer[idx++] = OCTAL[n];
+		buf[idx++] = OCTAL[n];
 	else if (base && ft_strchr("diu", base) && n < 10)
-		buffer[idx++] = DECIMAL[n];
+		buf[idx++] = DECIMAL[n];
 	else if (base == 'x')
-		fill_uint_digit(buffer, n, base, uint_len);
+		fill_callback(buf, n, base, uintlen);
 	else if (base == 'X')
-		fill_uint_digit(buffer, n, base, uint_len);
+		fill_callback(buf, n, base, uintlen);
 	else if (base == 'o')
-		fill_uint_digit(buffer, n, base, uint_len);
+		fill_callback(buf, n, base, uintlen);
 	else if (base && ft_strchr("diu", base))
-		fill_uint_digit(buffer, n, base, uint_len);
-	if (idx == uint_len)
+		fill_callback(buf, n, base, uintlen);
+	if (idx == uintlen)
 		idx = 0;
 }
 
 ssize_t	ft_putuint(unsigned long int n, int base)
 {
-	char	*buffer;
+	char	*buf;
 	ssize_t	bytes_written;
-	int		uint_len;
+	size_t	uintlen;
 
 	if (base == 'x' || base == 'X')
-		uint_len = ft_uintlen(n, 16);
+		uintlen = ft_uintlen(n, 16);
 	else if (base == 'o')
-		uint_len = ft_uintlen(n, 8);
+		uintlen = ft_uintlen(n, 8);
 	else
-		uint_len = ft_uintlen(n, 10);
-	buffer = (char *)malloc(uint_len * sizeof(char));
-	if (!buffer)
+		uintlen = ft_uintlen(n, 10);
+	buf = (char *)malloc(uintlen * sizeof(char));
+	if (!buf)
 		return (-1);
 	bytes_written = 0;
-	fill_uint(buffer, n, base, uint_len);
-	bytes_written = write(STDOUT_FILENO, buffer, uint_len);
-	free(buffer);
+	fill_uint(buf, n, base, uintlen);
+	bytes_written = write(STDOUT_FILENO, buf, uintlen);
+	free(buf);
 	return (bytes_written);
 }
 

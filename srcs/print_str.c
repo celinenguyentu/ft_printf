@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:54:45 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:23:51 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ ssize_t	print_str(t_specs specs, va_list *args)
 
 #else
 
-long	print_str(t_specs specs, va_list *args)
+ssize_t	print_str(t_specs specs, va_list *args)
 {
-	long		n_chars;
+	ssize_t		n_chars;
 	char		*str;
-	long		strlen;
-	long		offset;
+	ssize_t		arglen;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
@@ -76,16 +75,14 @@ long	print_str(t_specs specs, va_list *args)
 		str = "(null)";
 	else if (!str)
 		str = "";
-	strlen = (long)ft_strlen(str);
-	if (specs.precis > -1 && strlen > specs.precis)
-		strlen = specs.precis;
-	while (!specs.dash && n_chars < specs.width - strlen)
-		n_chars += ft_putchar(' ');
-	offset = n_chars;
-	while (*str && n_chars - offset < strlen)
-		n_chars += ft_putchar(*str++);
-	while (specs.dash && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+	arglen = (long)ft_strlen(str);
+	if (specs.precis > -1 && arglen > specs.precis)
+		arglen = specs.precis;
+	if (!specs.dash && n_chars < specs.width - arglen)
+		n_chars += ft_putnchar(' ', specs.width - arglen - n_chars);
+	n_chars += ft_putnstr(str, arglen);
+	if (specs.dash && n_chars < specs.width)
+		n_chars += ft_putnchar(' ', specs.width - n_chars);
 	return (n_chars);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:32:27 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:52:47 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:07:36 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ ssize_t	print_char(t_specs specs, va_list *args)
 }
 
 #else
-
-long	print_char(t_specs specs, va_list *args)
+// protect all write and n_chars overflow with error()
+ssize_t	print_char(t_specs specs, va_list *args)
 {
-	int				n_chars;
+	ssize_t			n_chars;
 	unsigned char	arg;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	arg = (unsigned char)va_arg(*args, int);
-	while (!specs.dash && n_chars < specs.width - 1)
-		n_chars += ft_putchar(' ');
+	if (!specs.dash && n_chars < specs.width - 1)
+		n_chars += ft_putnchar(' ', specs.width - 1 - n_chars);
 	n_chars += ft_putchar(arg);
-	while (specs.dash && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+	if (specs.dash && n_chars < specs.width)
+		n_chars += ft_putnchar(' ', specs.width - n_chars);
 	return (n_chars);
 }
 

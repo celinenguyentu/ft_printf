@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 01:50:57 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:51:52 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 00:27:55 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@
 long	check_precis_overflow(long precis, int arg_len)
 {
 	if (precis > INT_MAX && precis - arg_len > INT_MAX)
-			return (-1);
+		return (-1);
 	return (precis);
 }
