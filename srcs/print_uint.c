@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 02:18:10 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 17:29:41 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:54:55 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 		passed to ft_printf.
 	3.	The base length used for integer conversion
 	RETURN
-	The number of characters printed as a long.
+	The number of characters printed or -1 if an error occured.
 */
 
-long	print_uint(t_specs specs, va_list *args, int baselen)
+ssize_t	print_uint(t_specs specs, va_list *args, int baselen)
 {
-	long			n_chars;
+	ssize_t			n_chars;
 	unsigned int	arg;
 	int				arg_len;
 
@@ -45,10 +45,13 @@ long	print_uint(t_specs specs, va_list *args, int baselen)
 	specs.precis = check_precis_overflow(specs.precis, arg_len);
 	if (specs.specif == 'o' && specs.hash && (arg != 0 || specs.precis == 0))
 		arg_len++;
-	n_chars += print_intprefix(specs, arg_len, (arg != 0));
+	if (!error(&n_chars, print_intprefix(specs, arg_len, (arg != 0))))
+		return (-1);
 	if (arg != 0 || specs.precis != 0)
-		n_chars += ft_putuint(arg, specs.specif);
-	while (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+		if (!error(&n_chars, ft_putuint(arg, specs.specif)))
+			return (-1);
+	if (specs.dash == 1 && n_chars < specs.width)
+		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+			return (-1);
 	return (n_chars);
 }

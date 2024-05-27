@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 18:24:31 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:02:18 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int	main(void)
 	printf(">> Conversion %% : width + one flag\n");
 	tests("|%-6%|%06%|%#6%|% 6%|%+6%|");
 	printf(">> Conversion %% : width + precision + multiple flags\n");
-	tests("|%-6.4%|%06.4%|%-06.4%|%-0# +6.4%|"); 
+	tests("|%-6.4%|%06.4%|%-06.4%|%-0# +6.4%|");
 
 	printf("\n>> Using * notation\n");
 	tests("|%*c|%*c|%-*c|%0*c|%3.*c|%*.*c|", 3, 'a', -3, 'b', 3, 'c', -3, 'd', 2, 'e', 3, -2, 'f');

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 17:26:58 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:58:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ typedef struct s_specs
 // ft_printf
 int		ft_printf(const char *format, ...);
 int		ft_vprintf(const char *format, va_list ap);
-long	print_arg(t_specs specs, va_list *args);
-long	print_char(t_specs specs, va_list *args);
-long	print_str(t_specs specs, va_list *args);
-long	print_ptr(t_specs specs, va_list *args);
-long	print_int(t_specs specs, va_list *args);
-long	print_uint(t_specs specs, va_list *args, int baselen);
-long	print_percent(t_specs specs, va_list *args);
-long	print_unknown(t_specs specs, va_list *args);
-long	print_intprefix(t_specs specs, int uarg_len, int sign);
+int		print_arg(t_specs specs, va_list *args, int n_chars);
+ssize_t	print_char(t_specs specs, va_list *args);
+ssize_t	print_str(t_specs specs, va_list *args);
+ssize_t	print_ptr(t_specs specs, va_list *args);
+ssize_t	print_int(t_specs specs, va_list *args);
+ssize_t	print_uint(t_specs specs, va_list *args, int baselen);
+ssize_t	print_percent(t_specs specs, va_list *args);
+ssize_t	print_unknown(t_specs specs, va_list *args);
+ssize_t	print_intprefix(t_specs specs, int uarg_len, int sign);
 long	check_precis_overflow(long precis, int arg_len);
+int		error(ssize_t *n_chars, ssize_t bytes_written);
 
 // formatspec
 void	init_formatspecs(t_specs *specs);
@@ -65,11 +66,12 @@ void	clean_formatspecs(t_specs *specs);
 void	fetch_star_args(t_specs *specs, va_list *args);
 
 // Utility functions
+ssize_t	ft_putchar(unsigned char c);
+ssize_t ft_putnchar(unsigned char c, ssize_t n);
+ssize_t	ft_putnstr(const char *str, size_t n);
 long	ft_atoi_digits(const char *str);
-int		ft_putchar(unsigned char c);
-int		ft_putstr(char *s);
 int		ft_nbrlen(const char *str);
-int		ft_putuint(unsigned long int n, int base);
+ssize_t	ft_putuint(unsigned long int n, int base);
 int		ft_uintlen(unsigned long int n, int base);
 
 #endif

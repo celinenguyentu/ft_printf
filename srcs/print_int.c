@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 17:28:56 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:53:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 	2.	The address of the va_list storing the variable-length list of arguments
 		passed to ft_printf.
 	RETURN
-	The number of characters printed as a long.
+	The number of characters printed or -1 is an error occured.
 */
 
-long	print_int(t_specs specs, va_list *args)
+ssize_t	print_int(t_specs specs, va_list *args)
 {
-	long	n_chars;
+	ssize_t	n_chars;
 	long	arg;
 	int		uarg_len;
 	int		sign;
@@ -46,10 +46,13 @@ long	print_int(t_specs specs, va_list *args)
 	if (arg == 0 && specs.precis == 0)
 		uarg_len = 0;
 	specs.precis = check_precis_overflow(specs.precis, uarg_len);
-	n_chars += print_intprefix(specs, uarg_len, sign);
+	if (!error(&n_chars, print_intprefix(specs, uarg_len, sign)))
+		return (-1);
 	if (arg != 0 || specs.precis != 0)
-		n_chars += ft_putuint(arg, specs.specif);
-	while (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+		if (!error(&n_chars, ft_putuint(arg, specs.specif)))
+			return (-1);
+	if (specs.dash == 1 && n_chars < specs.width)
+		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+			return (-1);
 	return (n_chars);
 }

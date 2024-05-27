@@ -6,19 +6,12 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 17:29:32 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:54:31 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	switch_to_x(t_specs *specs)
-{
-	specs->hash = 1;
-	specs->specif = 'x';
-	if (specs->precis > -1)
-		specs->zero = 0;
-}
 /*
 	PRINT_PTR
 	Retrieves the pointer argument to convert for output from the va_list args
@@ -32,14 +25,22 @@ void	switch_to_x(t_specs *specs)
 	2.	The address of the va_list storing the variable-length list of arguments
 		passed to ft_printf.
 	RETURN
-	The number of characters printed as a long.
+	The number of characters printed or -1 if an error occured.
 */
+
+static void	switch_to_x(t_specs *specs)
+{
+	specs->hash = 1;
+	specs->specif = 'x';
+	if (specs->precis > -1)
+		specs->zero = 0;
+}
 
 #if defined(__APPLE__)
 
-long	print_ptr(t_specs specs, va_list *args)
+ssize_t	print_ptr(t_specs specs, va_list *args)
 {
-	long		n_chars;
+	ssize_t		n_chars;
 	uintptr_t	arg;
 	int			arg_len;
 
@@ -54,11 +55,14 @@ long	print_ptr(t_specs specs, va_list *args)
 	switch_to_x(&specs);
 	specs.blank = 0;
 	specs.plus = 0;
-	n_chars += print_intprefix(specs, arg_len, 1);
+	if (!error(&n_chars, print_intprefix(specs, arg_len, 1)))
+		return (-1);
 	if (arg || specs.precis != 0)
-		n_chars += ft_putuint(arg, 'x');
-	while (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+		if (!error(&n_chars, ft_putuint(arg, 'x')))
+			return (-1);
+	if (specs.dash == 1 && n_chars < specs.width)
+		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+			return (-1);
 	return (n_chars);
 }
 
@@ -86,7 +90,7 @@ long	print_ptr(t_specs specs, va_list *args)
 		arg_len = ft_strlen("(nil)");
 		while (specs.dash == 0 && n_chars < specs.width - arg_len)
 			n_chars += ft_putchar(' ');
-		n_chars += ft_putstr("(nil)");
+		n_chars += ft_puntstr("(nil)", 5);
 	}
 	while (specs.dash == 1 && n_chars < specs.width)
 		n_chars += ft_putchar(' ');

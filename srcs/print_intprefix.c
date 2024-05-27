@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:18:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 03:26:37 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:53:39 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,35 @@
 	3.	The sign of the integer argument : -1 for negative, 0 for nul, 
 		1 for positive
 	RETURN
-	The number of characters printed as a long.
+	The number of characters printed, or -1 if an error occured.
 */
 
-long	print_intprefix(t_specs specs, int uarg_len, int sign)
+static ssize_t	print_prefix(t_specs specs, int sign)
 {
-	long	n_chars;
-	int		n_zeros;
-	long	offset;
+	ssize_t	n_chars;
+
+	n_chars = 0;
+	if (sign == -1 && !error(&n_chars, ft_putchar('-')))
+		return (-1);
+	if (sign > -1 && specs.blank && !error(&n_chars, ft_putchar(' ')))
+		return (-1);
+	if (sign > -1 && specs.plus && !error(&n_chars, ft_putchar('+')))
+		return (-1);
+	if (ft_strchr("xX", specs.specif) && specs.hash && sign != 0)
+	{
+		if (!error(&n_chars, ft_putchar('0')))
+			return (-1);
+		if (!error(&n_chars, ft_putchar(specs.specif)))
+			return (-1);
+	}
+	return (n_chars);
+}
+
+ssize_t	print_intprefix(t_specs specs, int uarg_len, int sign)
+{
+	ssize_t	n_chars;
+	ssize_t	n_zeros;
+	ssize_t	offset;
 
 	n_chars = 0;
 	n_zeros = 0;
@@ -41,19 +62,17 @@ long	print_intprefix(t_specs specs, int uarg_len, int sign)
 		n_zeros = specs.precis - uarg_len;
 	offset = (sign == -1 || specs.blank || specs.plus) + uarg_len + n_zeros;
 	offset += (ft_strchr("xX", specs.specif) && specs.hash && sign != 0) * 2;
-	while (!specs.dash && !specs.zero && n_chars < specs.width - offset)
-		n_chars += ft_putchar(' ');
-	if (sign == -1)
-		n_chars += ft_putchar('-');
-	if (sign > -1 && specs.blank)
-		n_chars += ft_putchar(' ');
-	if (sign > -1 && specs.plus)
-		n_chars += ft_putchar('+');
-	if (ft_strchr("xX", specs.specif) && specs.hash && sign != 0)
-		n_chars += ft_putchar('0') + ft_putchar(specs.specif);
+	if (!specs.dash && !specs.zero && n_chars < specs.width - offset)
+		if (!error(&n_chars, ft_putnchar(' ', specs.width - offset - n_chars)))
+			return (-1);
+	if (!error(&n_chars, print_prefix(specs, sign)))
+		return (-1);
 	if (specs.specif == 'o' && specs.hash && (sign != 0 || specs.precis == 0))
-		n_chars += ft_putchar('0');
-	while ((specs.zero && n_chars < (specs.width - uarg_len)) || n_zeros--)
-		n_chars += ft_putchar('0');
+		if (!error(&n_chars, ft_putchar('0')))
+			return (-1);
+	if (specs.zero && n_chars < specs.width - uarg_len)
+		n_zeros += specs.width - uarg_len - n_chars;
+	if (!error(&n_chars, ft_putnchar('0', n_zeros)))
+		return (-1);
 	return (n_chars);
 }

@@ -15,7 +15,8 @@ SRCS_DIR		=	./srcs/
 ASRCS_FILES		=	ft_atoi_digits.c \
 					ft_nbrlen.c \
 					ft_putchar.c \
-					ft_putstr.c \
+					ft_putnchar.c \
+					ft_putnstr.c \
 					ft_putuint.c \
 					ft_uintlen.c \
 					ft_printf.c \
@@ -33,7 +34,8 @@ ASRCS_FILES		=	ft_atoi_digits.c \
 					reset_formatspecs.c \
 					clean_formatspecs.c \
 					fetch_star_args.c \
-					check_precis_overflow.c 
+					check_precis_overflow.c \
+					error.c
 ASRCS			=	$(addprefix $(SRCS_DIR), $(ASRCS_FILES))
 
 MSRCS_FILES		=	update_formatspecs.c 

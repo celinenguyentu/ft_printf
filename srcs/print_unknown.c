@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/26 17:29:45 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:55:10 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,29 @@
 	2.	The address of the va_list storing the variable-length list of arguments
 		passed to ft_printf.
 	RETURN
-	The number of characters printed as a long.
+	The number of characters printed or -1 if an error occured.
 */
 
 #if defined(__APPLE__)
 
-long	print_unknown(t_specs specs, va_list *args)
+ssize_t	print_unknown(t_specs specs, va_list *args)
 {
-	int	n_chars;
+	ssize_t	n_chars;
 
 	n_chars = 0;
 	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
-	while (!specs.dash && !specs.zero && n_chars < specs.width - 1)
-		n_chars += ft_putchar(' ');
-	while (specs.zero && n_chars < specs.width - 1)
-		n_chars += ft_putchar('0');
-	n_chars += ft_putchar(specs.specif);
-	while (specs.dash && n_chars < specs.width)
-		n_chars += ft_putchar(' ');
+	if (!specs.dash && !specs.zero && n_chars < specs.width - 1)
+		if (!error(&n_chars, ft_putnchar(' ', specs.width - 1 - n_chars)))
+			return (-1);
+	if (specs.zero && n_chars < specs.width - 1)
+		if (!error(&n_chars, ft_putnchar('0', specs.width - 1 - n_chars)))
+			return (-1);
+	if (!error(&n_chars, ft_putchar(specs.specif)))
+		return (-1);
+	if (specs.dash && n_chars < specs.width)
+		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+			return (-1);
 	return (n_chars);
 }
 

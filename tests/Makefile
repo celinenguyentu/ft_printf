@@ -35,17 +35,17 @@ ifneq ("$(wildcard $(PRINTF))","")
 	@$(RM) $(RM_FLAGS) $(PRINTF)
 endif
 				@make -C >/dev/null $(PRINTF_PATH)
-				@$(CC) $(MOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
+				@$(CC) $(MOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC) -g
 				@./$(EXEC)
 
 b:				$(BSRCS_FILES) $(BOBJS)
 				@make -C >/dev/null $(PRINTF_PATH) bonus
-				@$(CC) $(BOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
+				@$(CC) $(BOBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC) -g
 				@./$(EXEC)
 
 custom:			$(CSRCS_FILES) $(COBJS)
 				@make -C >/dev/null $(PRINTF_PATH) bonus
-				@$(CC) $(COBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC)
+				@$(CC) $(COBJS) -I $(HFILES_DIR) $(PRINTF) -o $(EXEC) -g
 				@./$(EXEC)
 
 clean:
@@ -54,7 +54,7 @@ clean:
 
 fclean:			clean
 				@make -C >/dev/null $(PRINTF_PATH) fclean
-				@$(RM) $(RM_FLAGS) $(EXEC)
+				@$(RM) $(RMFLAGS) $(EXEC)
 
 re:				fclean all
 
