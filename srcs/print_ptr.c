@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 00:25:48 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:55:54 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 	switch_to_x(&specs);
 	specs.blank = 0;
 	specs.plus = 0;
-	if (!error(&n_chars, print_intprefix(specs, arg_len, 1)))
+	if (!check(&n_chars, print_intprefix(specs, arg_len, 1)))
 		return (-1);
 	if (arg || specs.precis != 0)
-		if (!error(&n_chars, ft_putuint(arg, 'x')))
+		if (!check(&n_chars, ft_putuint(arg, 'x')))
 			return (-1);
 	if (specs.dash == 1 && n_chars < specs.width)
-		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
 			return (-1);
 	return (n_chars);
 }

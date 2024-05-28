@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 02:18:10 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 00:29:48 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:56:14 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ ssize_t	print_uint(t_specs specs, va_list *args, int baselen)
 	specs.precis = check_precis_overflow(specs.precis, arg_len);
 	if (specs.specif == 'o' && specs.hash && (arg != 0 || specs.precis == 0))
 		arg_len++;
-	if (!error(&n_chars, print_intprefix(specs, arg_len, (arg != 0))))
+	if (!check(&n_chars, print_intprefix(specs, arg_len, (arg != 0))))
 		return (-1);
 	if (arg != 0 || specs.precis != 0)
-		if (!error(&n_chars, ft_putuint(arg, specs.specif)))
+		if (!check(&n_chars, ft_putuint(arg, specs.specif)))
 			return (-1);
 	if (specs.dash == 1 && n_chars < specs.width)
-		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
 			return (-1);
 	return (n_chars);
 }

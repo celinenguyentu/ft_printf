@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:18:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 00:27:23 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:55:20 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ static ssize_t	print_prefix(t_specs specs, int sign)
 	ssize_t	n_chars;
 
 	n_chars = 0;
-	if (sign == -1 && !error(&n_chars, ft_putchar('-')))
+	if (sign == -1 && !check(&n_chars, ft_putchar('-')))
 		return (-1);
-	if (sign > -1 && specs.blank && !error(&n_chars, ft_putchar(' ')))
+	if (sign > -1 && specs.blank && !check(&n_chars, ft_putchar(' ')))
 		return (-1);
-	if (sign > -1 && specs.plus && !error(&n_chars, ft_putchar('+')))
+	if (sign > -1 && specs.plus && !check(&n_chars, ft_putchar('+')))
 		return (-1);
 	if (ft_strchr("xX", specs.specif) && specs.hash && sign != 0)
 	{
-		if (!error(&n_chars, ft_putchar('0')))
+		if (!check(&n_chars, ft_putchar('0')))
 			return (-1);
-		if (!error(&n_chars, ft_putchar(specs.specif)))
+		if (!check(&n_chars, ft_putchar(specs.specif)))
 			return (-1);
 	}
 	return (n_chars);
@@ -63,16 +63,16 @@ ssize_t	print_intprefix(t_specs specs, int uarg_len, int sign)
 	offset = (sign == -1 || specs.blank || specs.plus) + uarg_len + n_zeros;
 	offset += (ft_strchr("xX", specs.specif) && specs.hash && sign != 0) * 2;
 	if (!specs.dash && !specs.zero && n_chars < specs.width - offset)
-		if (!error(&n_chars, ft_putnchar(' ', specs.width - offset - n_chars)))
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - offset - n_chars)))
 			return (-1);
-	if (!error(&n_chars, print_prefix(specs, sign)))
+	if (!check(&n_chars, print_prefix(specs, sign)))
 		return (-1);
 	if (specs.specif == 'o' && specs.hash && (sign != 0 || specs.precis == 0))
-		if (!error(&n_chars, ft_putchar('0')))
+		if (!check(&n_chars, ft_putchar('0')))
 			return (-1);
 	if (specs.zero && n_chars < specs.width - uarg_len)
 		n_zeros += specs.width - uarg_len - n_chars;
-	if (!error(&n_chars, ft_putnchar('0', n_zeros)))
+	if (!check(&n_chars, ft_putnchar('0', n_zeros)))
 		return (-1);
 	return (n_chars);
 }

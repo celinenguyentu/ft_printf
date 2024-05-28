@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 23:26:47 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:56:20 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ ssize_t	print_unknown(t_specs specs, va_list *args)
 	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	if (!specs.dash && !specs.zero && n_chars < specs.width - 1)
-		if (!error(&n_chars, ft_putnchar(' ', specs.width - 1 - n_chars)))
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - 1 - n_chars)))
 			return (-1);
 	if (specs.zero && n_chars < specs.width - 1)
-		if (!error(&n_chars, ft_putnchar('0', specs.width - 1 - n_chars)))
+		if (!check(&n_chars, ft_putnchar('0', specs.width - 1 - n_chars)))
 			return (-1);
-	if (!error(&n_chars, ft_putchar(specs.specif)))
+	if (!check(&n_chars, ft_putchar(specs.specif)))
 		return (-1);
 	if (specs.dash && n_chars < specs.width)
-		if (!error(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
 			return (-1);
 	return (n_chars);
 }
