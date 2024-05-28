@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:00:12 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 00:20:43 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:15:55 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,27 +93,3 @@ ssize_t	ft_putuint(unsigned long int n, int base)
 	free(buf);
 	return (bytes_written);
 }
-
-/* SAVE
-ssize_t	ft_putuint(unsigned long int n, int base)
-{
-	if (base == 'x' && n < 16)
-		return (ft_putchar(LOWHEXADECIMAL[n]));
-	else if (base == 'X' && n < 16)
-		return (ft_putchar(UPHEXADECIMAL[n]));
-	else if (base == 'o' && n < 8)
-		return (ft_putchar(OCTAL[n]));
-	else if (base && ft_strchr("diu", base) && n < 10)
-		return (ft_putchar(DECIMAL[n]));
-	else if (base == 'x')
-		return (ft_putuint(n / 16, 'x') + ft_putuint(n % 16, 'x'));
-	else if (base == 'X')
-		return (ft_putuint(n / 16, 'X') + ft_putuint(n % 16, 'X'));
-	else if (base == 'o')
-		return (ft_putuint(n / 8, 'o') + ft_putuint(n % 8, 'o'));
-	else if (base && ft_strchr("diu", base))
-		return (ft_putuint(n / 10, 'd') + ft_putuint(n % 10, 'd'));
-	else
-		return (0);
-}
-*/

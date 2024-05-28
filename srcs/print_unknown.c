@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 15:56:20 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:23:56 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,118 @@ ssize_t	print_unknown(t_specs specs, va_list *args)
 
 #else
 
+static ssize_t	print_flags(t_specs specs)
+{
+	ssize_t	n_chars;
+	char	*buffer;
+	size_t	idx;
+
+	n_chars = specs.hash + specs.plus + specs.blank + specs.dash + specs.zero;
+	buffer = (char *)malloc((n_chars + 1) * sizeof(char));
+	if (!buffer)
+		return (-1);
+	idx = 0;
+	buffer[idx++] = '%';
+	if (specs.hash)
+		buffer[idx++] = '#';
+	if (specs.plus)
+		buffer[idx++] = '+';
+	if (specs.blank)
+		buffer[idx++] = ' ';
+	if (specs.dash)
+		buffer[idx++] = '-';
+	if (specs.zero)
+		buffer[idx++] = '0';
+	n_chars = write(STDOUT_FILENO, buffer, idx);
+	free(buffer);
+	return (n_chars);
+}
+
 ssize_t	print_unknown(t_specs specs, va_list *args)
 {
 	ssize_t	n_chars;
 
 	fetch_star_args(&specs, args);
 	n_chars = 0;
-	n_chars += ft_putchar('%');
-	if (specs.hash)
-		n_chars += ft_putchar('#');
-	if (specs.plus)
-		n_chars += ft_putchar('+');
-	if (specs.blank)
-		n_chars += ft_putchar(' ');
-	if (specs.dash)
-		n_chars += ft_putchar('-');
-	if (specs.zero)
-		n_chars += ft_putchar('0');
+	if (!check(&n_chars, print_flags(specs)))
+		return (-1);
 	if (specs.width)
-		n_chars += ft_putuint(specs.width, 'i');
+		if (!check(&n_chars, ft_putuint(specs.width, 'i')))
+			return (-1);
 	if (specs.precis > -1)
-		n_chars += ft_putchar('.') + ft_putuint(specs.precis, 'i');
+	{
+		if (!check(&n_chars, ft_putchar('.')))
+			return (-1);
+		if (!check(&n_chars, ft_putuint(specs.precis, 'i')))
+			return (-1);
+	}
 	if (specs.specif)
-		n_chars += ft_putchar(specs.specif);
+		if (!check(&n_chars, ft_putchar(specs.specif)))
+			return (-1);
 	return (n_chars);
 }
+
+/* TIME OPTIMIZATION (write only once)
+ssize_t	print_unknown(t_specs specs, va_list *args)
+{
+	ssize_t	n_chars;
+	char	*buffer;
+	char	*number;
+	size_t	idx;
+
+	fetch_star_args(&specs, args);
+	n_chars = 1 + (specs.specif);
+	n_chars += specs.hash + specs.plus + specs.blank + specs.dash + specs.zero;
+	if (specs.width)
+		n_chars += ft_uintlen(specs.width, 10);
+	if (specs.precis > -1)
+		n_chars += 1 + ft_uintlen(specs.precis, 10);
+	buffer = (char *)malloc(n_chars * sizeof(char));
+	if (!buffer)
+		return (-1);
+	idx = 0;
+	number = ft_itoa(specs.width);
+	buffer[idx++] = '%';
+	if (specs.hash)
+		buffer[idx++] = '#';
+	if (specs.plus)
+		buffer[idx++] = '+';
+	if (specs.blank)
+		buffer[idx++] = ' ';
+	if (specs.dash)
+		buffer[idx++] = '-';
+	if (specs.zero)
+		buffer[idx++] = '0';
+	if (specs.width)
+	{
+		if (!ft_memcpy(buffer + idx, number, ft_strlen(number)))
+		{
+			free(number);
+			free(buffer);
+			return (-1);
+		}
+		idx += ft_strlen(number);
+	}
+	free(number);
+	number = ft_itoa(specs.precis);
+	if (specs.precis > -1)
+	{
+		buffer[idx++] = '.';
+		if (!ft_memcpy(buffer + idx, number, ft_strlen(number)))
+		{
+			free(number);
+			free(buffer);
+			return (-1);
+		}
+		idx += ft_strlen(number);
+	}
+	free(number);
+	if (specs.specif)
+		buffer[idx++] = specs.specif;
+	n_chars = write(STDOUT_FILENO, buffer, idx);
+	free(buffer);
+	return (n_chars);
+}
+*/
 
 #endif

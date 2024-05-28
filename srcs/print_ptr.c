@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 15:55:54 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:59:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,23 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 
 #else
 
+static ssize_t	print_nullptr(t_specs specs)
+{
+	ssize_t	n_chars;
+
+	n_chars = 0;
+	if (specs.dash == 0 && specs.width - 5 > 0)
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - 5)))
+			return (-1);
+	if (!check(&n_chars, ft_putnstr("(nil)", 5)))
+		return (-1);
+	return (n_chars);
+}
+
 ssize_t	print_ptr(t_specs specs, va_list *args)
 {
 	ssize_t		n_chars;
 	uintptr_t	arg;
-	int			arg_len;
 
 	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
@@ -80,20 +92,18 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 	arg = (unsigned long int)va_arg(*args, void *);
 	if (arg)
 	{
-		arg_len = ft_uintlen(arg, 16);
 		switch_to_x(&specs);
-		n_chars += print_intprefix(specs, arg_len, 1);
-		n_chars += ft_putuint(arg, 'x');
+		if (!check(&n_chars, print_intprefix(specs, ft_uintlen(arg, 16), 1)))
+			return (-1);
+		if (!check(&n_chars, ft_putuint(arg, 'x')))
+			return (-1);
 	}
 	else
-	{
-		arg_len = ft_strlen("(nil)");
-		if (specs.dash == 0 && n_chars < specs.width - arg_len)
-			n_chars += ft_putnchar(' ', specs.width - arg_len - n_chars);
-		n_chars += ft_putnstr("(nil)", 5);
-	}
+		if (!check(&n_chars, print_nullptr(specs)))
+			return (-1);
 	if (specs.dash == 1 && n_chars < specs.width)
-		n_chars += ft_putnchar(' ', specs.width - n_chars);
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+			return (-1);
 	return (n_chars);
 }
 

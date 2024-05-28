@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 23:42:31 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:52:11 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int	main(void)
 
 	bytes_read = ft_printf("%2147483647d", n);
 	printf("\t(%d)\n", bytes_read);
+	tests("|%10.5o|", 11);
 	return (0);
 }

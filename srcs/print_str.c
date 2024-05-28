@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 15:56:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:11:48 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,17 @@ ssize_t	print_str(t_specs specs, va_list *args)
 		str = "(null)";
 	else if (!str)
 		str = "";
-	arglen = (long)ft_strlen(str);
+	arglen = (ssize_t)ft_strlen(str);
 	if (specs.precis > -1 && arglen > specs.precis)
 		arglen = specs.precis;
 	if (!specs.dash && n_chars < specs.width - arglen)
-		n_chars += ft_putnchar(' ', specs.width - arglen - n_chars);
-	n_chars += ft_putnstr(str, arglen);
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - arglen - n_chars)))
+			return (-1);
+	if (!check(&n_chars, ft_putnstr(str, arglen)))
+		return (-1);
 	if (specs.dash && n_chars < specs.width)
-		n_chars += ft_putnchar(' ', specs.width - n_chars);
+		if (!check(&n_chars, ft_putnchar(' ', specs.width - n_chars)))
+			return (-1);
 	return (n_chars);
 }
 
