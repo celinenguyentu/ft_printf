@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:02:18 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:46:03 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <float.h>
-
+#include <fcntl.h>
 
 void	tests(const char *format, ...)
 {
@@ -259,5 +259,13 @@ int	main(void)
 	tests("%.2147483662u", n);
 	tests("%.2147483653x", 424242);
 	tests("%.2147483655o", 424242);
+	printf(">> Handles write error\n");
+    close(STDOUT_FILENO);
+    int result = ft_printf("Call to %s fails because%2cf write.\n", "ft_printf", 'o');
+    int fd = open("/dev/tty", O_WRONLY);
+    if (result == -1)
+        printf("Test passed: ft_printf returned -1\n");
+    else
+        printf("Test failed: ft_printf did not return -1\n");
 	return (0);
 }
