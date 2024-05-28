@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 19:00:18 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 22:28:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 int	print_arg(t_specs specs, va_list *args, int n_chars)
 {
 	ssize_t	bytes_written;
-
+	
 	if (specs.specif == 'c')
 		bytes_written = print_char(specs, args);
 	else if (specs.specif == 's')

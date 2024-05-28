@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 17:52:11 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 01:15:08 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ void	tests(const char *format, ...)
 
 int	main(void)
 {
-	int		bytes_read;
+	int		bytes_written;
 	char 	*s = "hello";
 	int		n = 42;
 
-	bytes_read = ft_printf("%2147483647d", n);
-	printf("\t(%d)\n", bytes_read);
-	tests("|%10.5o|", 11);
+	//tests("Coeurs sur les %s %s et %s", "bébés", "Java", "Adri");
+	tests("|%p%bcd%|", 0xababab, 11, "abcd");
+	//printf("|%s-2.10d-sd|", 11);
+	//ft_printf("|%s-2.10d-sd|", 11);
 	return (0);
 }

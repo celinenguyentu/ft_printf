@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 21:23:56 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/28 22:29:58 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ ssize_t	print_unknown(t_specs specs, va_list *args)
 		if (!check(&n_chars, ft_putuint(specs.precis, 'i')))
 			return (-1);
 	}
-	if (specs.specif)
+	if (specs.specif != '\0')
 		if (!check(&n_chars, ft_putchar(specs.specif)))
 			return (-1);
 	return (n_chars);

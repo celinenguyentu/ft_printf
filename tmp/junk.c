@@ -21,9 +21,10 @@ int	get_argn(va_list args_cpy, int n)
 
 
 #include "includes/ft_printf.h"
+#include <stdio.h>
 void	print_formatspec(t_specs specs)
 {
-	printf("Format specifier : %c\n", specs.specif);
+	printf("Format specifier : \'%c\' (%i)\n", specs.specif, specs.specif);
 	printf("dash : %d\t", specs.dash);
 	printf("zero : %d\t", specs.zero);
 	printf("hash : %d\t", specs.hash);
@@ -32,6 +33,7 @@ void	print_formatspec(t_specs specs)
 	printf("width : %d\n", specs.width);
 	printf("precision : (%s)	%ld\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
 	printf("n_chars : %d\n", specs.n_chars);
+	printf("n_unknowns : %d\n", specs.n_unknowns);
 }
 */
 
