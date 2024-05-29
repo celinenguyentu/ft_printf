@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 01:50:57 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 00:27:55 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:16:27 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@
 	The function returns the new precision after overflow check.
 */
 
-long	check_precis_overflow(long precis, int arg_len)
+void	check_precis_overflow(t_specs *specs, int arg_len)
 {
-	if (precis > INT_MAX && precis - arg_len > INT_MAX)
-		return (-1);
-	return (precis);
+	if (specs->precis > INT_MAX && specs->precis - arg_len > INT_MAX)
+		specs->precis = -1;
+	else if (specs->precis < 0 && specs->precis > (long)INT_MIN - 1)
+	{
+		if (specs->precis - arg_len >= INT_MIN)
+			specs->precis = -1;
+		else
+			specs->precis = -((long)INT_MIN - (specs->precis - (long)INT_MIN));
+	}
 }

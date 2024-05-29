@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 15:53:22 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:08:19 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,17 @@ ssize_t	print_str(t_specs specs, va_list *args);
 ssize_t	print_ptr(t_specs specs, va_list *args);
 ssize_t	print_int(t_specs specs, va_list *args);
 ssize_t	print_uint(t_specs specs, va_list *args, int baselen);
-ssize_t	print_percent(t_specs specs, va_list *args);
-ssize_t	print_unknown(t_specs specs, va_list *args);
+ssize_t	print_percent(t_specs specs);
+ssize_t	print_unknown(t_specs specs);
 ssize_t	print_intprefix(t_specs specs, int uarg_len, int sign);
-long	check_precis_overflow(long precis, int arg_len);
+void	check_precis_overflow(t_specs *specs, int arg_len);
 int		check(ssize_t *n_chars, ssize_t bytes_written);
+int		check_flags(t_specs *specs, int n_chars);
 
 // formatspec
 void	init_formatspecs(t_specs *specs);
 void	reset_formatspecs(t_specs *specs);
-void	update_formatspecs(t_specs *specs, const char **format);
+void	update_formatspecs(t_specs *specs, const char **format, va_list *args);
 void	clean_formatspecs(t_specs *specs);
 void	fetch_star_args(t_specs *specs, va_list *args);
 

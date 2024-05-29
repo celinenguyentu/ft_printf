@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:34:05 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 15:55:34 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 04:05:16 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 	PRINT_PERCENT
 	Retrieves the optional arguments specifying width and precision from the
 	va_list args, and prints the formatted percent symbol '%' to standart
-	output according to the conversion specification provided as input and
-	potentially updated by fetch_star_args() and clean_formatspec().
+	output according to the conversion specification provided as input.
 	PARAMETER(S)
 	1.	The t_specs struct that holds information about a conversion 
 		specification, including the specifier and options.
@@ -29,12 +28,11 @@
 
 #if defined(__APPLE__)
 
-ssize_t	print_percent(t_specs specs, va_list *args)
+ssize_t	print_percent(t_specs specs)
 {
 	ssize_t	n_chars;
 
 	n_chars = 0;
-	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	if (!specs.dash && !specs.zero && n_chars < specs.width - 1)
 		if (!check(&n_chars, ft_putnchar(' ', specs.width - 1 - n_chars)))

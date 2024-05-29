@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 02:18:10 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 15:56:14 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:03:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 	Retrieves the unsigned int argument to convert for output from the va_list
 	args as well as optional arguments specifying width and precision, and
 	prints the formatted argument to standart output according to the conversion
-	specification provided as input and potentially updated by
-	fetch_star_args() and clean_formatspec().
+	specification provided as input.
 	PARAMETER(S)
 	1.	The t_specs struct that holds information about a conversion 
 		specification, including the specifier and options.
@@ -36,13 +35,12 @@ ssize_t	print_uint(t_specs specs, va_list *args, int baselen)
 	int				arg_len;
 
 	n_chars = 0;
-	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	arg = va_arg(*args, unsigned int);
 	arg_len = ft_uintlen(arg, baselen);
 	if (arg == 0 && specs.precis == 0)
 		arg_len = 0;
-	specs.precis = check_precis_overflow(specs.precis, arg_len);
+	check_precis_overflow(&specs, arg_len);
 	if (specs.specif == 'o' && specs.hash && (arg != 0 || specs.precis == 0))
 		arg_len++;
 	if (!check(&n_chars, print_intprefix(specs, arg_len, (arg != 0))))

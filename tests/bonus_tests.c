@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 17:57:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:56:17 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,14 +218,19 @@ int	main(void)
 	tests("|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%0.-5s|%10.-5d|%0.-5u|%#.-5x|%#.-5o|", "hello", -42, 42, 42, NULL, 0, 0, 0, 0);
 	tests("|%+3.-4d|%+5.-4d|%.-+4d|%#.-4o|", 42, 42, 42, 42);
 	tests("|%.-03%.|");
+
 	printf(">> Width overflow\n");
 	tests("%2147483648d", 42);
+	tests("%-2147483649d", 42);
 #if defined (__APPLE__)
 	tests("%2147483647d", 42);
 	tests(" %2147483646d", 42); // printf doesn't print anything because of buffer implementation
 	tests("  %2147483645d", 42);
 	tests("  %2147483645c", 'a');
 #endif
+	tests("%*d", 2147483649, 42);
+	tests("%*d", -2147483649, 42);
+	tests("%*d", -2147483647, 42);
 	tests("%3000000000c", 'a');
 #if defined (__APPLE__)
 	tests("  %2147483645s", "hello");
@@ -259,13 +264,16 @@ int	main(void)
 	tests("%.2147483662u", n);
 	tests("%.2147483653x", 424242);
 	tests("%.2147483655o", 424242);
+	tests("%.*d", -2147483646, 42);
+	tests(" %.*d", -2147483650, 42);
 	printf(">> Handles write error\n");
     close(STDOUT_FILENO);
     int result = ft_printf("Call to %s fails because%2cf write.\n", "ft_printf", 'o');
     int fd = open("/dev/tty", O_WRONLY);
     if (result == -1)
-        printf("Test passed: ft_printf returned -1\n");
+        printf("OK: ft_printf returned -1\n");
     else
-        printf("Test failed: ft_printf did not return -1\n");
+        printf("KO: ft_printf did not return -1\n");
+	
 	return (0);
 }

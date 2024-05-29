@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 22:27:43 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:57:45 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static const char	*read_precision(const char *format, t_specs *specs)
 
 #endif
 
-void	update_formatspecs(t_specs *specs, const char **format)
+void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 {
 	reset_formatspecs(specs);
 	(*format)++;
@@ -137,4 +137,17 @@ void	update_formatspecs(t_specs *specs, const char **format)
 		(*format)++;
 	}
 	clean_formatspecs(specs);
+	if (specs->star_width == 0)
+	{
+		specs->width = va_arg(*args, int);
+		if (specs->width == INT_MIN)
+			specs->width++;
+		if (specs->width < 0)
+		{
+			specs->width = -specs->width;
+			specs->dash = 1;
+		}
+	}
+	if (specs->star_precis == 0)
+		specs->precis = va_arg(*args, long);
 }

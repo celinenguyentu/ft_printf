@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 00:16:35 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:13:39 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,6 @@ static int	put_text(const char **format, int n_chars)
 
 #if defined(__APPLE__)
 
-static int	flags_overflow(t_specs specs, int n_chars)
-{
-	if (specs.width < 0 || specs.width + n_chars == INT_MAX)
-		return (1);
-	if (specs.width + n_chars < 0)
-		return (1);
-	if (specs.precis < -1)
-		return (1);
-	if (ft_strchr("pdiuxXo", specs.specif) && specs.precis > 0
-		&& specs.precis <= INT_MAX && specs.precis + n_chars >= INT_MAX)
-		return (1);
-	return (0);
-}
-
 int	ft_vprintf(const char *format, va_list ap)
 {
 	int		n_chars;
@@ -73,8 +59,8 @@ int	ft_vprintf(const char *format, va_list ap)
 	{
 		if (*format == '%')
 		{
-			update_formatspecs(&specs, &format);
-			if (flags_overflow(specs, n_chars))
+			update_formatspecs(&specs, &format, &ap_);
+			if (!check_flags(&specs, n_chars))
 				return (-1);
 			if (specs.specif == '\0')
 				return (n_chars);

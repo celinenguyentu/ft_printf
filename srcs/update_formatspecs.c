@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:36:29 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 22:29:29 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 03:51:54 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 	conversion specification and the number of characters read from format.
 */
 
-void	update_formatspecs(t_specs *specs, const char **format)
+void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 {
+	(void)args;
 	reset_formatspecs(specs);
 	(*format)++;
 	if (**format)

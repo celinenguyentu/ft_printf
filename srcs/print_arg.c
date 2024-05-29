@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:21:41 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 22:28:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:58:22 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 int	print_arg(t_specs specs, va_list *args, int n_chars)
 {
 	ssize_t	bytes_written;
-	
+
 	if (specs.specif == 'c')
 		bytes_written = print_char(specs, args);
 	else if (specs.specif == 's')
@@ -46,11 +46,11 @@ int	print_arg(t_specs specs, va_list *args, int n_chars)
 	else if (specs.specif == 'x' || specs.specif == 'X')
 		bytes_written = print_uint(specs, args, 16);
 	else if (specs.specif == '%')
-		bytes_written = print_percent(specs, args);
+		bytes_written = print_percent(specs);
 	else if (specs.specif == 'o')
 		bytes_written = print_uint(specs, args, 8);
 	else
-		bytes_written = print_unknown(specs, args);
+		bytes_written = print_unknown(specs);
 	if (bytes_written == -1)
 		return (-1);
 	if (bytes_written > INT_MAX || bytes_written + n_chars > INT_MAX)

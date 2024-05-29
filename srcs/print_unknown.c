@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 22:29:58 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 04:06:10 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 	Retrieves the optional arguments specifying width and precision from the
 	va_list args, and prints the formatted regular character stored as unknown
 	specifier to standart output according to the conversion specification
-	provided as input and potentially updated by fetch_star_args() and
-	clean_formatspec().
+	provided as input.
 	PARAMETER(S)
 	1.	The t_specs struct that holds information about a conversion 
 		specification, including the specifier and options.
@@ -30,12 +29,11 @@
 
 #if defined(__APPLE__)
 
-ssize_t	print_unknown(t_specs specs, va_list *args)
+ssize_t	print_unknown(t_specs specs)
 {
 	ssize_t	n_chars;
 
 	n_chars = 0;
-	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	if (!specs.dash && !specs.zero && n_chars < specs.width - 1)
 		if (!check(&n_chars, ft_putnchar(' ', specs.width - 1 - n_chars)))

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/28 19:11:48 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 04:05:43 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 	Retrieves the string argument to convert for output from the va_list args
 	as well as optional arguments specifying width and precision, and prints
 	the formatted argument to standart output according to the conversion
-	specification provided as input and potentially updated by
-	fetch_star_args() and clean_formatspec().
+	specification provided as input.
 	PARAMETER(S)
 	1.	The t_specs struct that holds information about a conversion 
 		specification, including the specifier and options.
@@ -37,7 +36,6 @@ ssize_t	print_str(t_specs specs, va_list *args)
 	ssize_t	arglen;
 
 	n_chars = 0;
-	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	str = va_arg(*args, char *);
 	if (!str)
