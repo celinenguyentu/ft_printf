@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 21:36:21 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:08:53 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 #include <limits.h>
 #include <stdint.h>
 #include "ft_printf.h"
-
-void	va_arg_test(int n, ...)
-{
-	va_list ap;
-	int		idx;
-	long		data;
-
-	va_start(ap, n);
-	idx = 0;
-	while (idx < n)
-	{
-		data = va_arg(ap, long);
-		printf("%ld ", data);
-		idx++;
-	}
-	va_end(ap);
-}
 
 void	tests(const char *format, ...)
 {
@@ -59,7 +42,6 @@ int	main(void)
 //LONG_MAX
 	//tests("  %.-2147483651d", 2);
 	//tests("|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|", 6, "hello", -6, "hello", 6, "hello", -6, "hello", 4, "hello", 6, 4, "hello", 6, -4, "hello", 6, NULL, -6, NULL, 6, NULL, -6, NULL, 4, NULL, 6, 4, NULL, 6, -4, NULL);
-	va_arg_test(8, 1, 2, 3, 2147483647, -1, -2, -3, -2147483648);
 	//bytes_written = ft_printf("%.*d", 4, 42);
 	//printf("\t(%d)\n", bytes_written);
 	//printf("%d", max);
