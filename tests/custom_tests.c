@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 20:02:09 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 20:10:06 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 	// %p && PRECISION = INT_MAX (hard-coded + dynamic)
 	// LINUX : mine prints the right amount of characters, the real printf prints double (spaces first then 0s)
 
-	bytes_written = printf("%-2147483648d", 42);
+	bytes_written = ft_printf("%010.*d", 2147483660, 42); // check on mac
 	//printf("\t(%d)\n", bytes_written);
 
 	return (0);
