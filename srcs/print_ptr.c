@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 19:04:05 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:32:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 	ssize_t		n_chars;
 	uintptr_t	arg;
 
-	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	n_chars = 0;
 	arg = (unsigned long int)va_arg(*args, void *);

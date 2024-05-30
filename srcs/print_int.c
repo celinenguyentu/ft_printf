@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 19:04:18 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:40:13 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@
 	RETURN
 	The number of characters printed or -1 is an error occured.
 */
+
+#include <stdio.h>
+void	print_formatspec(t_specs specs)
+{
+	printf("Format specifier : \'%c\' (%i)\n", specs.specif, specs.specif);
+	printf("dash : %d\t", specs.dash);
+	printf("zero : %d\t", specs.zero);
+	printf("hash : %d\t", specs.hash);
+	printf("blank : %d\t", specs.blank);
+	printf("plus : %d\n", specs.plus);
+	printf("width : %d\n", specs.width);
+	printf("precision : (%s)	%ld\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
+	printf("n_chars : %d\n", specs.n_chars);
+	printf("n_unknowns : %d\n", specs.n_unknowns);
+}
 
 ssize_t	print_int(t_specs specs, va_list *args)
 {

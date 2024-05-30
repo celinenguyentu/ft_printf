@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 18:56:17 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 04:15:17 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,8 @@ int	main(void)
 	tests("|%.-03%.|");
 
 	printf(">> Width overflow\n");
+	tests("%3000000000c", 'a');
+	tests("%2147483648s", "hello");
 	tests("%2147483648d", 42);
 	tests("%-2147483649d", 42);
 #if defined (__APPLE__)
@@ -227,45 +229,37 @@ int	main(void)
 	tests(" %2147483646d", 42); // printf doesn't print anything because of buffer implementation
 	tests("  %2147483645d", 42);
 	tests("  %2147483645c", 'a');
-#endif
 	tests("%*d", 2147483649, 42);
 	tests("%*d", -2147483649, 42);
 	tests("%*d", -2147483647, 42);
-	tests("%3000000000c", 'a');
-#if defined (__APPLE__)
-	tests("  %2147483645s", "hello");
+	tests("   %2147483645s", "hello");
 #endif
-	tests("%2147483648s", "hello");
 	printf(">> Precision overflow\n");
 #if defined (__APPLE__)
+	tests("%.2147483647p", s);
+	tests(" %.2147483646p", s);
+	tests("  %.2147483645p", s);
 	tests("%.2147483647d", 1);
 	tests("%.2147483647i", 12);
 	tests("%.2147483647d", 123);
 	tests(" %.2147483646i", 123);
 	tests("  %.2147483645d", 123);
+	tests("%.2147483647u", n);
+	tests(" %.2147483646u", n);
+	tests(" %.*d", -2147483650, 42);
 #endif
 	tests("%.2147483649i", 1);
 	tests("%.2147483650d", 12);
 	tests("%.2147483656i", 42424242);
 	tests("%.2147483649d", -2);
 	tests("%.3000000000d", 42);
-#if defined (__APPLE__)
-	tests("%.2147483647p", s);
-	tests(" %.2147483646p", s);
-	tests("  %.2147483645p", s);
-#endif
 	tests("%.2147483662p", s);
 	tests("%.2147483648s", s);
 	tests("%.2147483662s", s);
-#if defined (__APPLE__)
-	tests("%.2147483647u", n);
-	tests(" %.2147483646u", n);
-#endif
 	tests("%.2147483662u", n);
 	tests("%.2147483653x", 424242);
 	tests("%.2147483655o", 424242);
 	tests("%.*d", -2147483646, 42);
-	tests(" %.*d", -2147483650, 42);
 	printf(">> Handles write error\n");
     close(STDOUT_FILENO);
     int result = ft_printf("Call to %s fails because%2cf write.\n", "ft_printf", 'o');

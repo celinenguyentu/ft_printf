@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 21:14:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 04:06:10 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:38:55 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,10 @@ static ssize_t	print_flags(t_specs specs)
 	return (n_chars);
 }
 
-ssize_t	print_unknown(t_specs specs, va_list *args)
+ssize_t	print_unknown(t_specs specs)
 {
 	ssize_t	n_chars;
 
-	fetch_star_args(&specs, args);
 	n_chars = 0;
 	if (!check(&n_chars, print_flags(specs)))
 		return (-1);
@@ -110,7 +109,6 @@ ssize_t	print_unknown(t_specs specs, va_list *args)
 	char	*number;
 	size_t	idx;
 
-	fetch_star_args(&specs, args);
 	n_chars = 1 + (specs.specif);
 	n_chars += specs.hash + specs.plus + specs.blank + specs.dash + specs.zero;
 	if (specs.width)

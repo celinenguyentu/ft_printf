@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 22:08:53 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:48:41 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	main(void)
 	int		bytes_written;
 	char 	*s = "hello";
 	int		n = 42;
-	long	precis = -2147483657;
+	int		i = 2147483649;
+
+	//bytes_written = ft_printf("%*p", 2147483648, 0xabababF);
+	//doesn't work on Linux mine returns error and the real prints 2147483648 characters (maybe store width in a long ?)
+	//bytes_written = ft_printf("%.2147483647p", 0xabababF);
+	//doesn't work on Linux (pb only with %p) mine prints the right amount of characters, the real printf prints double 
 	
-//LONG_MAX
-	//tests("  %.-2147483651d", 2);
-	//tests("|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|%*s|%*s|%-*s|%0*s|%6.*s|%*.*s|%*.*s|", 6, "hello", -6, "hello", 6, "hello", -6, "hello", 4, "hello", 6, 4, "hello", 6, -4, "hello", 6, NULL, -6, NULL, 6, NULL, -6, NULL, 4, NULL, 6, 4, NULL, 6, -4, NULL);
-	//bytes_written = ft_printf("%.*d", 4, 42);
 	//printf("\t(%d)\n", bytes_written);
-	//printf("%d", max);
-	//ft_printf("|%s-2.10d-sd|", 11);
+
 	return (0);
 }

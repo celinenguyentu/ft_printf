@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 18:13:39 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:51:06 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_vprintf(const char *format, va_list ap)
 
 static int	check_formatspecs_error(t_specs *specs)
 {
-	if (specs->width < 0)
+	if (specs->width < 0 && specs->width != INT_MIN) // just changed because of error (check)
 		return (1);
 	if (specs->precis < -1)
 		return (1);
@@ -92,6 +92,7 @@ static int	check_formatspecs_error(t_specs *specs)
 		return (1);
 	return (0);
 }
+
 
 int	ft_vprintf(const char *format, va_list ap)
 {
@@ -108,7 +109,7 @@ int	ft_vprintf(const char *format, va_list ap)
 	{
 		if (*format == '%')
 		{
-			update_formatspecs(&specs, &format);
+			update_formatspecs(&specs, &format, &ap_);
 			if (check_formatspecs_error(&specs))
 				return (-1);
 			n_chars = print_arg(specs, &ap_, n_chars);

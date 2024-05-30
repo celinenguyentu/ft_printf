@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 21:33:25 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/27 16:51:34 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:50:28 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ ssize_t	ft_putnchar(unsigned char c, ssize_t n)
 		return (-1);
 	ft_memset(output, c, n);
 	bytes_written = write(STDOUT_FILENO, output, n);
+	while (bytes_written != -1 && bytes_written < n)
+	{
+		n -= bytes_written;
+		bytes_written = write(STDOUT_FILENO, output, n);
+	}
 	free(output);
 	return (bytes_written);
 }

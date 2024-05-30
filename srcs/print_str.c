@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:33:21 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 04:05:43 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:32:56 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ ssize_t	print_str(t_specs specs, va_list *args)
 	ssize_t		arglen;
 
 	n_chars = 0;
-	fetch_star_args(&specs, args);
 	clean_formatspecs(&specs);
 	str = va_arg(*args, char *);
 	if (!str && (specs.precis == -1 || specs.precis >= 6))
