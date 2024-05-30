@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 14:51:06 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 20:02:40 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_vprintf(const char *format, va_list ap)
 
 static int	check_formatspecs_error(t_specs *specs)
 {
-	if (specs->width < 0 && specs->width != INT_MIN) // just changed because of error (check)
+	if (specs->width < 0) // && specs->width != INT_MIN) // not needed on Linux check on mac
 		return (1);
 	if (specs->precis < -1)
 		return (1);

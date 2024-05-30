@@ -30,7 +30,7 @@ void	print_formatspec(t_specs specs)
 	printf("hash : %d\t", specs.hash);
 	printf("blank : %d\t", specs.blank);
 	printf("plus : %d\n", specs.plus);
-	printf("width : %d\n", specs.width);
+	printf("width : %ld\n", specs.width);
 	printf("precision : (%s)	%ld\n", (specs.precis > -1 ? "true" : "false"), specs.precis);
 	printf("n_chars : %d\n", specs.n_chars);
 	printf("n_unknowns : %d\n", specs.n_unknowns);

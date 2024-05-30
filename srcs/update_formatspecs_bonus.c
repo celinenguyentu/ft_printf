@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 14:08:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 20:03:12 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static const char	*read_width(const char *format, t_specs *specs)
 	}
 	else
 	{
-		specs->width = ft_atoi_digits(format);
+		specs->width = (int)ft_atoi_digits(format);
 		specs->n_chars += ft_nbrlen(format);
 		format += ft_nbrlen(format);
 	}
@@ -140,7 +140,7 @@ void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 	if (specs->star_width == 0)
 	{
 		specs->width = va_arg(*args, int);
-		//if (specs->width == INT_MIN) // doesn't not appply on Linux
+		//if (specs->width == INT_MIN) // not needed on Linux check on mac
 		//	specs->width++;
 		if (specs->width < 0)
 		{
@@ -150,7 +150,7 @@ void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 	}
 	if (specs->star_precis == 0)
 	{
-		specs->precis = (long)va_arg(*args, int); // need to check for negative precision ? yes on Linux
+		specs->precis = (long)va_arg(*args, int); // need to check for negative precision ? yes on Linux check on mac
 		if (specs->precis < 0)
 			specs->precis = -1;
 	}

@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 14:48:41 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/30 20:02:09 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ int	main(void)
 	int		n = 42;
 	int		i = 2147483649;
 
-	//bytes_written = ft_printf("%*p", 2147483648, 0xabababF);
-	//doesn't work on Linux mine returns error and the real prints 2147483648 characters (maybe store width in a long ?)
+	//bytes_written = ft_printf("%*p", -2147483648, 0xabababF); // ok linux to check on macOS
+
 	//bytes_written = ft_printf("%.2147483647p", 0xabababF);
-	//doesn't work on Linux (pb only with %p) mine prints the right amount of characters, the real printf prints double 
-	
+	//bytes_written = ft_printf("%.*p", 2147483647, 0xabababF);
+	// %p && PRECISION = INT_MAX (hard-coded + dynamic)
+	// LINUX : mine prints the right amount of characters, the real printf prints double (spaces first then 0s)
+
+	bytes_written = printf("%-2147483648d", 42);
 	//printf("\t(%d)\n", bytes_written);
 
 	return (0);
