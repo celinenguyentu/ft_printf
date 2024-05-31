@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:39:52 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/31 20:35:12 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:46:00 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,8 @@ int	main(void)
 	int		n = 42;
 	int		i = 2147483647;
 
-	//bytes_written = ft_printf("%*p", -2147483648, 0xabababF); // ok linux (?) ok mac (-1)
-	//bytes_written = ft_printf("%010.*d", 2147483660, 42); // ok linux (?) ok mac (normal print)
-	
-	//bytes_written = ft_printf("%.2147483647p", s);
-	//bytes_written = ft_printf("%.*p", 2147483647, s);
-	// %p && PRECISION = INT_MAX (hard-coded + dynamic)
-	// LINUX : mine prints the right amount of characters, the real printf prints double (spaces first then 0s)
-	// MAC : OK (ERROR -1)
-
-	//bytes_written = printf("%.2147483649d", 42); // on Linux check for negative precision in read_precision
-
-	// TO DO on Linux clean at the very end before printing
-
-	bytes_written = ft_printf("%9223372036854775808d", 42);
+	//bytes_written = printf("%.2147483647d", 42);
 	//printf("\t(%d)\n", bytes_written);
-
-
+	
 	return (0);
 }

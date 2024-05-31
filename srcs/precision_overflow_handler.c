@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_precis_overflow.c                            :+:      :+:    :+:   */
+/*   precision_overflow_handler.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 01:50:57 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 19:16:27 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:09:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-	CHECK_PRECIS_OVERFLOW
+	PRECISION_OVERFLOW_HANDLER
 	Changes precision to none when an overflow error occurs.
 	PARAMETER(S)
 	1.	The initial precision
@@ -22,7 +22,7 @@
 	The function returns the new precision after overflow check.
 */
 
-void	check_precis_overflow(t_specs *specs, int arg_len)
+void	precision_overflow_handler(t_specs *specs, int arg_len)
 {
 	if (specs->precis > INT_MAX && specs->precis - arg_len > INT_MAX)
 		specs->precis = -1;

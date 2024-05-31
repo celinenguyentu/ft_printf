@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/31 18:22:50 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:00:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ int	main(void)
 	tests(" %2147483646d", 42); // printf doesn't print anything because of buffer implementation
 	tests("  %2147483645d", 42);
 	tests("  %2147483645c", 'a');
+	tests("%*p", -2147483648, s);
 	tests("%*d", 2147483649, 42);
 	tests("%*d", -2147483649, 42);
 	tests("%*d", -2147483647, 42);
@@ -268,6 +269,7 @@ int	main(void)
 	tests("%.2147483653x", 424242);
 	tests("%.2147483655o", 424242);
 	tests("%.*d", -2147483646, 42);
+	tests("%010.*d", 2147483660, 42);
 	printf(">> Handles write error\n");
     close(STDOUT_FILENO);
     int result = ft_printf("Call to %s fails because%2cf write.\n", "ft_printf", 'o');

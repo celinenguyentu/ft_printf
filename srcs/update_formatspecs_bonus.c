@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/31 20:14:07 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:59:40 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ static const char	*read_precis(const char *frmt, t_specs *spcs, va_list *ap)
 			spcs->star_precis = 0;
 			spcs->n_chars += 1;
 			frmt++;
-			spcs->precis = (long)va_arg(*ap, int); // need to check for negative precision ? yes on Linux do not check on mac
-			//if (specs->precis < 0)
-			//	specs->precis = -1;
+			spcs->precis = (long)va_arg(*ap, int);
 		}
 		else
 		{
@@ -125,6 +123,7 @@ void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 	reset_formatspecs(specs);
 	(*format)++;
 	*format = read_flags(*format, specs);
+	clean_formatspecs(specs);
 	*format = read_width(*format, specs, args);
 	*format = read_precis(*format, specs, args);
 	if (**format)
@@ -133,7 +132,6 @@ void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 		specs->n_chars += 1;
 		(*format)++;
 	}
-	clean_formatspecs(specs);
 }
 
 #endif
