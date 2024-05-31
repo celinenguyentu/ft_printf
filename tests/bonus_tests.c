@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:30:39 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 04:15:17 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:22:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,14 @@ int	main(void)
 	tests("Hello%.y%.");
 	tests("Hello%c%.y%.", 'a');
 	tests("Hello%.y%c%", 'a');
+	printf(">> Width, flags and precision in random order\n");
+	tests("%10.-d", 4);
+	tests("%10+8#-d", 4);
+	tests("%10+8.2#-d", 4);
+	tests("%10+8.2#-4d", 4);
+	tests("%10 *.2#06-*+d", 8, 4, 4);
+	tests("%10.+03d", 4);
+	tests("%2*00#.--3+ 10.2d", 6, 4);
 	printf(">> Conversion %%c : argument is a string or NULL\n");
 	tests("|%10c|%-10c|%010c|", "Marvin", "Marvin", "Marvin");
 	tests("|%10c|%-10c|%010c|", NULL, NULL, NULL);

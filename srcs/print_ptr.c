@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 23:32:13 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:05:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 	uintptr_t	arg;
 	int			arg_len;
 
-	clean_formatspecs(&specs);
 	n_chars = 0;
 	arg = (unsigned long int)va_arg(*args, void *);
 	arg_len = ft_uintlen(arg, 16);
 	if (arg == 0 && specs.precis == 0)
 		arg_len = 0;
 	check_precis_overflow(&specs, arg_len);
+	clean_formatspecs(&specs);
 	switch_to_x(&specs);
 	specs.blank = 0;
 	specs.plus = 0;

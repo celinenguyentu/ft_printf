@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 03:33:54 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 18:36:01 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:32:02 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	check_flags(t_specs *specs, int n_chars)
 {
-	if (specs->width < 0 || specs->width + n_chars == INT_MAX)
+	if (specs->width < 0 || specs->width + n_chars >= INT_MAX)
 		return (0);
 	if (specs->width + n_chars < 0)
 		return (0);

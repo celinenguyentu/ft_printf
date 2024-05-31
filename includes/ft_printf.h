@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 19:47:52 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:03:08 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define SPECIFIERS "cspdiuxX%o"
 # define FLAGS "-0# +"
+# define SYMBOLS "-0# +*."
 # define LOWHEXADECIMAL "0123456789abcdef"
 # define UPHEXADECIMAL "0123456789ABCDEF"
 # define DECIMAL "0123456789"

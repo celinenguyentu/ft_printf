@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 02:18:10 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 19:03:50 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:06:12 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ ssize_t	print_uint(t_specs specs, va_list *args, int baselen)
 	int				arg_len;
 
 	n_chars = 0;
-	clean_formatspecs(&specs);
 	arg = va_arg(*args, unsigned int);
 	arg_len = ft_uintlen(arg, baselen);
 	if (arg == 0 && specs.precis == 0)
 		arg_len = 0;
 	check_precis_overflow(&specs, arg_len);
+	clean_formatspecs(&specs);
 	if (specs.specif == 'o' && specs.hash && (arg != 0 || specs.precis == 0))
 		arg_len++;
 	if (!check(&n_chars, print_intprefix(specs, arg_len, (arg != 0))))

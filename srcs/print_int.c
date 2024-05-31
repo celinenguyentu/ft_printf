@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:29:26 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 19:57:21 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:05:33 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ ssize_t	print_int(t_specs specs, va_list *args)
 	int		sign;
 
 	n_chars = 0;
-	clean_formatspecs(&specs);
 	arg = (long)va_arg(*args, int);
 	sign = (arg < 0) * -1 + (arg == 0) * 0 + (arg > 0) * 1;
 	if (sign == -1)
@@ -44,6 +43,7 @@ ssize_t	print_int(t_specs specs, va_list *args)
 	if (arg == 0 && specs.precis == 0)
 		uarg_len = 0;
 	check_precis_overflow(&specs, uarg_len);
+	clean_formatspecs(&specs);
 	if (!check(&n_chars, print_intprefix(specs, uarg_len, sign)))
 		return (-1);
 	if (arg != 0 || specs.precis != 0)

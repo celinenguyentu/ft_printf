@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:14:06 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/29 23:29:57 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:04:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	clean_formatspecs(t_specs *specs)
 			specs->blank = 0;
 			specs->plus = 0;
 		}
-		if (ft_strchr("diuxXo", specs->specif) && specs->precis > -1) // what if precision is fetched ? what if precision is restored to none inside specific function due to overflow ?
+		if (ft_strchr("diuxXo", specs->specif) && specs->precis > -1)
 			specs->zero = 0;
 	}
 }

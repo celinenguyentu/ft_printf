@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:23:56 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 18:47:12 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:32:58 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ long	ft_atoi_digits(const char *str)
 		number = number * 10 + *str - '0';
 		str++;
 		if (number < 0)
-			return (INT_MIN); // ou autre valeur negative ??
+			return (INT_MIN);
 	}
 	return (number);
 }

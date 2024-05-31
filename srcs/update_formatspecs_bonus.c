@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 20:03:12 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:14:07 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,108 +28,105 @@
 	conversion specification and the number of characters read from format.
 */
 
-static const char	*read_flags(const char *format, t_specs *specs)
+static const char	*read_flags(const char *frmt, t_specs *spcs)
 {
 	char	flag;
 
-	while (*format && ft_strchr(FLAGS, *format))
+	while (*frmt && ft_strchr(FLAGS, *frmt))
 	{
-		flag = *ft_strchr(FLAGS, *format);
+		flag = *ft_strchr(FLAGS, *frmt);
 		if (flag == '-')
-			specs->dash = 1;
+			spcs->dash = 1;
 		else if (flag == '0')
-			specs->zero = 1;
+			spcs->zero = 1;
 		else if (flag == '#')
-			specs->hash = 1;
+			spcs->hash = 1;
 		else if (flag == ' ')
-			specs->blank = 1;
+			spcs->blank = 1;
 		else
-			specs->plus = 1;
-		format++;
-		specs->n_chars += 1;
+			spcs->plus = 1;
+		frmt++;
+		spcs->n_chars += 1;
 	}
-	return (format);
+	return (frmt);
 }
 
-static const char	*read_width(const char *format, t_specs *specs)
+static const char	*read_width(const char *frmt, t_specs *spcs, va_list *ap)
 {
-	if (*format == '*')
+	if (*frmt == '*')
 	{
-		specs->star_width = 0;
-		specs->n_chars += 1;
-		format++;
+		spcs->star_width = 0;
+		spcs->n_chars += 1;
+		frmt++;
+		spcs->width = va_arg(*ap, int);
+		if (spcs->width < 0)
+		{
+			spcs->width = -spcs->width;
+			spcs->dash = 1;
+		}
 	}
-	else
+	else if (ft_isdigit(*frmt))
 	{
-		specs->width = (int)ft_atoi_digits(format);
-		specs->n_chars += ft_nbrlen(format);
-		format += ft_nbrlen(format);
+		spcs->width = (int)ft_atoi_digits(frmt);
+		spcs->n_chars += ft_nbrlen(frmt);
+		frmt += ft_nbrlen(frmt);
 	}
-	return (format);
+	return (frmt);
+}
+
+static const char	*read_precis(const char *frmt, t_specs *spcs, va_list *ap)
+{
+	if (*frmt == '.')
+	{
+		spcs->n_chars += 1;
+		if (*++frmt == '*')
+		{
+			spcs->star_precis = 0;
+			spcs->n_chars += 1;
+			frmt++;
+			spcs->precis = (long)va_arg(*ap, int); // need to check for negative precision ? yes on Linux do not check on mac
+			//if (specs->precis < 0)
+			//	specs->precis = -1;
+		}
+		else
+		{
+			spcs->precis = ft_atoi_digits(frmt);
+			spcs->n_chars += ft_nbrlen(frmt);
+			frmt += ft_nbrlen(frmt);
+		}
+	}
+	return (frmt);
 }
 
 #if defined(__APPLE__)
 
-static const char	*read_precision(const char *format, t_specs *specs)
+void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 {
-	if (*format == '.')
+	reset_formatspecs(specs);
+	(*format)++;
+	while (**format && (ft_strchr(SYMBOLS, **format) || ft_isdigit(**format)))
 	{
-		specs->n_chars += 1;
-		if (*++format == '*')
-		{
-			specs->star_precis = 0;
-			specs->n_chars += 1;
-			format++;
-		}
-		else
-		{
-			if (*format == '-')
-			{
-				specs->precis = 0;
-				format = read_flags(format, specs);
-				specs->width = ft_atoi_digits(format);
-			}
-			else
-				specs->precis = ft_atoi_digits(format);
-			specs->n_chars += ft_nbrlen(format);
-			format += ft_nbrlen(format);
-		}
+		*format = read_flags(*format, specs);
+		*format = read_width(*format, specs, args);
+		*format = read_precis(*format, specs, args);
 	}
-	return (format);
+	if (**format)
+	{
+		specs->specif = **format;
+		specs->n_chars += 1;
+		(*format)++;
+	}
 }
 
 #else
-
-static const char	*read_precision(const char *format, t_specs *specs)
-{
-	if (*format == '.')
-	{
-		specs->n_chars += 1;
-		if (*++format == '*')
-		{
-			specs->star_precis = 0;
-			specs->n_chars += 1;
-			format++;
-		}
-		else
-		{
-			specs->precis = ft_atoi_digits(format);
-			specs->n_chars += ft_nbrlen(format);
-			format += ft_nbrlen(format);
-		}
-	}
-	return (format);
-}
-
-#endif
 
 void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 {
 	reset_formatspecs(specs);
 	(*format)++;
 	*format = read_flags(*format, specs);
-	*format = read_width(*format, specs);
-	*format = read_precision(*format, specs);
+	*format = read_width(*format, specs, args);
+	*format = read_precis(*format, specs, args);
 	if (**format)
 	{
 		specs->specif = **format;
@@ -137,21 +134,6 @@ void	update_formatspecs(t_specs *specs, const char **format, va_list *args)
 		(*format)++;
 	}
 	clean_formatspecs(specs);
-	if (specs->star_width == 0)
-	{
-		specs->width = va_arg(*args, int);
-		//if (specs->width == INT_MIN) // not needed on Linux check on mac
-		//	specs->width++;
-		if (specs->width < 0)
-		{
-			specs->width = -specs->width;
-			specs->dash = 1;
-		}
-	}
-	if (specs->star_precis == 0)
-	{
-		specs->precis = (long)va_arg(*args, int); // need to check for negative precision ? yes on Linux check on mac
-		if (specs->precis < 0)
-			specs->precis = -1;
-	}
 }
+
+#endif
