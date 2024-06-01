@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 21:33:25 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/30 14:50:28 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:11:12 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 ssize_t	ft_putnchar(unsigned char c, ssize_t n)
 {
 	char	*output;
+	ssize_t	total_bytes_written;
 	ssize_t	bytes_written;
 
 	if (n <= 0)
@@ -35,11 +36,16 @@ ssize_t	ft_putnchar(unsigned char c, ssize_t n)
 		return (-1);
 	ft_memset(output, c, n);
 	bytes_written = write(STDOUT_FILENO, output, n);
+	total_bytes_written = bytes_written;
 	while (bytes_written != -1 && bytes_written < n)
 	{
 		n -= bytes_written;
 		bytes_written = write(STDOUT_FILENO, output, n);
+		if (bytes_written == -1)
+			total_bytes_written = bytes_written;
+		else
+			total_bytes_written += bytes_written;
 	}
 	free(output);
-	return (bytes_written);
+	return (total_bytes_written);
 }

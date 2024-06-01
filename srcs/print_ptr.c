@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/31 23:12:37 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:47:50 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ static ssize_t	print_nullptr(t_specs specs)
 	return (n_chars);
 }
 
+static ssize_t ptr_special_case(void)
+{
+	ssize_t	n_chars;
+	
+	n_chars = 0;
+	if (!check(&n_chars, ft_putnchar(' ', INT_MAX)))
+		return (-1);
+	if (!check(&n_chars, ft_putchar('0')))
+		return (-1);
+	return (n_chars);
+}
+
 ssize_t	print_ptr(t_specs specs, va_list *args)
 {
 	ssize_t		n_chars;
@@ -87,6 +99,8 @@ ssize_t	print_ptr(t_specs specs, va_list *args)
 	n_chars = 0;
 	clean_formatspecs(&specs);
 	arg = (unsigned long int)va_arg(*args, void *);
+	if (specs.precis == INT_MAX)
+		return (ptr_special_case());
 	if (arg)
 	{
 		switch_to_x(&specs);
