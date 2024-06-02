@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 01:40:49 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/06/01 21:47:50 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/02 01:08:21 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ static ssize_t	print_nullptr(t_specs specs)
 	return (n_chars);
 }
 
-static ssize_t ptr_special_case(void)
+static ssize_t	ptr_special_case(void)
 {
 	ssize_t	n_chars;
-	
+
 	n_chars = 0;
 	if (!check(&n_chars, ft_putnchar(' ', INT_MAX)))
 		return (-1);

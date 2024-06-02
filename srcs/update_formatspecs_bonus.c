@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 05:33:18 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/06/01 19:51:02 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/02 03:05:57 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static const char	*read_precis(const char *frmt, t_specs *spcs, va_list *ap)
 		}
 		else
 		{
-			spcs->precis = (int)ft_atoi_digits(frmt);
+			spcs->precis = ft_atoi_digits(frmt);
 			spcs->n_chars += ft_nbrlen(frmt);
 			frmt += ft_nbrlen(frmt);
 		}
