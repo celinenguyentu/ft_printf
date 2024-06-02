@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:15:44 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/06/02 03:11:49 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/02 03:50:31 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ static int	check_formatspecs_error(t_specs *specs)
 		specs->precis = -1;
 	if (specs->precis < -1)
 		return (1);
-	if (ft_strchr("spdiuxXo", specs->specif) && specs->precis > INT_MAX)
-		return (1);
+	if (ft_strchr("spdiuxXo", specs->specif) && specs->precis > INT_MAX) //check
+		return (1); 
 	if (specs->specif && !ft_strchr(SPECIFIERS, specs->specif))
 		(specs->n_unknowns)++;
 	if (!specs->specif && specs->n_unknowns == 0)
