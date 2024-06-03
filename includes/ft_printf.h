@@ -6,7 +6,7 @@
 /*   By: cnguyen- <cnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:46:33 by cnguyen-          #+#    #+#             */
-/*   Updated: 2024/05/31 23:08:25 by cnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/03 21:36:26 by cnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@
 
 typedef struct s_specs
 {
-	int		dash; // true 1 or false 0
-	int		zero; // true 1 or false 0
-	int		hash; // true 1 or false 0
-	int		blank; // true 1 or false 0
-	int		plus; // true 1 or false 0 
-	int		star_width; // -1 none, 0 next arg
-	long	width; // negative overflow, 0 none, 1, 2, 3, 4 ... value
-	int		star_precis; // -1 none, 0 next arg
-	long	precis; // - 1 none, 0, 1, 2, 3... value
-	char	specif; // c, s, p, d, i, u, x, X, %, o, unknown
+	int		dash;
+	int		zero;
+	int		hash;
+	int		blank;
+	int		plus;
+	int		star_width;
+	long	width;
+	int		star_precis;
+	long	precis;
+	char	specif;
 	int		n_chars;
 	int		n_unknowns;
 }	t_specs;
