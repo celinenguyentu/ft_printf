@@ -80,6 +80,11 @@ For futher details on the formatting options of printf, please refer to the [man
 
 ## Usage
 
+Because this project is relies on my [Libft](https://github.com/celinenguyentu/Libft.git) project using submodules, make sure you git clone with :
+```bash
+git clone --recurse-submodules https://github.com/celinenguyentu/ft_printf
+```
+
 ### Requirements
 
 This project is written in C language and need either gcc or clang compiler, with `<stdlib.h>`, `<stdarg.h>` and `<unistd.h>` standard libraries to run.
