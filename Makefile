@@ -53,28 +53,31 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 # ---------------------------------- RULES ----------------------------------- #
 
 .c.o: 
-				$(CC) $(CFLAGS) -c -I $(HFILES_DIR) $< -o $@
+				@$(CC) $(CFLAGS) -c -I $(HFILES_DIR) $< -o $@
 
 all:			$(NAME)
 
 $(LIBFT):
-				make -C $(LIBFT_PATH) all
+				@make -C $(LIBFT_PATH) all
 
 $(NAME): 		$(LIBFT) $(AOBJS) $(MOBJS) 
-				cp $(LIBFT) $(NAME)
-				$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(MOBJS)
+				@cp $(LIBFT) $(NAME)
+				@$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(MOBJS)
+				@echo "Created library libftprintf.a (mandatory version)."
 
 bonus:			$(LIBFT) $(AOBJS) $(BOBJS)
-				cp $(LIBFT) $(NAME)
-				$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(BOBJS)
+				@cp $(LIBFT) $(NAME)
+				@$(AR) $(ARFLAGS) $(NAME) $(AOBJS) $(BOBJS)
+				@echo "Created library libftprintf.a (bonus+ version)."
 
 clean:
-				make -C $(LIBFT_PATH) clean
-				$(RM) $(RMFLAGS) $(AOBJS) $(MOBJS) $(BOBJS)
+				@make -C $(LIBFT_PATH) clean
+				@$(RM) $(RMFLAGS) $(AOBJS) $(MOBJS) $(BOBJS)
 
 fclean:			clean
-				make -C $(LIBFT_PATH) fclean
-				$(RM) $(RMFLAGS) $(NAME)
+				@make -C $(LIBFT_PATH) fclean
+				@$(RM) $(RMFLAGS) $(NAME)
+				@echo "Removed libftprintf.a."
 
 re:				fclean all
 
