@@ -45,7 +45,7 @@ The function returns the number of characters printed in the standard output, ex
 
 Format specification supports several format specifiers as well as options including flags, width and precision. They can be used as followed :
 ```
-% [ flags ][ witdh ][ .precision ] specifier
+% [flags][witdh][.precision] specifier
 ```
 | Specifier | Description                                                                                        |
 |-----------|----------------------------------------------------------------------------------------------------|
@@ -68,12 +68,12 @@ Format specification supports several format specifiers as well as options inclu
 
 | Width    | Description                                                                                        |
 |----------|----------------------------------------------------------------------------------------------------|
-| <number> | Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger.                        |
+| \<*n*\> | Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger.                        |
 | *        | The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.                                        |
 
 | Precision | Description                                                                                        |
 |-----------|----------------------------------------------------------------------------------------------------|
-| .<number> | For integer specifiers (d, i, u, x, X) − precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For s − this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered. For c type − it has no effect. When no precision is specified, the default is 1. If the period is specified without an explicit value for precision, 0 is assumed.                       |
+| .\<*n*\> | For integer specifiers (d, i, u, x, X) − precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For s − this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered. For c type − it has no effect. When no precision is specified, the default is 1. If the period is specified without an explicit value for precision, 0 is assumed.                       |
 | .*        | The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.                                  |
 
 For futher details on the formatting options of printf, please refer to the [man page](https://man7.org/linux/man-pages/man3/printf.3.html).
